@@ -16,8 +16,8 @@ console.log('apple > Apple', 'apple' > 'Apple');
 console.log('"10" > 5', '10' > 5); // '10' is converted to a number
 console.log('"01" == 1', '01' == 1); // '01' is converted to a number
 
-console.log('true == 1',true == 1); // true is converted to 1
-console.log('false == 0',false == 0); // false is converted to 0
+console.log('true == 1', true == 1); // true is converted to 1
+console.log('false == 0', false == 0); // false is converted to 0
 
 let a = 0;
 let b = false;
