@@ -44,7 +44,7 @@ function example() {
   );
 
   console.log('nodeName of price is:', price.nodeName);
-  
+
   console.log('Full HTML of content is:', content.outerHTML);
   console.log('HTML of content is:', content.innerHTML);
   console.log('Text of content is:', content.textContent);
@@ -52,7 +52,20 @@ function example() {
   console.log('ID of .items is:', document.querySelector('#items').id);
   console.log('Useful info of content is:', content.getAttribute('useful-info'));
   console.log(
-    'Another useful info of content is:', 
+    'Another useful info of content is:',
     content.dataset.usefulInfo
   );
+
+  const newDiv = document.createElement("div");
+  const newContent = document.createTextNode("Hello World!");
+  newDiv.appendChild(newContent);
+  newDiv.classList.add("myClass");
+  const parentElement = document.getElementById("parent");
+  parentElement.appendChild(newDiv);
+
+  const anotherDiv = document.createElement("div");
+  const anotherContent = document.createTextNode("Hello again, World!");
+  anotherDiv.appendChild(anotherContent);
+  anotherDiv.classList.add("anotherClass");
+  parentElement.appendChild(anotherDiv);
 }
