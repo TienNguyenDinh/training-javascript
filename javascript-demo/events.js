@@ -17,3 +17,16 @@ function saySth() {
 
 button3.addEventListener('click', () => alert('Alert again!'));
 button3.addEventListener('click', () => alert('Alert again!'));
+
+function handleMouseDown(event) {
+  console.log('Mouse button pressed at ' + event.currentTarget);
+}
+
+function handleMouseUp(event) {
+  console.log('Mouse button released at ' + event.currentTarget);
+}
+
+let elem = document.getElementById('myElement');
+
+elem.addEventListener('mousedown', handleMouseDown);
+elem.addEventListener('mouseup', handleMouseUp);
