@@ -29,14 +29,14 @@
 
 ## DESIGN
 
-- Design: figma.
+- Design: [figma](https://www.figma.com/file/AanFxKaCibCL6KXGEKGkgk/BeeSound-(Community)?node-id=0%3A1&mode=dev).
 - Design Add-product page based on own idea.
 - Design Cart page based on own idea.
   - The cart doesn’t need to show preview when being hovered.
 
 ## TASK MANAGEMENT
 
-- Trello
+- [Trello](https://trello.com/b/0JxSwRif/tiennguyen-internship-javascript)
 
 ## REQUIREMENTS
 
