@@ -1,0 +1,4 @@
+body {
+  font-size: var(--font-size-base);
+  font-family: 'inter', sans-serif;
+}
