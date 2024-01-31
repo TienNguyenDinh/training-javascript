@@ -1,0 +1,24 @@
+:root {
+  --base-font-size: 16;
+
+  --font-size-base: calc(16 / var(--base-font-size) * 1rem);
+  --font-size-sm: calc(17 / var(--base-font-size) * 1rem);
+  --font-size-2sm: calc(18 / var(--base-font-size) * 1rem);
+  --font-size-md: calc(23 / var(--base-font-size) * 1rem);
+  --font-size-2md: calc(24 / var(--base-font-size) * 1rem);
+  --font-size-lg: calc(36 / var(--base-font-size) * 1rem);
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  --line-height-lg: calc(27.2 / var(--base-font-size) * 1rem);
+
+  --color-primary: #1b234a;
+
+  --color-text-primary: #000;
+  --color-text-primary-brighter: #000000b3;
+  --color-text-secondary: #f2f5ff;
+
+  --bg-color-btn-primary: #af367b;
+  --bg-color-btn-success: #3fab19;
+}
