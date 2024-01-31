@@ -1,4 +1,12 @@
+.header-container {
+  display: flex;
+  align-items: center;
+  padding-top: 53px;
+  padding-bottom: 71px;
+}
+
 .header-logo {
+  margin-right: 230px;
   font-size: var(--font-size-md);
 }
 
@@ -12,8 +20,8 @@
   padding-left: 4px;
 }
 
-.header-container {
-  display: flex;
+.navbar {
+  margin-right: 107px;
 }
 
 .nav-menu {
@@ -21,9 +29,16 @@
   gap: 0 85px;
 }
 
+.nav-link {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 .menu-buttons {
   display: flex;
   gap: 0 36px;
+  margin-right: 55px;
 }
 
 .btn-search {
@@ -44,4 +59,9 @@
   font-size: var(--font-size-base);
   background-color: transparent;
   color: var(--color-primary);
+
+  &:hover {
+    border-color: var(--color-success);
+    color: var(--color-success);
+  }
 }
