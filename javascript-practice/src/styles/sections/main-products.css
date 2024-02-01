@@ -1,0 +1,6 @@
+.main-products-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 22px;
+  padding-bottom: 114px;
+}
