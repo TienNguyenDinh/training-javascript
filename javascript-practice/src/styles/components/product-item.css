@@ -7,8 +7,7 @@
   padding: 45px 17px;
 }
 
-.product-name,
-.product-price {
+.product-info {
   font-size: var(--font-size-2md);
   line-height: var(--line-height-lg);
   font-weight: var(--font-weight-medium);
