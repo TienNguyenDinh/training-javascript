@@ -1,0 +1,6 @@
+.footer-heading {
+  margin-bottom: 7px;
+  font-size: var(--font-size-2md);
+  line-height: var(--line-height-xl);
+  font-weight: var(--font-weight-bold);
+}
