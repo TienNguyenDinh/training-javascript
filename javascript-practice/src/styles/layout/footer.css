@@ -1,6 +1,12 @@
+.main-footer {
+  background-color: var(--color-secondary);
+}
+
 .footer-container {
   display: flex;
   gap: 0 85px;
+  padding-top: 41px;
+  padding-bottom: 169px;
 }
 
 .footer-summary {
@@ -82,3 +88,8 @@
   line-height: var(--line-height-lg);
 }
 
+.input-subscription {
+  margin-bottom: 12px;
+  min-width: 274px;
+  padding: 16px;
+}
