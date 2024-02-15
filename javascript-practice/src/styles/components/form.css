@@ -1,0 +1,12 @@
+.form-default {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control {
+  border: none;
+  border-radius: 10px;
+  font-size: var(--font-size-2sm);
+  font-weight: var(--font-weight-medium);
+  background-color: var(--bg-color-input-primary);
+}
