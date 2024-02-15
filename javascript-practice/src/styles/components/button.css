@@ -3,6 +3,19 @@
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
+}
+
+.btn-primary {
+  border: none;
+  border-radius: 10px;
+  font-size: var(--font-size-2sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.btn-submit {
+  padding: 16px;
+  background-color: var(--color-primary);
+  color: var(--color-text-secondary);
 }
