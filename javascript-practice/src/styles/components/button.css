@@ -19,3 +19,19 @@
   background-color: var(--color-primary);
   color: var(--color-text-secondary);
 }
+
+.btn-option-color {
+  display: block;
+  border: none;
+  border-radius: 50%;
+  width: 27px;
+  height: 27px;
+}
+
+.btn-option-light {
+  background-color: var(--color-light);
+}
+
+.btn-option-black {
+  background-color: var(--color-black);
+}

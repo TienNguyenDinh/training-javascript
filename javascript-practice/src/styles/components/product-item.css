@@ -1,0 +1,28 @@
+.product-item {
+  --color-light: #d9d9d9;
+  --color-black: #272727;
+}
+
+.product-thumbnail {
+  padding: 45px 17px;
+}
+
+.product-info {
+  font-size: var(--font-size-2md);
+  line-height: var(--line-height-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+.product-name {
+  margin-bottom: 9px;
+}
+
+.product-option-colors {
+  display: flex;
+  gap: 0 13px;
+  margin-bottom: 25px;
+}
+
+.product-color-input {
+  display: none;
+}
