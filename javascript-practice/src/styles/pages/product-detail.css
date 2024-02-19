@@ -1,0 +1,30 @@
+.product-detail-section {
+  --color-info-value: #000000B3;
+}
+
+.product-detail-container {
+  display: flex;
+  gap: 0 125px;
+  justify-content: center;
+}
+
+.product-preview {
+  display: flex;
+  align-items: center;
+}
+
+.product-data.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px 0;
+  font-size: var(--font-size-base);
+}
+
+.product-info-term,
+.product-info-value {
+  line-height: var(--line-height-xl);
+}
+
+.product-info-value {
+  color: var(--color-info-value);
+}
