@@ -20,6 +20,13 @@
   color: var(--color-text-secondary);
 }
 
+.btn-action {
+  min-width: 244px;
+  padding: 16px;
+  background-color: var(--bg-color-btn-primary);
+  color: var(--color-text-secondary);
+}
+
 .btn-option-color {
   display: block;
   border: none;
