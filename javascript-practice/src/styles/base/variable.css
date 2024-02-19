@@ -12,8 +12,10 @@
   --font-weight-medium: 500;
 
   --line-height-lg: calc(27.2 / var(--base-font-size) * 1rem);
+  --line-height-xl: calc(40.8 / var(--base-font-size) * 1rem);
 
   --color-primary: #1b234a;
+  --color-secondary: #f2f5ff;
   --color-success: #3fab19;
 
   --color-text-primary: #000;
@@ -21,4 +23,5 @@
   --color-text-secondary: #f2f5ff;
 
   --bg-color-btn-primary: #af367b;
+  --bg-color-input-primary: #e8e8e8;
 }
