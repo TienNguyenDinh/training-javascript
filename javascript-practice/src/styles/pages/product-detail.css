@@ -13,6 +13,10 @@
   align-items: center;
 }
 
+.product-price {
+  margin-bottom: 8px;
+}
+
 .product-data.product-info {
   display: flex;
   flex-direction: column;
