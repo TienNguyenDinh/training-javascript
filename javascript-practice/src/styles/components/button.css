@@ -20,7 +20,7 @@
   color: var(--color-text-secondary);
 }
 
-.btn-action {
+.btn-success {
   min-width: 244px;
   padding: 16px;
   background-color: var(--bg-color-btn-primary);
