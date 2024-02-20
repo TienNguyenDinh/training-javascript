@@ -24,8 +24,7 @@
   font-size: var(--font-size-base);
 }
 
-.product-info-term,
-.product-info-value {
+.product-info-row {
   line-height: var(--line-height-xl);
 }
 
