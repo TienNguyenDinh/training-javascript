@@ -1,8 +1,3 @@
-.product-item {
-  --color-light: #d9d9d9;
-  --color-black: #272727;
-}
-
 .product-thumbnail {
   padding: 45px 17px;
 }
@@ -20,6 +15,7 @@
 .product-option-colors {
   display: flex;
   gap: 0 13px;
+  margin-top: 9px;
   margin-bottom: 25px;
 }
 
