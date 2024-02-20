@@ -42,3 +42,7 @@
 .btn-option-black {
   background-color: var(--color-black);
 }
+
+.btn-option-space-cadet {
+  background-color: var(--color-space-cadet);
+}
