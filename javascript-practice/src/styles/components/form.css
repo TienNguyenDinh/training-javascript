@@ -10,3 +10,13 @@
   font-weight: var(--font-weight-medium);
   background-color: var(--bg-color-input-primary);
 }
+
+.label-primary {
+  font-size: var(--font-size-2sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.input-size-md {
+  padding: 12px;
+  min-width: 300px;
+}
