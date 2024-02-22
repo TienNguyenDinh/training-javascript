@@ -1,13 +1,15 @@
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = 'http://localhost:3000';
 
-class ProductService {
+export default class ProductService {
   async handleFetching(url) {
     try {
       const res = await fetch(url);
 
       if(!res.ok) {
-        throw new Error("error");
+        throw new Error('error');
       }
+
+      const data = await res.text();
 
       return {
         data
@@ -25,13 +27,10 @@ class ProductService {
   async fetchProducts() {
     try {
       const fetchProductsURL = `${API_BASE_URL}/products`;
-
+      console.log(fetchProductsURL)
       const data = await this.handleFetching(fetchProductsURL);
 
-      return {
-        data,
-        error
-      }
+      return data;
     } catch(error) {
       console.error(error);
     }
