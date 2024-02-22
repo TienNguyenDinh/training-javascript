@@ -1,5 +1,6 @@
 .product-thumbnail {
-  padding: 45px 17px;
+  max-width: 303px;
+  max-height: 359px;
 }
 
 .product-info {
