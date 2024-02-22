@@ -2,7 +2,7 @@ import ProductService from '../services/product.services';
 
 class Product {
   constructor(id, name, currency, price, brand, modelName,
-    color, formFactor, connectivityTechnology, amount, imgPath) {
+    color, formFactor, connectivityTechnology, amount, imgName) {
     this.id = id;
     this.name = name;
     this.currency = currency;
@@ -13,16 +13,12 @@ class Product {
     this.formFactor = formFactor;
     this.connectivityTechnology = connectivityTechnology;
     this.amount = amount;
-    this.imgPath = imgPath;
+    this.imgName = imgName;
   }
 }
 
 export default class ProductModel {
-  constructor() {
-    this.productService = new ProductService();
-  }
-
-  async getProducts() {
-    return await this.productService.fetchProducts();
+  setProducts(products) {
+    this.products = products;
   }
 }
