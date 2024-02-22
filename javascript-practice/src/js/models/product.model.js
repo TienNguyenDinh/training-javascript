@@ -1,8 +1,23 @@
 import ProductService from '../services/product.services';
 
 class Product {
-  constructor(id, name, currency, price, brand, modelName,
-    color, formFactor, connectivityTechnology, amount, imgName) {
+  /**
+   * Creates a new product.
+   * @param {Object} options
+   * @param {string} options.id
+   * @param {string} options.name
+   * @param {string} options.currency
+   * @param {number} options.price
+   * @param {string} options.brand
+   * @param {string} options.modelName
+   * @param {string} options.color
+   * @param {string} options.formFactor
+   * @param {string} options.connectivityTechnology
+   * @param {number} options.amount
+   * @param {string} options.imgName
+   */
+  constructor({id, name, currency, price, brand, modelName,
+    color, formFactor, connectivityTechnology, amount, imgName}) {
     this.id = id;
     this.name = name;
     this.currency = currency;
