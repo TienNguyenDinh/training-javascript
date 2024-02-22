@@ -17,12 +17,12 @@ class Product {
   }
 }
 
-class ProductModel {
+export default class ProductModel {
   constructor() {
     this.productService = new ProductService();
   }
 
   async getProducts() {
-    return await productService.fetchProducts();
+    return await this.productService.fetchProducts();
   }
 }
