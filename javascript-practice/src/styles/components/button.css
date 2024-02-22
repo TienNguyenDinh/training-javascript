@@ -20,18 +20,29 @@
   color: var(--color-text-secondary);
 }
 
+.btn-success {
+  min-width: 244px;
+  padding: 16px;
+  background-color: var(--bg-color-btn-primary);
+  color: var(--color-text-secondary);
+}
+
 .btn-option-color {
   display: block;
   border: none;
   border-radius: 50%;
   width: 27px;
   height: 27px;
-}
 
-.btn-option-light {
-  background-color: var(--color-light);
-}
-
-.btn-option-black {
-  background-color: var(--color-black);
+  &[data-color="light"] {
+    background-color: var(--color-light);
+  }
+  
+  &[data-color="black"] {
+    background-color: var(--color-black);
+  }
+  
+  &[data-color="space-cadet"] {
+    background-color: var(--color-space-cadet);
+  }
 }
