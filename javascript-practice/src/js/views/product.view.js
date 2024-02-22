@@ -1,7 +1,8 @@
-class ProductView {
-  displayProducts() {
+export default class ProductView {
+  displayProducts(products) {
+
     const productInfoElement = document.getElementById("product-name");
 
-    productInfoElement.textContent = this.products[0].name;
+    productInfoElement.textContent = products[0].name;
   }
 }
