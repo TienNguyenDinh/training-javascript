@@ -20,6 +20,12 @@
   color: var(--color-text-secondary);
 }
 
+.btn-danger {
+  padding: 16px;
+  background-color: var(--color-primary);
+  color: var(--bg-color-btn-primary);
+}
+
 .btn-success {
   min-width: 244px;
   padding: 16px;

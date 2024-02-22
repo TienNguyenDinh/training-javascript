@@ -1,3 +1,10 @@
+.main-heading {
+  margin-bottom: 40px;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+}
+
 .footer-heading {
   margin-bottom: 7px;
   font-size: var(--font-size-2md);
