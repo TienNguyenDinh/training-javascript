@@ -1,25 +1,4 @@
-import ProductController from './product.controller';
-import ProductModel from '../models/product.model';
-import ProductView from '../views/product.view';
-import ProductService from '../services/product.services';
-
 import { ROUTES } from '../constants/config';
-import createController from '../utils/createController';
-
-const routes = {
-  [ROUTES.HOME]: {
-    components: {
-      Controller: ProductController,
-      Model: ProductModel,
-      View: ProductView,
-      Service: ProductService
-    },
-    handler: createController
-  },
-  [ROUTES.PRODUCT_DETAIL]: {
-    handler: changeView()
-  }
-}
 
 document.addEventListener('click', (e) => {
   const target = e.target;
@@ -37,10 +16,12 @@ function handleRoute(target) {
   handleChangeLocation();
 }
 
-export default function handleChangeLocation() {
+export default function handleChangeLocation(controller) {
   const pathName = window.location.pathname;
 
-  const route = routes[pathName];
-
-  route.handler(route.components);
+  switch(pathName) {
+    case [ROUTES.HOME]: {
+      controller.getProducts();
+    }
+  }
 }
