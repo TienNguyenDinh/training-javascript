@@ -23,5 +23,8 @@ export default function handleChangeLocation(controller) {
     case [ROUTES.HOME]: {
       controller.getProducts();
     }
+    case [ROUTES.PRODUCT_DETAIL]: {
+      controller.getProduct();
+    }
   }
 }
