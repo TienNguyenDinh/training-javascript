@@ -1,9 +1,11 @@
+import showToastify from '../utils/toastify';
+
 async function handleFetching(url) {
   try {
     const res = await fetch(url);
 
     if(!res.ok) {
-      throw new Error('handleFetching is failed');
+      throw new Error(`Failed to fetch data from ${url}`);
     }
 
     const data = await res.json();
@@ -14,9 +16,7 @@ async function handleFetching(url) {
   } catch(error) {
     console.error(error);
 
-    return {
-      error
-    }
+    showToastify(error.message, 'toastify-danger');
   }
 }
 
