@@ -6,8 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html",
     "build": "parcel build src/index.html",
-    "dev": "parcel --no-cache src/index.html",
-    "json-server": "json-server --watch json-server/db.json"
+    "dev": "parcel --no-cache src/index.html"
   },
   "keywords": [],
   "author": "",
