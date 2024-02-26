@@ -74,7 +74,12 @@
       "price": 29.99,
       "brand": "Apple",
       "modelName": "Airpods",
-      "colors": "white",
+      "colors": [
+        {
+          "name": "white",
+          "hexCode": "#fff"
+        }
+      ],
       "formFactor": "in ears",
       "connectivityTechnology": "bluetooth",
       "amount": 10,
