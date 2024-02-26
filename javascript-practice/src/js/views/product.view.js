@@ -1,14 +1,8 @@
-import { IMG_PATH } from '../constants/config';
-
 export default class ProductView {
   /**
-   * Creates and displays product list of products on the view.
+   * Displays product list of products on the view.
    *
-   * @param {Object[]} products - An array of product objects.
-   * @param {string} products[].name - The name of the product.
-   * @param {string} products[].imgName - The image name of the product.
-   * @param {string} products[].currency - The currency of the product price.
-   * @param {number} products[].price - The price of the product.
+   * @param {Product[]} products
    */
   displayProducts(products) {
     const productElements = products.map(product => {
@@ -19,10 +13,11 @@ export default class ProductView {
       productImageFigureElement.className = 'product-thumbnail';
 
       const productLinkElement = document.createElement('a');
+      
       productLinkElement.href = 'javascript:void(0)';
 
       const productImageElement = document.createElement('img');
-      productImageElement.src = IMG_PATH.replace('product-image-name', product.imgName);
+      productImageElement.src = product.imgUrl;
       productImageElement.alt = product.name;
 
       productLinkElement.append(productImageElement);
@@ -36,7 +31,7 @@ export default class ProductView {
 
       const productPriceElement = document.createElement('p');
       productPriceElement.className = 'product-info';
-      productPriceElement.textContent = `${product.currency} ${product.price}`;
+      productPriceElement.textContent = `$ ${product.price}`;
 
       productDetailElement.append(productNameElement);
       productDetailElement.append(productPriceElement);
@@ -47,7 +42,12 @@ export default class ProductView {
       return productItemElement;
     });
 
-    const productsContainerElement = document.querySelector('.main-products-container');
-    productsContainerElement.append(...productElements);
+    const mainContent = document.getElementById('main-content');
+
+    const productListElement = document.createElement('ul');
+    productListElement.className = 'main-products-container';
+    productListElement.append(...productElements);
+
+    mainContent.append(productListElement);
   }
 }
