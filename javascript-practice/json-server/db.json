@@ -3,122 +3,105 @@
     {
       "id": "1",
       "name": "Beats By Dre",
-      "currency": "BAM",
       "price": 29.99,
-      "details": {
-        "brand": "DRE",
-        "modelName": "Beats By Dre",
-        "color": "black",
-        "formFactor": "headphones",
-        "connectivityTechnology": "wireless"
-      },
+      "brand": "DRE",
+      "modelName": "Beats By Dre",
+      "color": "black",
+      "formFactor": "headphones",
+      "connectivityTechnology": "wireless",
       "amount": 1,
-      "imgPath": "../src/assets/images/product-images/beats-by-dre.png"
+      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/beats-by-dre.png"
     },
     {
       "id": "2",
       "name": "JBL Speaker",
       "currency": "BAM",
       "price": 39.99,
-      "details": {
-        "brand": "JBL",
-        "modelName": "Flip 5",
-        "color": "black",
-        "formFactor": "speaker",
-        "connectivityTechnology": "bluetooth"
-      },
+      "brand": "JBL",
+      "modelName": "Flip 5",
+      "color": "black",
+      "formFactor": "speaker",
+      "connectivityTechnology": "bluetooth",
       "amount": 10,
-      "imgName": "jbl-speaker.png"
+      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/jbl-speaker.png"
     },
     {
       "id": "3",
       "name": "Samsung Earphones",
       "currency": "BAM",
       "price": 29.99,
-      "details": {
-        "brand": "SAMSUNG",
-        "modelName": "Earphones 1",
-        "color": "black",
-        "formFactor": "in ears",
-        "connectivityTechnology": "wired"
-      },
+      "brand": "SAMSUNG",
+      "modelName": "Earphones 1",
+      "color": "black",
+      "formFactor": "in ears",
+      "connectivityTechnology": "wired",
       "amount": 100,
-      "imgName": "samsung-earphones-black.png"
+      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/samsung-earphones-black.png"
     },
     {
       "id": "4",
       "name": "Wireless Headset",
       "currency": "BAM",
       "price": 29.99,
-      "details": {
-        "brand": "SAMSUNG",
-        "modelName": "Headset",
-        "color": "black",
-        "formFactor": "headset",
-        "connectivityTechnology": "wireless"
-      },
+      "brand": "SAMSUNG",
+      "modelName": "Headset",
+      "color": "black",
+      "formFactor": "headset",
+      "connectivityTechnology": "wireless",
       "amount": 100,
-      "imgName": "wireless-headset.png"
+      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/wireless-headset.png"
     },
     {
       "id": "5",
       "name": "Apple Airpods",
       "currency": "BAM",
       "price": 29.99,
-      "details": {
-        "brand": "Apple",
-        "modelName": "Airpods",
-        "color": "white",
-        "formFactor": "in ears",
-        "connectivityTechnology": "bluetooth"
-      },
+      "brand": "Apple",
+      "modelName": "Airpods",
+      "color": "white",
+      "formFactor": "in ears",
+      "connectivityTechnology": "bluetooth",
       "amount": 10,
-      "imgName": "apple-airpods.png"
+      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/apple-airpods.png"
     },
     {
       "id": "6",
       "name": "Beats By Dre Studio 3",
       "currency": "BAM",
       "price": 29.99,
-      "details": {
-        "brand": "DRE",
-        "modelName": "Studio 3",
-        "color": "black",
-        "formFactor": "headphones",
-        "connectivityTechnology": "wireless"
-      },
+      "brand": "DRE",
+      "modelName": "Studio 3",
+      "color": "black",
+      "formFactor": "headphones",
+      "connectivityTechnology": "wireless",
       "amount": 10,
-      "imgName": "beats-by-dre-studio-3.png"
+      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/beats-by-dre-studio-3.png"
     },
     {
       "id": "7",
       "name": "Apple Airbuds Max",
       "currency": "BAM",
       "price": 29.99,
-      "details": {
-        "brand": "Apple",
-        "modelName": "Airbuds Max",
-        "color": "white",
-        "formFactor": "headphones",
-        "connectivityTechnology": "bluetooth"
-      },
+      "brand": "Apple",
+      "modelName": "Airbuds Max",
+      "color": "white",
+      "formFactor": "headphones",
+      "connectivityTechnology": "bluetooth",
       "amount": 100,
-      "imgName": "apple-airpods-max.png"
+      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/apple-airpods-max.png"
     },
     {
       "id": "8",
       "name": "Samsung Earphones",
       "currency": "BAM",
       "price": 29.99,
-      "details": {
-        "brand": "SAMSUNG",
-        "modelName": "Earphones 2",
-        "color": "white",
-        "formFactor": "in ears",
-        "connectivityTechnology": "wired"
-      },
+      "brand": "SAMSUNG",
+      "modelName": "Earphones 2",
+      "color": "white",
+      "formFactor": "in ears",
+      "connectivityTechnology": "wired",
       "amount": 100,
-      "imgName": "samsung-earphones-white.png"
+      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/samsung-earphones-white.png"
     }
   ]
 }
