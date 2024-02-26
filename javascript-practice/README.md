@@ -93,4 +93,22 @@ npm install
 npm start
 ```
 
+- Move to folder `json-server`
+
+```bash
+cd json-server
+```
+
+- Install packages in `json-server`
+
+```bash
+npm install
+```
+
+- Run the `json-server`
+
+```bash
+npm start
+```
+
 - Open your web browser and navigate to [http://localhost:1234](http://localhost:1234)
