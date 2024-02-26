@@ -1,4 +1,5 @@
 import { API_BASE_URL } from '../constants/config';
+
 import { handleFetching } from '../utils/api';
 
 export default class ProductService {
