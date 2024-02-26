@@ -7,9 +7,7 @@ import matchRoute from '../utils/matchRoute';
 const routes = {
   [ROUTES.HOME]: {
     handler: async () => {
-      await productController.setProducts();
-
-      await homeController.render();
+      await productController.getProducts();
     }
   },
   [ROUTES.PRODUCT_DETAIL]: {
