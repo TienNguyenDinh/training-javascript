@@ -20,7 +20,6 @@
     {
       "id": "2",
       "name": "JBL Speaker",
-      "currency": "BAM",
       "price": 39.99,
       "brand": "JBL",
       "modelName": "Flip 5",
@@ -38,7 +37,6 @@
     {
       "id": "3",
       "name": "Samsung Earphones",
-      "currency": "BAM",
       "price": 29.99,
       "brand": "SAMSUNG",
       "modelName": "Earphones 1",
@@ -56,7 +54,6 @@
     {
       "id": "4",
       "name": "Wireless Headset",
-      "currency": "BAM",
       "price": 29.99,
       "brand": "SAMSUNG",
       "modelName": "Headset",
@@ -74,7 +71,6 @@
     {
       "id": "5",
       "name": "Apple Airpods",
-      "currency": "BAM",
       "price": 29.99,
       "brand": "Apple",
       "modelName": "Airpods",
@@ -87,7 +83,6 @@
     {
       "id": "6",
       "name": "Beats By Dre Studio 3",
-      "currency": "BAM",
       "price": 29.99,
       "brand": "DRE",
       "modelName": "Studio 3",
@@ -105,7 +100,6 @@
     {
       "id": "7",
       "name": "Apple Airbuds Max",
-      "currency": "BAM",
       "price": 29.99,
       "brand": "Apple",
       "modelName": "Airbuds Max",
@@ -123,7 +117,6 @@
     {
       "id": "8",
       "name": "Samsung Earphones",
-      "currency": "BAM",
       "price": 29.99,
       "brand": "SAMSUNG",
       "modelName": "Earphones 2",
