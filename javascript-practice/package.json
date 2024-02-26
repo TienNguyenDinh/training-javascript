@@ -16,6 +16,7 @@
     "parcel": "^2.11.0"
   },
   "dependencies": {
-    "posthtml-include": "^1.7.4"
+    "posthtml-include": "^1.7.4",
+    "toastify-js": "^1.12.0"
   }
 }
