@@ -6,7 +6,12 @@
       "price": 29.99,
       "brand": "DRE",
       "modelName": "Beats By Dre",
-      "color": "black",
+      "colors": [
+        {
+          "name": "black",
+          "hexCode": "#000"
+        }
+      ],
       "formFactor": "headphones",
       "connectivityTechnology": "wireless",
       "amount": 1,
@@ -19,7 +24,12 @@
       "price": 39.99,
       "brand": "JBL",
       "modelName": "Flip 5",
-      "color": "black",
+      "colors": [
+        {
+          "name": "black",
+          "hexCode": "#000"
+        }
+      ],
       "formFactor": "speaker",
       "connectivityTechnology": "bluetooth",
       "amount": 10,
@@ -32,7 +42,12 @@
       "price": 29.99,
       "brand": "SAMSUNG",
       "modelName": "Earphones 1",
-      "color": "black",
+      "colors": [
+        {
+          "name": "black",
+          "hexCode": "#000"
+        }
+      ],
       "formFactor": "in ears",
       "connectivityTechnology": "wired",
       "amount": 100,
@@ -45,7 +60,12 @@
       "price": 29.99,
       "brand": "SAMSUNG",
       "modelName": "Headset",
-      "color": "black",
+      "colors": [
+        {
+          "name": "black",
+          "hexCode": "#000"
+        }
+      ],
       "formFactor": "headset",
       "connectivityTechnology": "wireless",
       "amount": 100,
@@ -58,7 +78,7 @@
       "price": 29.99,
       "brand": "Apple",
       "modelName": "Airpods",
-      "color": "white",
+      "colors": "white",
       "formFactor": "in ears",
       "connectivityTechnology": "bluetooth",
       "amount": 10,
@@ -71,7 +91,12 @@
       "price": 29.99,
       "brand": "DRE",
       "modelName": "Studio 3",
-      "color": "black",
+      "colors": [
+        {
+          "name": "black",
+          "hexCode": "#000"
+        }
+      ],
       "formFactor": "headphones",
       "connectivityTechnology": "wireless",
       "amount": 10,
@@ -84,7 +109,12 @@
       "price": 29.99,
       "brand": "Apple",
       "modelName": "Airbuds Max",
-      "color": "white",
+      "colors": [
+        {
+          "name": "white",
+          "hexCode": "#fff"
+        }
+      ],
       "formFactor": "headphones",
       "connectivityTechnology": "bluetooth",
       "amount": 100,
@@ -97,7 +127,12 @@
       "price": 29.99,
       "brand": "SAMSUNG",
       "modelName": "Earphones 2",
-      "color": "white",
+      "colors": [
+        {
+          "name": "white",
+          "hexCode": "#fff"
+        }
+      ],
       "formFactor": "in ears",
       "connectivityTechnology": "wired",
       "amount": 100,
