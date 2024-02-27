@@ -1,4 +1,4 @@
-import { productController, homeController, productPageController } from '../main';
+import { productController } from '../main';
 
 import { ROUTES } from '../constants/config';
 
@@ -6,7 +6,7 @@ import matchRoute from '../utils/matchRoute';
 
 
 /**
- * An object that maps route names to their respective handlers.
+ * An object that maps route names to their respective handlers
  */
 const routes = {
   [ROUTES.HOME]: {
@@ -15,7 +15,7 @@ const routes = {
     }
   },
   [ROUTES.PRODUCT_DETAIL]: {
-    handler: async () => { }
+    handler: () => { }
   },
   [ROUTES.ADD_PRODUCT]: {
     handler: () => { }
@@ -36,8 +36,8 @@ document.addEventListener('click', (e) => {
 });
 
 /**
- * Handles route changes. Updates the browser history and triggers a location change.
- * @param {EventTarget} target - The link element.
+ * Handles route changes. Updates the browser history and triggers a location change
+ * @param {EventTarget} target - The link element
  */
 function handleRoute(target) {
   window.history.pushState(null, '', target.href);
@@ -46,8 +46,7 @@ function handleRoute(target) {
 }
 
 /**
- * Handles location changes. Matches the current path to a route and calls the route's handler.
- * @export
+ * Handles location changes. Matches the current path to a route and calls the route's handler
  */
 export default function handleChangeLocation() {
   const pathName = window.location.pathname;
