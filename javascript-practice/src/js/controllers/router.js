@@ -7,36 +7,21 @@ import matchRoute from '../utils/matchRoute';
 
 /**
  * An object that maps route names to their respective handlers.
- * @type {Object.<string, {handler: Function}>}
  */
 const routes = {
   [ROUTES.HOME]: {
     handler: async () => {
-      await productController.getProducts();
+      await productController.displayProducts();
     }
   },
   [ROUTES.PRODUCT_DETAIL]: {
-    handler: async (params) => {
-      const id = params.id;
-
-      await productController.setProductById(id);
-
-      await productPageController.render();
-    }
+    handler: async () => { }
   },
   [ROUTES.ADD_PRODUCT]: {
-    handler: () => {
-      productController.renderAddProductPage();
-    }
+    handler: () => { }
   },
   [ROUTES.EDIT_PRODUCT]: {
-    handler: async (params) => {
-      const id = params.id;
-
-      await productController.setProductById(id);
-
-      productController.renderEditProductPage();
-    }
+    handler: () => { }
   }
 }
 
