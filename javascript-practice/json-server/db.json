@@ -76,8 +76,8 @@
       "modelName": "Airpods",
       "colors": [
         {
-          "name": "white",
-          "hexCode": "#fff"
+          "name": "light",
+          "hexCode": "# 9d9"
         }
       ],
       "formFactor": "in ears",
@@ -110,8 +110,8 @@
       "modelName": "Airbuds Max",
       "colors": [
         {
-          "name": "white",
-          "hexCode": "#fff"
+          "name": "light",
+          "hexCode": "#d9d9d9"
         }
       ],
       "formFactor": "headphones",
@@ -127,8 +127,8 @@
       "modelName": "Earphones 2",
       "colors": [
         {
-          "name": "white",
-          "hexCode": "#fff"
+          "name": "light",
+          "hexCode": "#d9d9d9"
         }
       ],
       "formFactor": "in ears",
