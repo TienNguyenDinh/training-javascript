@@ -8,15 +8,11 @@ export default class ProductController {
   }
 
   /**
-   * Fetches products from the server and displays them.
+   * Fetches products from the server and displays them
    * @async
-   * @returns {Promise<void>} Resolves when products are fetched and displayed.
    */
   async getProducts() {
-    const res = await this.productService.fetchProducts();
-    const products = res.data;
-
-    this.productModel.setProducts(products);
+    const products = await this.productService.getProducts();
 
     this.productView.displayProducts(products);
   }
