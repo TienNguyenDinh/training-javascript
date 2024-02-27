@@ -84,20 +84,18 @@ export default class ProductView {
       const productColorLabelElement = createNewElement('label', 'btn btn-option-color', '', productColorLabelAttributes);
 
       // Creating the radio button element for each color
-      const productColorInputAttributes = {
-        hidden: true,
-        type: 'radio',
-        id: `color-${colorName}`
-      }
-      const productColorInputElement = createNewElement('input', '', '', productColorInputAttributes);
-
-      // Creating the object colorValue for product color input
       const colorValue = JSON.stringify({
         name: colorName,
         hexCode: color.hexCode
       });
-      productColorInputElement.setAttribute('value', colorValue);
-      productColorInputElement.setAttribute('name', 'color');
+      const productColorInputAttributes = {
+        hidden: true,
+        type: 'radio',
+        id: `color-${colorName}`,
+        value: colorValue,
+        name: 'color'
+      }
+      const productColorInputElement = createNewElement('input', '', '', productColorInputAttributes);
 
       productColorWrapperElement.append(productColorLabelElement, productColorInputElement);
 
