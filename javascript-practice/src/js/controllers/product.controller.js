@@ -3,8 +3,6 @@ export default class ProductController {
     this.productModel = productModel;
     this.productView = productView;
     this.productService = productService;
-
-    this.displayProducts();
   }
 
   /**
