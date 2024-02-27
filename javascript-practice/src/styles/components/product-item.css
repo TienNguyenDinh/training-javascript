@@ -9,6 +9,10 @@
   font-weight: var(--font-weight-medium);
 }
 
+.product-title {
+  margin-bottom: 9px;
+}
+
 .product-name {
   margin-bottom: 9px;
 }
