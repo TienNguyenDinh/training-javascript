@@ -1,4 +1,3 @@
-import createColorOptionList from './createColorOptionList';
 import { createNewElement } from '../utils/dom';
 
 export default class ProductView {
@@ -38,7 +37,7 @@ export default class ProductView {
 
       // Creating the ul element for the product colors
       const productColorsWrapperElement = createNewElement('ul');
-      const colorOptionList = createColorOptionList(product.colors);
+      const colorOptionList = this.createColorOptionList(product.colors);
       productColorsWrapperElement.append(...colorOptionList);
 
       // Creating the p element for the product price
@@ -62,5 +61,47 @@ export default class ProductView {
     productListElement.append(...productElements);
 
     mainContent.append(productListElement);
+  }
+
+  /**
+ * Generates a list of color options for a product
+ * @param {Object[]} colors An array of color object.
+ * @returns {HTMLElement[]} An array of HTML elements representing color options
+ */
+  createColorOptionList(colors) {
+    const colorOptionList = [];
+
+    for (let color of colors) {
+      const productColorWrapperElement = createNewElement('li');
+
+      // Creating the label element for each color
+      const productColorLabelAttributes = {
+        'data-color': color.name,
+        for: color.name
+      }
+      const productColorLabelElement = createNewElement('label', 'btn btn-option-color', '', productColorLabelAttributes);
+
+      // Creating the radio button element for each color
+      const productColorInputAttributes = {
+        hidden: true,
+        type: 'radio',
+        id: `color-${color.name}`
+      }
+      const productColorInputElement = createNewElement('input', '', '', productColorInputAttributes);
+
+      // Creating the object colorValue for product color input
+      let colorValue = JSON.stringify({
+        name: color.name,
+        hexCode: color.hexCode
+      });
+      productColorInputElement.setAttribute('value', colorValue);
+      productColorInputElement.setAttribute('name', 'color');
+
+      productColorWrapperElement.append(productColorLabelElement, productColorInputElement);
+
+      colorOptionList.push(productColorWrapperElement);
+    }
+
+    return colorOptionList;
   }
 }
