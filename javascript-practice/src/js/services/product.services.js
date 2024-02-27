@@ -10,7 +10,7 @@ export default class ProductService {
     try {
       const fetchProductsEndpoint = API_ROUTES.GET_PRODUCTS_URL;
 
-      const data = await APIHandler.handleGet(fetchProductsEndpoint);
+      const data = await APIHandler.get(fetchProductsEndpoint);
 
       return data;
     } catch (error) {
