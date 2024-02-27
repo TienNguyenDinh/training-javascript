@@ -8,9 +8,9 @@ export default class ProductService {
    */
   async getProducts() {
     try {
-      const fetchProductsEndpoint = API_ROUTES.GET_PRODUCTS_URL;
+      const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
-      const data = await APIHandler.handleGet(fetchProductsEndpoint);
+      const data = await APIHandler.get(endpoint);
 
       return data;
     } catch (error) {

@@ -1,6 +1,6 @@
 const API_ROUTES = {
-  API_BASE_URL: 'http://localhost:3000',
-  GET_PRODUCTS_URL: `products`,
+  BASE_URL: 'http://localhost:3000',
+  PRODUCTS_ENDPOINT: `products`,
 }
 
 const ROUTES = {
