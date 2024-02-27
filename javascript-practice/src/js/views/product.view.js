@@ -72,12 +72,14 @@ export default class ProductView {
     const colorOptionList = [];
 
     for (let color of colors) {
+      const colorName = color.name;
+        
       const productColorWrapperElement = createNewElement('li');
 
       // Creating the label element for each color
       const productColorLabelAttributes = {
-        'data-color': color.name,
-        for: color.name
+        'data-color': colorName,
+        for: colorName
       }
       const productColorLabelElement = createNewElement('label', 'btn btn-option-color', '', productColorLabelAttributes);
 
@@ -85,13 +87,13 @@ export default class ProductView {
       const productColorInputAttributes = {
         hidden: true,
         type: 'radio',
-        id: `color-${color.name}`
+        id: `color-${colorName}`
       }
       const productColorInputElement = createNewElement('input', '', '', productColorInputAttributes);
 
       // Creating the object colorValue for product color input
       let colorValue = JSON.stringify({
-        name: color.name,
+        name: colorName,
         hexCode: color.hexCode
       });
       productColorInputElement.setAttribute('value', colorValue);
