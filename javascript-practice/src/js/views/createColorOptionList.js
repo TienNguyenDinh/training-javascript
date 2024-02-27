@@ -1,4 +1,4 @@
-import { createNewElement } from './dom';
+import { createNewElement } from '../utils/dom';
 
 /**
  * Generates a list of color options for a product

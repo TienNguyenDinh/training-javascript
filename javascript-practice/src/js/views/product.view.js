@@ -1,5 +1,5 @@
 import createColorOptionList from './createColorOptionList';
-import { createNewElement } from './dom';
+import { createNewElement } from '../utils/dom';
 
 export default class ProductView {
   /**
