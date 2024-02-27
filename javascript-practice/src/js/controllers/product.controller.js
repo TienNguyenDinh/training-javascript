@@ -4,15 +4,15 @@ export default class ProductController {
     this.productView = productView;
     this.productService = productService;
 
-    this.getProducts();
+    this.displayProducts();
   }
 
   /**
    * Fetches products from the server and displays them
    */
-  async getProducts() {
+  async displayProducts() {
     const products = await this.productService.getProducts();
 
-    this.productView.displayProducts(products);
+    this.productView.renderProducts(products);
   }
 }

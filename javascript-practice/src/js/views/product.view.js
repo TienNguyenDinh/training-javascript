@@ -6,7 +6,7 @@ export default class ProductView {
    * Displays product list of products on the view
    * @param {Object[]} products - An array of product objects to be displayed
    */
-  displayProducts(products) {
+  renderProducts(products) {
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
       const { PRODUCTS_ENDPOINT } = API_ROUTES;
