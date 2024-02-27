@@ -1,39 +1,32 @@
-import ProductService from '../services/product.services';
-
 class Product {
   /**
-   * Creates a new product.
-   * @param {Object} options
-   * @param {string} options.id
-   * @param {string} options.name
-   * @param {string} options.currency
-   * @param {number} options.price
-   * @param {string} options.brand
-   * @param {string} options.modelName
-   * @param {string} options.color
-   * @param {string} options.formFactor
-   * @param {string} options.connectivityTechnology
-   * @param {number} options.amount
-   * @param {string} options.imgName
+   * Represents a product
+   * @constructor
+   * @param {Object} product - Product properties
+   * + id {number} - The product ID
+   * + name {string} - The product name
+   * + price {number} - The product price
+   * + brand {string} - The product brand
+   * + modelName {string} - The product model name
+   * + colors {Object[]} - The product color
+   * + formFactor {string} - The product form factor
+   * + connectivityTechnology {string} - The product connectivity technology
+   * + amount {number} - The available quantity of the product
+   * + imgUrl {string} - The image filename for the product
    */
-  constructor({id, name, currency, price, brand, modelName,
-    color, formFactor, connectivityTechnology, amount, imgName}) {
+  constructor(product) {
+    const { id, name, price, brand, modelName,
+      colors, formFactor, connectivityTechnology, amount, imgUrl } = product;
+
     this.id = id;
     this.name = name;
-    this.currency = currency;
     this.price = price;
     this.brand = brand;
     this.modelName = modelName;
-    this.color = color;
+    this.colors = colors;
     this.formFactor = formFactor;
     this.connectivityTechnology = connectivityTechnology;
     this.amount = amount;
-    this.imgName = imgName;
-  }
-}
-
-export default class ProductModel {
-  setProducts(products) {
-    this.products = products;
+    this.imgUrl = imgUrl;
   }
 }

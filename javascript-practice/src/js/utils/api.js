@@ -1,23 +1,30 @@
 import showToastify from '../utils/toastify';
+import { API_ROUTES } from '../constants/config';
 
-async function handleFetching(url) {
-  try {
-    const res = await fetch(url);
+const APIHandler = {
+  /**
+   * Fetches data from an URL and returns the JSON response.
+   * If the fetching fails, it shows a toast notification
 
-    if(!res.ok) {
-      throw new Error(`Failed to fetch data from ${url}`);
+   * @param {string} url - The URL to fetch data from
+   */
+  async handleGet(endpoint) {
+    try {
+      const res = await fetch(`${API_ROUTES.API_BASE_URL}/${endpoint}`);
+
+      if(!res.ok) {
+        throw new Error(`Failed to fetch data from ${url}`);
+      }
+
+      const data = await res.json();
+
+      return data;
+    } catch(error) {
+      console.error(error);
+
+      showToastify(error.message, 'toastify-danger');
     }
-
-    const data = await res.json();
-
-    return {
-      data
-    }
-  } catch(error) {
-    console.error(error);
-
-    showToastify(error.message, 'toastify-danger');
   }
 }
 
-export { handleFetching }
+export { APIHandler }

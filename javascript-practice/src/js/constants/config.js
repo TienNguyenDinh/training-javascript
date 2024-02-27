@@ -1,4 +1,8 @@
-const API_BASE_URL = 'http://localhost:3000';
+const API_ROUTES = {
+  API_BASE_URL: 'http://localhost:3000',
+  GET_PRODUCTS_URL: `products`,
+}
+
 const ROUTES = {
   HOME: '/',
   PRODUCT_DETAIL: '/products/:id',
@@ -7,4 +11,5 @@ const ROUTES = {
   CART: '/cart'
 }
 
-export { API_BASE_URL, ROUTES }
+export { API_ROUTES, ROUTES }
+

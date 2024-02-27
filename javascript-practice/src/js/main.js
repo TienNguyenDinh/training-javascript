@@ -11,7 +11,7 @@ let productController,
     productPageController;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const productModel = new ProductModel();
+  const productModel = null;
   const productView = new ProductView();
   const productService = new ProductService();
 
