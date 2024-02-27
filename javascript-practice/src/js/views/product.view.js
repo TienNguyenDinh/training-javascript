@@ -8,6 +8,8 @@ export default class ProductView {
   displayProducts(products) {
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
+      const { name, price, colors, imgUrl } = product;
+
       // Creating the main div element for each product
       const productItemElement = createNewElement('div', 'product-item');
 
@@ -21,8 +23,8 @@ export default class ProductView {
 
       // Creating the img element for the product image
       const productImageAttributes = {
-        src: product.imgUrl,
-        alt: product.name
+        src: imgUrl,
+        alt: name
       }
       const productImageElement = createNewElement('img', '', '', productImageAttributes);
 
@@ -33,15 +35,15 @@ export default class ProductView {
       const productDetailElement = createNewElement('div');
 
       // Creating the h2 element for the product name
-      const productNameElement = createNewElement('h2', 'product-info', product.name);
+      const productNameElement = createNewElement('h2', 'product-info', name);
 
       // Creating the ul element for the product colors
       const productColorsWrapperElement = createNewElement('ul');
-      const colorOptionList = this.createColorOptionList(product.colors);
+      const colorOptionList = this.createColorOptionList(colors);
       productColorsWrapperElement.append(...colorOptionList);
 
       // Creating the p element for the product price
-      const productPriceElement = createNewElement('p', 'product-info', `$ ${product.price}`);
+      const productPriceElement = createNewElement('p', 'product-info', `$ ${price}`);
 
       productDetailElement.append(productNameElement);
       productDetailElement.append(productColorsWrapperElement);
