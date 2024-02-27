@@ -1,14 +1,11 @@
-import ProductModel from './models/product.model';
 import ProductView from './views/product.view';
 import ProductService from './services/product.services';
-
 import ProductController from './controllers/product.controller';
-
 import handleChangeLocation from './controllers/router';
 
 let productController,
-    homeController,
-    productPageController;
+  homeController,
+  productPageController;
 
 document.addEventListener('DOMContentLoaded', () => {
   const productModel = null;
@@ -20,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
   handleChangeLocation();
 });
 
-export { productController,
-         homeController,
-         productPageController }
+export {
+  productController,
+  homeController,
+  productPageController
+}
