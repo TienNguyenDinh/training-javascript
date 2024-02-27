@@ -8,7 +8,7 @@ export default class ProductService {
    */
   async getProducts() {
     try {
-      const endpoint = API_ROUTES.GET_PRODUCTS_URL;
+      const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
       const data = await APIHandler.get(endpoint);
 

@@ -1,3 +1,4 @@
+import { API_ROUTES } from '../constants/config';
 import { createNewElement } from '../utils/dom';
 
 export default class ProductView {
@@ -8,6 +9,7 @@ export default class ProductView {
   displayProducts(products) {
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
+      const { PRODUCTS_ENDPOINT } = API_ROUTES;
       const { name, price, colors, imgUrl } = product;
 
       // Creating the main div element for each product
@@ -17,10 +19,11 @@ export default class ProductView {
       const productImageFigureElement = createNewElement('figure', 'product-thumbnail');
 
       const productLinkAttributes = {
-        href: ''
+        href: `/${PRODUCTS_ENDPOINT}/${product.id}`
       }
+      const productImageLinkElement = createNewElement('a', '', '', productLinkAttributes);
       const productLinkElement = createNewElement('a', '', '', productLinkAttributes);
-
+      
       // Creating the img element for the product image
       const productImageAttributes = {
         src: imgUrl,
@@ -28,14 +31,15 @@ export default class ProductView {
       }
       const productImageElement = createNewElement('img', '', '', productImageAttributes);
 
-      productLinkElement.append(productImageElement);
-      productImageFigureElement.append(productLinkElement);
+      productImageLinkElement.append(productImageElement);
+      productImageFigureElement.append(productImageLinkElement);
 
       // Creating the div element for the product details
       const productDetailElement = createNewElement('div');
 
       // Creating the h2 element for the product name
       const productNameElement = createNewElement('h2', 'product-info', name);
+      productLinkElement.append(productNameElement);
 
       // Creating the ul element for the product colors
       const productColorsWrapperElement = createNewElement('ul');
@@ -45,7 +49,7 @@ export default class ProductView {
       // Creating the p element for the product price
       const productPriceElement = createNewElement('p', 'product-info', `$ ${price}`);
 
-      productDetailElement.append(productNameElement);
+      productDetailElement.append(productLinkElement);
       productDetailElement.append(productColorsWrapperElement);
       productDetailElement.append(productPriceElement);
 
