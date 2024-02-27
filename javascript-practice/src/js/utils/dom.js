@@ -12,6 +12,7 @@ function createNewElement(tag, className = '', textContent = '', attributes = {}
   if (className) {
     element.className = className;
   }
+  
   if (textContent) {
     element.textContent = textContent;
   }
