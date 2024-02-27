@@ -3,18 +3,26 @@ import { APIHandler } from '../utils/api';
 
 export default class ProductService {
   /**
-   * Gets products from the server.
+   * Gets products from the server
    * @returns {Promise<Object[]>} An array of product objects
    */
   async getProducts() {
-    try {
-      const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
+    const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
-      const data = await APIHandler.get(endpoint);
+    const data = await APIHandler.get(endpoint);
 
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
+    return data;
+  }
+
+  /**
+   * Gets a product by id from the server
+   * @returns {Promise<Object>} A product object
+   */
+  async getProductById(id) {
+    const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
+
+    const data = await APIHandler.get(`${endpoint}/${id}`);
+
+    return data;
   }
 }
