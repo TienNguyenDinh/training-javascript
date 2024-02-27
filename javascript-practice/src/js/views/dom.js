@@ -9,10 +9,10 @@
 function createNewElement(tag, className = '', textContent = '', attributes = {}) {
   const element = document.createElement(tag);
 
-  if(className) {
+  if (className) {
     element.className = className;
   }
-  if(textContent) {
+  if (textContent) {
     element.textContent = textContent;
   }
 

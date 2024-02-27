@@ -8,7 +8,7 @@ import { createNewElement } from './dom';
 export default function createColorOptionList(colors) {
   const colorOptionList = [];
 
-  for(let color of colors) {
+  for (let color of colors) {
     const productColorWrapperElement = createNewElement('li');
 
     // Creating the label element for each color
