@@ -1,7 +1,6 @@
-const API_BASE_URL = 'http://localhost:3000';
-
-const API_ENDPOINTS = {
-  GET_PRODUCTS_URL: `${API_BASE_URL}/products`,
+const API_ROUTES = {
+  API_BASE_URL: 'http://localhost:3000',
+  GET_PRODUCTS_URL: `products`,
 }
 
-export { API_ENDPOINTS }
+export { API_ROUTES }
