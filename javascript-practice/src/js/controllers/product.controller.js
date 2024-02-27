@@ -13,4 +13,13 @@ export default class ProductController {
 
     this.productView.renderProducts(products);
   }
+
+  /**
+   * Fetches product by id from the server and displays them
+   */
+  async displayProductById(id) {
+    const product = await this.productService.getProductById(id);
+
+    this.productView.renderProduct(product);
+  }
 }
