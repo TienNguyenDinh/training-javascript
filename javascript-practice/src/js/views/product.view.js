@@ -1,21 +1,26 @@
+import getColorOptionList from "./getColorOptionList";
+
 export default class ProductView {
   /**
-   * Displays product list of products on the view.
-   *
-   * @param {Product[]} products
+   * Displays product list of products on the view
+   * @param {Object[]} products
    */
   displayProducts(products) {
+    // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
+      // Creating the main div element for each product
       const productItemElement = document.createElement('div');
       productItemElement.className = 'product-item';
 
+      // Creating the figure element for the product image
       const productImageFigureElement = document.createElement('figure');
       productImageFigureElement.className = 'product-thumbnail';
 
       const productLinkElement = document.createElement('a');
 
-      productLinkElement.href = 'javascript:void(0)';
+      productLinkElement.href = '';
 
+      // Creating the img element for the product image
       const productImageElement = document.createElement('img');
       productImageElement.src = product.imgUrl;
       productImageElement.alt = product.name;
@@ -23,36 +28,20 @@ export default class ProductView {
       productLinkElement.append(productImageElement);
       productImageFigureElement.append(productLinkElement);
 
+      // Creating the div element for the product details
       const productDetailElement = document.createElement('div');
 
+      // Creating the h2 element for the product name
       const productNameElement = document.createElement('h2');
       productNameElement.className = 'product-info';
       productNameElement.textContent = product.name;
 
+      // Creating the ul element for the product colors
       const productColorsWrapperElement = document.createElement('ul');
-      for(let color of product.colors) {
-        const productColorWrapperElement = document.createElement('li');
+      const colorOptionList = getColorOptionList(product.colors);
+      productColorsWrapperElement.append(...colorOptionList);
 
-        const productColorLabelElement = document.createElement('label');
-        productColorLabelElement.className = 'btn btn-option-color';
-        productColorLabelElement.setAttribute('data-color', color.name);
-        productColorLabelElement.setAttribute('for', `color-${color.name}`);
-
-        const productColorInputElement = document.createElement('input');
-        productColorInputElement.hidden = true;
-        productColorInputElement.setAttribute('type', 'radio')
-        productColorInputElement.setAttribute('id', `color-${color.name}`);
-        productColorInputElement.setAttribute(
-          'value',
-          `{"name": "${color.name}", "hexCode": "${color.hexCode}"}`
-        );
-        productColorInputElement.setAttribute('name', 'color');
-
-        productColorWrapperElement.append(productColorLabelElement, productColorInputElement);
-
-        productColorsWrapperElement.append(productColorWrapperElement);
-      }
-
+      // Creating the p element for the product price
       const productPriceElement = document.createElement('p');
       productPriceElement.className = 'product-info';
       productPriceElement.textContent = `$ ${product.price}`;
@@ -67,8 +56,10 @@ export default class ProductView {
       return productItemElement;
     });
 
+    // Getting the main content
     const mainContent = document.getElementById('main-content');
 
+    // Creating the ul element for the product list
     const productListElement = document.createElement('ul');
     productListElement.className = 'main-products-container';
     productListElement.append(...productElements);
