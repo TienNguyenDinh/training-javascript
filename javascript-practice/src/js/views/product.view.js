@@ -3,7 +3,7 @@ import { createNewElement } from '../utils/dom';
 export default class ProductView {
   /**
    * Displays product list of products on the view
-   * @param {Object[]} products
+   * @param {Object[]} products - An array of product objects to be displayed
    */
   displayProducts(products) {
     // Mapping over the products array to create HTML elements for each product
