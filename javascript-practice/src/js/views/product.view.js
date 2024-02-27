@@ -1,4 +1,5 @@
-import getColorOptionList from "./getColorOptionList";
+import createColorOptionList from './createColorOptionList';
+import createNewElement from './createNewElement';
 
 export default class ProductView {
   /**
@@ -9,42 +10,40 @@ export default class ProductView {
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
       // Creating the main div element for each product
-      const productItemElement = document.createElement('div');
-      productItemElement.className = 'product-item';
+      const productItemElement = createNewElement(div, 'product-item');
 
       // Creating the figure element for the product image
-      const productImageFigureElement = document.createElement('figure');
+      const productImageFigureElement = createNewElement('figure', 'product-thumbnail');
       productImageFigureElement.className = 'product-thumbnail';
 
-      const productLinkElement = document.createElement('a');
-
-      productLinkElement.href = '';
+      const productLinkAttributes = {
+        href: ''
+      }
+      const productLinkElement = createNewElement('a', productLinkAttributes);
 
       // Creating the img element for the product image
-      const productImageElement = document.createElement('img');
-      productImageElement.src = product.imgUrl;
-      productImageElement.alt = product.name;
+      const productImageAttributes = {
+        src: product.imgUrl,
+        alt: product.name
+      }
+      const productImageElement = createNewElement('img', productImageAttributes);
 
       productLinkElement.append(productImageElement);
       productImageFigureElement.append(productLinkElement);
 
       // Creating the div element for the product details
-      const productDetailElement = document.createElement('div');
+      const productDetailElement = createNewElement('div');
 
       // Creating the h2 element for the product name
-      const productNameElement = document.createElement('h2');
-      productNameElement.className = 'product-info';
-      productNameElement.textContent = product.name;
+      const productNameElement = createNewElement('h2', 'product-info', product.name);
 
       // Creating the ul element for the product colors
-      const productColorsWrapperElement = document.createElement('ul');
-      const colorOptionList = getColorOptionList(product.colors);
+      const productColorsWrapperElement = createNewElement('ul');
+      const colorOptionList = createColorOptionList(product.colors);
       productColorsWrapperElement.append(...colorOptionList);
 
       // Creating the p element for the product price
-      const productPriceElement = document.createElement('p');
-      productPriceElement.className = 'product-info';
-      productPriceElement.textContent = `$ ${product.price}`;
+      const productPriceElement = createNewElement('p', 'product-info', `$ ${product.price}`);
 
       productDetailElement.append(productNameElement);
       productDetailElement.append(productColorsWrapperElement);
@@ -60,8 +59,7 @@ export default class ProductView {
     const mainContent = document.getElementById('main-content');
 
     // Creating the ul element for the product list
-    const productListElement = document.createElement('ul');
-    productListElement.className = 'main-products-container';
+    const productListElement = createNewElement('ul', 'main-products-container');
     productListElement.append(...productElements);
 
     mainContent.append(productListElement);
