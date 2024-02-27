@@ -7,14 +7,10 @@ export default class ProductService {
    * @returns {Promise<Object[]>} An array of product objects
    */
   async getProducts() {
-    try {
-      const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
+    const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
-      const data = await APIHandler.get(endpoint);
+    const data = await APIHandler.get(endpoint);
 
-      return data;
-    } catch (error) {
-      console.error(error);
-    }
+    return data;
   }
 }
