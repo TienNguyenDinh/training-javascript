@@ -1,39 +1,32 @@
-import ProductService from '../services/product.services';
-
 class Product {
   /**
-   * Creates a new product.
-   * @param {Object} options
-   * @param {string} options.id
-   * @param {string} options.name
-   * @param {string} options.currency
-   * @param {number} options.price
-   * @param {string} options.brand
-   * @param {string} options.modelName
-   * @param {string} options.color
-   * @param {string} options.formFactor
-   * @param {string} options.connectivityTechnology
-   * @param {number} options.amount
-   * @param {string} options.imgName
+   * Represents a product
+   * @constructor
+   * @param {Object} product - Product properties
+   * @param {number} product.id - The product ID
+   * @param {string} product.name - The product name
+   * @param {number} product.price - The product price
+   * @param {string} product.brand - The product brand
+   * @param {string} product.modelName - The product model name
+   * @param {Object} product.colors - The product color
+   * @param {string} product.formFactor - The product form factor
+   * @param {string} product.connectivityTechnology - The product connectivity technology
+   * @param {number} product.amount - The available quantity of the product
+   * @param {string} product.imgUrl - The image filename for the product
    */
-  constructor({id, name, currency, price, brand, modelName,
-    color, formFactor, connectivityTechnology, amount, imgName}) {
+  constructor(product) {
+    const { id, name, price, brand, modelName,
+      colors, formFactor, connectivityTechnology, amount, imgUrl } = product;
+
     this.id = id;
     this.name = name;
-    this.currency = currency;
     this.price = price;
     this.brand = brand;
     this.modelName = modelName;
-    this.color = color;
+    this.colors = colors;
     this.formFactor = formFactor;
     this.connectivityTechnology = connectivityTechnology;
     this.amount = amount;
-    this.imgName = imgName;
-  }
-}
-
-export default class ProductModel {
-  setProducts(products) {
-    this.products = products;
+    this.imgUrl = imgUrl;
   }
 }
