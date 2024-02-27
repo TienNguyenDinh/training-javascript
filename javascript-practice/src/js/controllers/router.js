@@ -15,7 +15,11 @@ const routes = {
     }
   },
   [ROUTES.PRODUCT_DETAIL]: {
-    handler: () => { }
+    handler: async (params) => {
+      const id = params.id;
+
+      await productController.displayProductById(id);
+    }
   },
   [ROUTES.ADD_PRODUCT]: {
     handler: () => { }
