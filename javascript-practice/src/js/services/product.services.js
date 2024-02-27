@@ -1,5 +1,5 @@
 import { API_ROUTES } from '../constants/config';
-import { API } from '../utils/api';
+import { APIHandler } from '../utils/api';
 
 export default class ProductService {
   /**
@@ -10,7 +10,7 @@ export default class ProductService {
     try {
       const fetchProductsEndpoint = API_ROUTES.GET_PRODUCTS_URL;
 
-      const data = await API.handleGet(fetchProductsEndpoint);
+      const data = await APIHandler.handleGet(fetchProductsEndpoint);
 
       return data;
     } catch (error) {

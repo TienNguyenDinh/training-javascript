@@ -1,7 +1,7 @@
 import showToastify from '../utils/toastify';
 import { API_ROUTES } from '../constants/config';
 
-const API = {
+const APIHandler = {
   /**
    * Fetches data from an URL and returns the JSON response.
    * If the fetching fails, it shows a toast notification
@@ -27,4 +27,4 @@ const API = {
   }
 }
 
-export { API }
+export { APIHandler }
