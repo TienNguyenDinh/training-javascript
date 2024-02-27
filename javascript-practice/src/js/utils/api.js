@@ -1,9 +1,16 @@
 import showToastify from '../utils/toastify';
+import { API_ROUTES } from '../constants/config';
 
 const API = {
-  async handleGet(url) {
+  /**
+   * Fetches data from an URL and returns the JSON response.
+   * If the fetching fails, it shows a toast notification
+
+   * @param {string} url - The URL to fetch data from
+   */
+  async handleGet(endpoint) {
     try {
-      const res = await fetch(url);
+      const res = await fetch(`${API_ROUTES.API_BASE_URL}/${endpoint}`);
 
       if(!res.ok) {
         throw new Error(`Failed to fetch data from ${url}`);
