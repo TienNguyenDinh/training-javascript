@@ -92,7 +92,7 @@ export default class ProductView {
       const productColorInputElement = createNewElement('input', '', '', productColorInputAttributes);
 
       // Creating the object colorValue for product color input
-      let colorValue = JSON.stringify({
+      const colorValue = JSON.stringify({
         name: colorName,
         hexCode: color.hexCode
       });
