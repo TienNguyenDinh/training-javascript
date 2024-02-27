@@ -3,16 +3,16 @@ class Product {
    * Represents a product
    * @constructor
    * @param {Object} product - Product properties
-   * @param {number} product.id - The product ID
-   * @param {string} product.name - The product name
-   * @param {number} product.price - The product price
-   * @param {string} product.brand - The product brand
-   * @param {string} product.modelName - The product model name
-   * @param {Object} product.colors - The product color
-   * @param {string} product.formFactor - The product form factor
-   * @param {string} product.connectivityTechnology - The product connectivity technology
-   * @param {number} product.amount - The available quantity of the product
-   * @param {string} product.imgUrl - The image filename for the product
+   * + id {number} - The product ID
+   * + name {string} - The product name
+   * + price {number} - The product price
+   * + brand {string} - The product brand
+   * + modelName {string} - The product model name
+   * + colors {Object[]} - The product color
+   * + formFactor {string} - The product form factor
+   * + connectivityTechnology {string} - The product connectivity technology
+   * + amount {number} - The available quantity of the product
+   * + imgUrl {string} - The image filename for the product
    */
   constructor(product) {
     const { id, name, price, brand, modelName,
