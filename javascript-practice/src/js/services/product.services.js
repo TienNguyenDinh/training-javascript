@@ -1,20 +1,21 @@
-import { API_BASE_URL } from '../constants/config';
+import { API_ENDPOINTS } from '../constants/config';
 
-import { handleFetching } from '../utils/api';
+import { API } from '../utils/api';
 
 export default class ProductService {
-  constructor() {
-    this.handleFetching = handleFetching;
-  }
-
-  async fetchProducts() {
+  /**
+   * Gets products from the server.
+   * @async
+   * @returns {Promise<Object[]>} An array of product objects
+   */
+  async getProducts() {
     try {
-      const fetchProductsURL = `${API_BASE_URL}/products`;
+      const fetchProductsURL = API_ENDPOINTS.GET_PRODUCTS_URL;
 
-      const data = await this.handleFetching(fetchProductsURL);
+      const data = await API.handleGet(fetchProductsURL);
 
       return data;
-    } catch(error) {
+    } catch (error) {
       console.error(error);
     }
   }
