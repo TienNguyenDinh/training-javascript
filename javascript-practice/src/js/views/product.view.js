@@ -1,5 +1,5 @@
 import createColorOptionList from './createColorOptionList';
-import createNewElement from './createNewElement';
+import { createNewElement } from './dom';
 
 export default class ProductView {
   /**
@@ -10,23 +10,22 @@ export default class ProductView {
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
       // Creating the main div element for each product
-      const productItemElement = createNewElement(div, 'product-item');
+      const productItemElement = createNewElement('div', 'product-item');
 
       // Creating the figure element for the product image
       const productImageFigureElement = createNewElement('figure', 'product-thumbnail');
-      productImageFigureElement.className = 'product-thumbnail';
 
       const productLinkAttributes = {
         href: ''
       }
-      const productLinkElement = createNewElement('a', productLinkAttributes);
+      const productLinkElement = createNewElement('a', '', '', productLinkAttributes);
 
       // Creating the img element for the product image
       const productImageAttributes = {
         src: product.imgUrl,
         alt: product.name
       }
-      const productImageElement = createNewElement('img', productImageAttributes);
+      const productImageElement = createNewElement('img', '', '', productImageAttributes);
 
       productLinkElement.append(productImageElement);
       productImageFigureElement.append(productLinkElement);
