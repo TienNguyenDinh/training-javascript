@@ -2,6 +2,13 @@ import { API_ROUTES } from '../constants/url-api';
 import { createNewElement } from '../utils/dom';
 
 export default class ProductView {
+  // Clean the view to make sure nothing is there
+  cleanView() {
+    const mainContent = document.getElementById('main-content');
+
+    mainContent.innerHTML = '';
+  }
+
   /**
    * Displays product list of products on the view
    * @param {Object[]} products - An array of product objects to be displayed
@@ -97,17 +104,25 @@ export default class ProductView {
   }
 
   renderAddProductPage() {
-    const pageContainerElement = createNewElement('div',
-      'container add-product-container');
+    const pageContainerElement = createNewElement({
+      tag: 'div',
+      className: 'container add-product-container'
+    });
 
-    const pageHeadingElement = createNewElement('h2',
-      'main-heading', 'Add Product Page');
+    const pageHeadingElement = createNewElement({
+      tag: 'h2',
+      className: 'main-heading',
+      textContent: 'Add Product Page'
+    });
 
     const formAttributes = {
       action: 'javascript:void(0)'
     }
-    const formElement = createNewElement('form',
-      'form-default add-form', '', formAttributes);
+    const formElement = createNewElement({
+      tag: 'form',
+      className: 'form-default add-form',
+      attributes: formAttributes
+    });
 
     const formFields = {
       'Name': '',
@@ -122,42 +137,55 @@ export default class ProductView {
       'Image Url': ''
     }
     for (const field in formFields) {
-      const columnDivElement = createNewElement('div', 'flex-column');
+      const columnDivElement = createNewElement({
+        tag: 'div',
+        className: 'flex-column'
+      });
 
       const inputAttributes = {
         id: field
       }
-      const inputElement = createNewElement('input',
-        'form-control input-size-md', '', inputAttributes);
-      const labelElement = createNewElement('label',
-        'label-primary', field);
+      const inputElement = createNewElement({
+        tag: 'input',
+        className: 'form-control input-size-md',
+        attributes: inputAttributes
+      });
+      const labelElement = createNewElement({
+        tag: 'label',
+        className: 'label-primary',
+        textContent: field
+      });
 
       columnDivElement.append(labelElement, inputElement);
 
       formElement.append(columnDivElement);
     }
 
-    const rowDivElement = createNewElement('div', 'flex-row');
+    const rowDivElement = createNewElement({
+      tag: 'div',
+      className: 'flex-row'
+    });
 
     const submitBtnAttributes = {
       id: 'add-product',
       type: 'submit'
     }
-    const submitBtnElement = createNewElement('button',
-      'btn btn-primary btn-submit',
-      'Submit',
-      submitBtnAttributes
-    );
+    const submitBtnElement = createNewElement({
+      tag: 'button',
+      className: 'btn btn-primary btn-submit',
+      textContent: 'Submit',
+      attributes: submitBtnAttributes
+    });
 
     const cancelBtnAttributes = {
       href: '/'
     }
-    const cancelBtnElement = createNewElement(
-      'a',
-      'btn btn-primary btn-danger',
-      'Cancel',
-      cancelBtnAttributes
-    )
+    const cancelBtnElement = createNewElement({
+      tag: 'a',
+      className: 'btn btn-primary btn-danger',
+      textContent: 'Cancel',
+      attributes: cancelBtnAttributes
+    })
 
     rowDivElement.append(submitBtnElement, cancelBtnElement);
 
