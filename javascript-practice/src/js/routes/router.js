@@ -28,6 +28,8 @@ const routes = {
 }
 
 // Add an event listener for clicking all links
+// Then call handleRoute that is passed in a link node
+// Which Handles route changes. Updates the browser history and triggers a location change
 document.addEventListener('click', (e) => {
   const target = e.target;
 
@@ -56,10 +58,10 @@ function handleRoute(target) {
 export default function handleRouteChange() {
   const pathName = window.location.pathname;
   const {
-    route: foundRoute,
+    route: currentRoute,
     params
   } = findRoute(pathName);
-  const route = routes[foundRoute];
+  const route = routes[currentRoute];
 
   route.handler(params);
 }
