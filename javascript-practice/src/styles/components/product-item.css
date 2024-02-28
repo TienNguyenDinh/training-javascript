@@ -1,11 +1,17 @@
 .product-thumbnail {
-  padding: 45px 17px;
+  margin-bottom: 25px;
+  max-width: 303px;
+  max-height: 359px;
 }
 
 .product-info {
   font-size: var(--font-size-2md);
   line-height: var(--line-height-lg);
   font-weight: var(--font-weight-medium);
+}
+
+.product-title {
+  margin-bottom: 9px;
 }
 
 .product-name {
