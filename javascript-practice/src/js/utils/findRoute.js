@@ -1,4 +1,5 @@
 import { ROUTES } from '../constants/routes';
+import { REGEX_PATTERNS } from '../constants/regexPatterns';
 
 /**
  * Matches a path name to a route in the ROUTES object
@@ -21,9 +22,9 @@ export default function findRoute(pathName) {
 
     // If the route includes an ':id' parameter
     if (routePath.includes(':id')) {
-      const digitPattern = '\\d+';
+      const { digit } = REGEX_PATTERNS;
       // Create a regular expression to match the route, replacing ':id' with a digit pattern
-      const regex = new RegExp(routePath.replace(':id', digitPattern));
+      const regex = new RegExp(routePath.replace(':id', digit));
 
       if (regex.test(pathName)) {
         return {
