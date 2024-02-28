@@ -5,21 +5,20 @@ const APIHandler = {
   /**
    * Fetches data from an URL and returns the JSON response.
    * If the fetching fails, it shows a toast notification
-
-   * @param {string} url - The URL to fetch data from
+   * @param {string} endpoint - The endpoint to fetch data from
    */
-  async handleGet(endpoint) {
+  async get(endpoint) {
     try {
-      const res = await fetch(`${API_ROUTES.API_BASE_URL}/${endpoint}`);
+      const res = await fetch((`${API_ROUTES.BASE_URL}/${endpoint}`));
 
-      if(!res.ok) {
+      if (!res.ok) {
         throw new Error(`Failed to fetch data from ${url}`);
       }
 
       const data = await res.json();
 
       return data;
-    } catch(error) {
+    } catch (error) {
       console.error(error);
 
       showToastify(error.message, 'toastify-danger');

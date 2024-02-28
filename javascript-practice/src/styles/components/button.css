@@ -43,11 +43,11 @@
   &[data-color="light"] {
     background-color: var(--color-light);
   }
-  
+
   &[data-color="black"] {
     background-color: var(--color-black);
   }
-  
+
   &[data-color="space-cadet"] {
     background-color: var(--color-space-cadet);
   }
