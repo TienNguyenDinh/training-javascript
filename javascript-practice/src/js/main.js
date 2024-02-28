@@ -16,6 +16,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 export {
   productController,
-  homeController,
-  productPageController
 }
