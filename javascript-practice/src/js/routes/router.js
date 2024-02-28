@@ -31,15 +31,15 @@ const routes = {
 }
 
 // Add an event listener for clicking all links
-// Then call handleRoute that is passed in a link node
-// Which Handles route changes. Updates the browser history and triggers a location change
+// This is necessary because the website is a
+// Single Page Application and does not need to reload
+// which can lead to a faster user experience
 document.addEventListener('click', (e) => {
   const target = e.target;
 
   // If the clicked element is not a link, exit the function
   if (!target.matches('a')) return;
 
-  // Prevents the browser from reloading since the website is SPA
   e.preventDefault();
 
   handleRoute(target);
