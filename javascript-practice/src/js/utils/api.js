@@ -1,5 +1,5 @@
 import showToastify from '../utils/toastify';
-import { API_ROUTES } from '../constants/config';
+import { API_ROUTES } from '../constants/url-api';
 
 const APIHandler = {
   /**
@@ -9,13 +9,13 @@ const APIHandler = {
    */
   async get(endpoint) {
     try {
-      const res = await fetch((`${API_ROUTES.BASE_URL}/${endpoint}`));
+      const res = await fetch(`${API_ROUTES.BASE_URL}/${endpoint}`);
 
       if (!res.ok) {
         throw new Error(`Failed to fetch data from ${url}`);
       }
 
-      const data = await res.json();
+      const data = res.json();
 
       return data;
     } catch (error) {

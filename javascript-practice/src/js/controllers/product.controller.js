@@ -1,8 +1,9 @@
 export default class ProductController {
-  constructor(productModel, productView, productService) {
-    this.productModel = productModel;
+  constructor(productView, productService) {
     this.productView = productView;
     this.productService = productService;
+
+    this.displayProducts();
   }
 
   /**
