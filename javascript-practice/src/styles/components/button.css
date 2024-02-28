@@ -20,6 +20,20 @@
   color: var(--color-text-secondary);
 }
 
+.btn-entry {
+  border: 2px solid var(--color-primary);
+  border-radius: 10px;
+  padding: 10px 30px;
+  font-size: var(--font-size-base);
+  background-color: transparent;
+  color: var(--color-primary);
+
+  &:hover {
+    border-color: var(--color-success);
+    color: var(--color-success);
+  }
+}
+
 .btn-danger {
   padding: 16px;
   background-color: var(--color-primary);
