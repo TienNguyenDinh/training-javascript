@@ -13,4 +13,15 @@ export default class ProductService {
 
     return data;
   }
+
+  /**
+   * Adds a product by sending a POST request.
+   * @param {Object} product - The product data to be added
+   * @returns {Promise<Object>} - The object contains a property 'isSuccess' which is a boolean indicating the success of the operation
+   */
+  async addProduct(product) {
+    const data = await handlePost(endpoint, product);
+
+    return data;
+  }
 }
