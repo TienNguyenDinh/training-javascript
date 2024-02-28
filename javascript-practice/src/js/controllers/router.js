@@ -4,7 +4,6 @@ import { ROUTES } from '../constants/url-api';
 
 import matchRoute from '../utils/matchRoute';
 
-
 /**
  * An object that maps route names to their respective handlers
  */
