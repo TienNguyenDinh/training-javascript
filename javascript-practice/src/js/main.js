@@ -1,5 +1,5 @@
-import handleChangeLocation from './routes/router';
+import handleRouteChange from './routes/router';
 
 document.addEventListener('DOMContentLoaded', () => {
-  handleChangeLocation();
+  handleRouteChange();
 });
