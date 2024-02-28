@@ -1,6 +1,6 @@
 import { productController } from '../main';
 
-import { ROUTES } from '../constants/config';
+import { ROUTES } from '../constants/url-api';
 
 import matchRoute from '../utils/matchRoute';
 

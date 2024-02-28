@@ -15,13 +15,13 @@ export default class ProductView {
       // Creating the main div element for each product
       const productItemElement = createNewElement({
         tag: 'div',
-        class: 'product-item'
+        className: 'product-item'
       });
 
       // Creating the figure element for the product image
       const productImageFigureElement = createNewElement({
         tag: 'figure',
-        class: 'product-thumbnail'
+        className: 'product-thumbnail'
       });
 
       const productLinkAttributes = {
@@ -41,7 +41,7 @@ export default class ProductView {
       }
       const productImageElement = createNewElement({
         tag: 'img',
-        attribute: productImageAttributes
+        attributes: productImageAttributes
       });
 
       productImageLinkElement.append(productImageElement);
@@ -53,7 +53,7 @@ export default class ProductView {
       // Creating the h2 element for the product name
       const productNameElement = createNewElement({
         tag: 'h2',
-        class: 'product-info product-title',
+        className: 'product-info product-title',
         textContent: name
       });
       productLinkElement.append(productNameElement);
@@ -61,7 +61,7 @@ export default class ProductView {
       // Creating the ul element for the product colors
       const productColorsWrapperElement = createNewElement({
         tag: 'ul',
-        class: 'product-option-colors'
+        className: 'product-option-colors'
       });
       const colorOptionList = this.createColorOptionList(colors);
       productColorsWrapperElement.append(...colorOptionList);
@@ -69,7 +69,7 @@ export default class ProductView {
       // Creating the p element for the product price
       const productPriceElement = createNewElement({
         tag: 'p',
-        class: 'product-info',
+        className: 'product-info',
         textContent: `$ ${price}`
       });
 
@@ -89,7 +89,7 @@ export default class ProductView {
     // Creating the ul element for the product list
     const productListElement = createNewElement({
       tag: 'ul',
-      class: 'main-products-container'
+      className: 'main-products-container'
     });
     productListElement.append(...productElements);
 
@@ -116,7 +116,7 @@ export default class ProductView {
       }
       const productColorLabelElement = createNewElement({
         tag: 'label',
-        class: 'btn btn-option-color',
+        className: 'btn btn-option-color',
         attributes: productColorLabelAttributes
       });
 
