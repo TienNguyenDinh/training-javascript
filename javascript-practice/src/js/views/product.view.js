@@ -2,16 +2,9 @@ import { API_ROUTES } from '../constants/url-api';
 import { createNewElement } from '../utils/dom';
 
 export default class ProductView {
-<<<<<<< HEAD
   // Remove every element on main-content
-  cleanView() {
+  clearMainContainer() {
     const mainContent = document.getElementById('main-content');
-=======
-  // Clean the view to make sure nothing is there
-  cleanView() {
-    const mainContent = document.getElementById('main-content');
-
->>>>>>> 42b2f5e443a6d897afbe09c85c424306e5cb1185
     mainContent.innerHTML = '';
   }
 
@@ -20,7 +13,7 @@ export default class ProductView {
    * @param {Object[]} products - An array of product objects to be displayed
    */
   renderProducts(products) {
-    this.cleanView();
+    this.clearMainContainer();
 
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
@@ -111,7 +104,7 @@ export default class ProductView {
   }
 
   renderAddProductPage() {
-    this.cleanView();
+    this.clearMainContainer();
 
     const pageContainerElement = createNewElement({
       tag: 'div',
@@ -207,88 +200,20 @@ export default class ProductView {
     mainContent.append(pageContainerElement);
   }
 
-  /**
-<<<<<<< HEAD
-   * Renders the 'Add New Product' page on the main content
-   * The page includes a form for adding a new product with fields
-   */
-  renderAddProductPage() {
-    this.cleanView();
 
-    const mainContent = document.getElementById('main-content');
-    mainContent.innerHTML = `
-      <div class="container add-product-container">
-        <h2 class="main-heading">Add New Product</h2>
-        <form action="javascript:void(0)" class="form-default add-form">
-          <div class="flex-column">
-            <label class="label-primary" for="name">Name</label>
-            <input id="name" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="name">Price</label>
-            <input id="price" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="brand">Brand</label>
-            <input id="brand" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="model">Model Name</label>
-            <input id="model-name" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="color">Color</label>
-            <input id="color" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="color">Hex code</label>
-            <input id="hex-code" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="form-factor">Form Factor</label>
-            <input id="form-factor" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="connectivity-technology">Connectivity Technology</label>
-            <input id="connectivity-technology" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="amount">Amount</label>
-            <input id="amount" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-row">
-            <button type="submit" id="btn-add-product" class="btn btn-primary btn-submit">Submit</button>
-            <a href="/" type="button" class="btn btn-primary btn-danger">Cancel</a>
-          </div>
-        </form>
-      </div>
-    `
-  }
 
   /**
- * Generates a list of color options for a product
- * @param {Object[]} colors An array of color object.
- * @returns {HTMLElement[]} An array of HTML elements representing color options
- */
-=======
    * Generates a list of color options for a product
    * @param {Object[]} colors An array of color object.
    * @returns {HTMLElement[]} An array of HTML elements representing color options
    */
->>>>>>> 42b2f5e443a6d897afbe09c85c424306e5cb1185
   createColorOptionList(colors) {
     const colorOptionList = [];
 
     for (let color of colors) {
-<<<<<<< HEAD
-      const colorName = color.name;
-
-      const productColorWrapperElement = createNewElement('li');
-=======
       const { name, hexCode } = color;
 
       const productColorWrapperElement = createNewElement({ tag: 'li' });
->>>>>>> 42b2f5e443a6d897afbe09c85c424306e5cb1185
 
       // Creating the label element for each color
       const productColorLabelAttributes = {
