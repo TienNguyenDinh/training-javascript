@@ -2,11 +2,19 @@ import { API_ROUTES } from '../constants/config';
 import { createNewElement } from '../utils/dom';
 
 export default class ProductView {
+  // Remove every element on main-content
+  cleanView() {
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = '';
+  }
+
   /**
    * Displays product list of products on the view
    * @param {Object[]} products - An array of product objects to be displayed
    */
   renderProducts(products) {
+    this.cleanView();
+
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
       const { PRODUCTS_ENDPOINT } = API_ROUTES;
@@ -23,7 +31,7 @@ export default class ProductView {
       }
       const productImageLinkElement = createNewElement('a', '', '', productLinkAttributes);
       const productLinkElement = createNewElement('a', '', '', productLinkAttributes);
-      
+
       // Creating the img element for the product image
       const productImageAttributes = {
         src: imgUrl,
@@ -59,7 +67,6 @@ export default class ProductView {
       return productItemElement;
     });
 
-    // Getting the main content
     const mainContent = document.getElementById('main-content');
 
     // Creating the ul element for the product list
@@ -67,6 +74,63 @@ export default class ProductView {
     productListElement.append(...productElements);
 
     mainContent.append(productListElement);
+  }
+
+  /**
+   * Renders the 'Add New Product' page on the main content
+   * The page includes a form for adding a new product with fields
+   */
+  renderAddProductPage() {
+    this.cleanView();
+
+    const mainContent = document.getElementById('main-content');
+    mainContent.innerHTML = `
+      <div class="container add-product-container">
+        <h2 class="main-heading">Add New Product</h2>
+        <form action="javascript:void(0)" class="form-default add-form">
+          <div class="flex-column">
+            <label class="label-primary" for="name">Name</label>
+            <input id="name" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="name">Price</label>
+            <input id="price" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="brand">Brand</label>
+            <input id="brand" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="model">Model Name</label>
+            <input id="model-name" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="color">Color</label>
+            <input id="color" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="color">Hex code</label>
+            <input id="hex-code" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="form-factor">Form Factor</label>
+            <input id="form-factor" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="connectivity-technology">Connectivity Technology</label>
+            <input id="connectivity-technology" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="amount">Amount</label>
+            <input id="amount" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-row">
+            <button type="submit" id="btn-add-product" class="btn btn-primary btn-submit">Submit</button>
+            <a href="/" type="button" class="btn btn-primary btn-danger">Cancel</a>
+          </div>
+        </form>
+      </div>
+    `
   }
 
   /**
@@ -79,7 +143,7 @@ export default class ProductView {
 
     for (let color of colors) {
       const colorName = color.name;
-        
+
       const productColorWrapperElement = createNewElement('li');
 
       // Creating the label element for each color
