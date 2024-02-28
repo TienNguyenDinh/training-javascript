@@ -18,7 +18,9 @@ const routes = {
     handler: () => { }
   },
   [ROUTES.ADD_PRODUCT]: {
-    handler: () => { }
+    handler: () => {
+      productController.renderAddProductPage();
+    }
   },
   [ROUTES.EDIT_PRODUCT]: {
     handler: () => { }
