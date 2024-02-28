@@ -18,6 +18,6 @@ export default class ProductController {
    * Renders add-product page
    */
   displayProducts() {
-    this.productView.displayAddProductPage();
+    this.productView.renderAddProductPage();
   }
 }
