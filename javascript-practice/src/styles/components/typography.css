@@ -11,3 +11,7 @@
   line-height: var(--line-height-xl);
   font-weight: var(--font-weight-bold);
 }
+
+.text-center {
+  text-align: center;
+}

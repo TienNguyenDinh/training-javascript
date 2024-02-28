@@ -49,7 +49,7 @@ document.addEventListener('click', (e) => {
 function handleRoute(target) {
   window.history.pushState(null, '', target.href);
 
-  handleChangeLocation();
+  handleRouteChange();
 }
 
 /**
