@@ -1,4 +1,5 @@
-import { ROUTES } from '../constants/url-api';
+import { ROUTES } from '../constants/routes';
+import { REGEX_PATTERNS } from '../constants/regexPatterns';
 
 /**
  * Matches a path name to a route in the ROUTES object
@@ -7,22 +8,31 @@ import { ROUTES } from '../constants/url-api';
  * @param {string} pathName - The path name to match
  * @returns {{route: string, params: Object}} An object containing the matched route and any parameters
  */
-export default function matchRoute(pathName) {
+export default function findRoute(pathName) {
   for (let route in ROUTES) {
-    const myRoute = ROUTES[route];
+    const routePath = ROUTES[route];
 
     // If the route exactly matches the path name
-    if (myRoute === pathName) {
-      return { route: myRoute, params: {} };
+    if (routePath === pathName) {
+      return {
+        route: routePath,
+        params: {}
+      };
     }
 
     // If the route includes an ':id' parameter
-    if (myRoute.includes(':id')) {
+    if (routePath.includes(':id')) {
+      const { digit } = REGEX_PATTERNS;
       // Create a regular expression to match the route, replacing ':id' with a digit pattern
-      const regex = new RegExp(myRoute.replace(':id', '\\d+'));
+      const regex = new RegExp(routePath.replace(':id', digit));
 
       if (regex.test(pathName)) {
-        return { route: myRoute, params: { id: parseInt(pathName.split('/')[2]) } };
+        return {
+          route: routePath,
+          params: {
+            id: parseInt(pathName.split('/')[2])
+          }
+        };
       }
     }
   }
