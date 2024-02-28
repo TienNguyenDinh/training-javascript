@@ -23,6 +23,40 @@ const APIHandler = {
 
       showToastify(error.message, 'toastify-danger');
     }
+  },
+
+  /**
+   * Sends a POST request to the endpoint with the provided product data
+   * @param {string} endpoint - The endpoint to which the request should be sent
+   * @param {Object} product - The product data to be sent
+   */
+  async post(endpoint, product) {
+    try {
+      const res = await fetch(
+        `${API_ROUTES.BASE_URL}/${endpoint}`,
+        {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(product)
+        }
+      );
+
+      if(!res.ok) {
+        throw new Error(`Failed to post data to ${endpoint}`);
+      }
+
+      const data = {
+        isSuccess: true
+      };
+
+      return data
+    } catch(error) {
+      console.error(error);
+
+      showToastify(error.message, 'toastify-danger');
+    }
   }
 }
 
