@@ -1,4 +1,4 @@
-import { API_ROUTES } from '../constants/config';
+import { API_ROUTES } from '../constants/url-api';
 import { APIHandler } from '../utils/api';
 
 export default class ProductService {
