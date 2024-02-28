@@ -1,6 +1,5 @@
 import { API_ROUTES } from '../constants/config';
 import { createNewElement } from '../utils/dom';
-import Product from '../models/product.model';
 
 export default class ProductView {
   /**
@@ -83,8 +82,19 @@ export default class ProductView {
     const formElement = createNewElement('form',
       'form-default add-form', '', formAttributes);
 
-    const product = new Product();
-    for (const field in product) {
+    const formFields = {
+      'Name': '',
+      'Price': 0,
+      'Brand': '',
+      'Model Name': '',
+      'Color': '',
+      'Hex Code': '',
+      'Form Factor': '',
+      'Connectivity Technology': '',
+      'Amount': 0,
+      'Image Url': ''
+    }
+    for (const field in formFields) {
       const columnDivElement = createNewElement('div', 'flex-column');
 
       const inputAttributes = {
@@ -100,7 +110,7 @@ export default class ProductView {
       formElement.append(columnDivElement);
     }
 
-    const columnDivElement = createNewElement('div', 'flex-column');
+    const rowDivElement = createNewElement('div', 'flex-row');
 
     const submitBtnAttributes = {
       id: 'add-product',
@@ -109,20 +119,22 @@ export default class ProductView {
     const submitBtnElement = createNewElement('button',
       'btn btn-primary btn-submit',
       'Submit',
-      submitBtnAttributes);
+      submitBtnAttributes
+    );
 
     const cancelBtnAttributes = {
       href: '/'
     }
-    const cancelBtnElement = createNewElement('a',
+    const cancelBtnElement = createNewElement(
+      'a',
       'btn btn-primary btn-danger',
       'Cancel',
-      submitBtnAttributes
+      cancelBtnAttributes
     )
 
-    columnDivElement.append(submitBtnElement, cancelBtnAttributes);
+    rowDivElement.append(submitBtnElement, cancelBtnElement);
 
-    formElement.append(columnDivElement);
+    formElement.append(rowDivElement);
 
     pageContainerElement.append(pageHeadingElement, formElement)
 
