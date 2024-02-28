@@ -1,18 +1,15 @@
 import ProductView from './views/product.view';
-import ProductService from './services/product.services';
+import ProductService from './services/product.service';
 import ProductController from './controllers/product.controller';
 import handleChangeLocation from './controllers/router';
 
-let productController,
-  homeController,
-  productPageController;
+let productController;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const productModel = null;
   const productView = new ProductView();
   const productService = new ProductService();
 
-  productController = new ProductController(productModel, productView, productService);
+  productController = new ProductController(null, productView, productService);
 
   handleChangeLocation();
 });

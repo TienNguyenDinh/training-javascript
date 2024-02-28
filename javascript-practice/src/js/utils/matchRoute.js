@@ -1,4 +1,4 @@
-import { ROUTES } from '../constants/config';
+import { ROUTES } from '../constants/url-api';
 
 /**
  * Matches a path name to a route in the ROUTES object
