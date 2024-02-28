@@ -27,9 +27,11 @@ const routes = {
   }
 }
 
+// Add an event listener for clicking all links
 document.addEventListener('click', (e) => {
   const target = e.target;
 
+  // If the clicked element is not a link, exit the function
   if (!target.matches('a')) return;
 
   // Prevents the browser from reloading since the website is SPA
