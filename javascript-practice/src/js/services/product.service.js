@@ -13,4 +13,17 @@ export default class ProductService {
 
     return data;
   }
+
+  /**
+   * Getches a product by its ID
+   * @param {string} id - The ID of the product
+   * @returns {Promise<Object>} The object contains the product
+   */
+  async getProductById(id) {
+    const endpoint = `products/${id}`;
+
+    const data = await APIHandler.get(endpoint);
+
+    return data;
+  }
 }
