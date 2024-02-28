@@ -55,8 +55,11 @@ function handleRoute(target) {
  */
 export default function handleRouteChange() {
   const pathName = window.location.pathname;
-  const result = findRoute(pathName);
-  const route = routes[result.route];
+  const {
+    route: foundRoute,
+    params
+  } = findRoute(pathName);
+  const route = routes[foundRoute];
 
-  route.handler(result.params);
+  route.handler(params);
 }
