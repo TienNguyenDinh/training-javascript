@@ -1,24 +1,5 @@
-import ProductView from './views/product.view';
-import ProductService from './services/product.services';
-import ProductController from './controllers/product.controller';
-import handleChangeLocation from './controllers/router';
-
-let productController,
-  homeController,
-  productPageController;
+import handleRouteChange from './routes/router';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const productModel = null;
-  const productView = new ProductView();
-  const productService = new ProductService();
-
-  productController = new ProductController(productModel, productView, productService);
-
-  handleChangeLocation();
+  handleRouteChange();
 });
-
-export {
-  productController,
-  homeController,
-  productPageController
-}

@@ -6,13 +6,18 @@
  * @param {Object} [attributes={}] - An object containing any additional attributes for the element
  * @returns {HTMLElement} The created HTML element
  */
-function createNewElement(tag, className = '', textContent = '', attributes = {}) {
+function createNewElement({
+  tag,
+  className = '',
+  textContent = '',
+  attributes = {}
+}) {
   const element = document.createElement(tag);
 
   if (className) {
     element.className = className;
   }
-  
+
   if (textContent) {
     element.textContent = textContent;
   }
