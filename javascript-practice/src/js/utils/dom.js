@@ -17,7 +17,7 @@ function createNewElement({
   if (className) {
     element.className = className;
   }
-  
+
   if (textContent) {
     element.textContent = textContent;
   }
