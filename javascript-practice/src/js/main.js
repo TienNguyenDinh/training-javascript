@@ -8,11 +8,10 @@ let productController,
   productPageController;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const productModel = null;
   const productView = new ProductView();
   const productService = new ProductService();
-
-  productController = new ProductController(productModel, productView, productService);
+  
+  const productController = new ProductController(null, productView, productService);
 
   handleChangeLocation();
 });
