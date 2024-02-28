@@ -14,6 +14,8 @@ export default class ProductView {
    * @param {Object[]} products - An array of product objects to be displayed
    */
   renderProducts(products) {
+    this.cleanView();
+
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
       const { PRODUCTS_ENDPOINT } = API_ROUTES;
@@ -104,6 +106,8 @@ export default class ProductView {
   }
 
   renderAddProductPage() {
+    this.cleanView();
+
     const pageContainerElement = createNewElement({
       tag: 'div',
       className: 'container add-product-container'
@@ -196,52 +200,6 @@ export default class ProductView {
     const mainContent = document.getElementById('main-content');
 
     mainContent.append(pageContainerElement);
-
-    return;
-
-    mainContent.innerHTML = `
-      <div class="container add-product-container">
-        <h1 class="main-heading">Add New Product</h1>
-        <form action="javascript:void(0)" class="form-default add-form">
-          <div class="flex-column">
-            <label class="label-primary" for="name">Name</label>
-            <input id="name" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="price">Price</label>
-            <input id="price" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="brand">Brand</label>
-            <input id="brand" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="model">Model Name</label>
-            <input id="model-name" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="color">Color</label>
-            <input id="color" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="form-factor">Form Factor</label>
-            <input id="form-factor" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="connectivity-technology">Connectivity Technology</label>
-            <input id="connectivity-technology" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="amount">Amount</label>
-            <input id="amount" type="text" class="form-control input-size-md">
-          </div>
-          <div class="flex-row">
-            <button type="submit" id="btn-add-product" class="btn btn-primary btn-submit">Submit</button>
-            <button type="button" class="btn btn-primary btn-danger">Cancel</button>
-          </div>
-        </form>
-      </div>
-    `
   }
 
   /**
