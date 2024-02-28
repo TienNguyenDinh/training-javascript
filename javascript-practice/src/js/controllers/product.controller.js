@@ -1,6 +1,5 @@
 export default class ProductController {
-  constructor(productModel, productView, productService) {
-    this.productModel = productModel;
+  constructor(productView, productService) {
     this.productView = productView;
     this.productService = productService;
 
@@ -14,12 +13,5 @@ export default class ProductController {
     const products = await this.productService.getProducts();
 
     this.productView.renderProducts(products);
-  }
-
-  /**
-   * Renders add-product page
-   */
-  displayAddProductPage() {
-    this.productView.renderAddProductPage();
   }
 }
