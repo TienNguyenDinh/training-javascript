@@ -1,8 +1,12 @@
 import ProductView from '../views/product.view';
 import ProductService from '../services/product.service';
 import ProductController from '../controllers/product.controller';
+import ProductAddController from '../controllers/product.add.controller';
 import { ROUTES } from '../constants/routes';
 import findRoute from '../utils/findRoute';
+
+const productView = new ProductView();
+const productService = new ProductService();
 
 /**
  * An object that maps route names to their respective handlers
@@ -10,17 +14,16 @@ import findRoute from '../utils/findRoute';
 const routes = {
   [ROUTES.HOME]: {
     handler: async () => {
-      const productView = new ProductView();
-      const productService = new ProductService();
-
-      return new ProductController(null, productView, productService)
+      return new ProductController(productView, productService)
     }
   },
   [ROUTES.PRODUCT_DETAIL]: {
     handler: () => { }
   },
   [ROUTES.ADD_PRODUCT]: {
-    handler: () => { }
+    handler: () => {
+      return new ProductAddController(productView, productService);
+    }
   },
   [ROUTES.EDIT_PRODUCT]: {
     handler: () => { }
@@ -49,7 +52,7 @@ document.addEventListener('click', (e) => {
 function handleRoute(target) {
   window.history.pushState(null, '', target.href);
 
-  handleChangeLocation();
+  handleRouteChange();
 }
 
 /**
