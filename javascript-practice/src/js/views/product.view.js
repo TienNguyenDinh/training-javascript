@@ -98,7 +98,6 @@ export default class ProductView {
   }
 
   /**
-<<<<<<< HEAD
    * Renders a product on the page
    * @param {Object} product - The product to render
    */
@@ -115,32 +114,48 @@ export default class ProductView {
       imgUrl
     } = product;
 
-    const productImageFigureElement = createNewElement('figure', 'product-preview');
+    const productImageFigureElement = createNewElement({
+      tag: 'figure',
+      className: 'product-preview'
+    });
 
     const productImageAttributes = {
       src: imgUrl,
       alt: name
     }
-    const productImageElement = createNewElement('img', '', '',
-      productImageAttributes);
+    const productImageElement = createNewElement({
+      tag: 'img',
+      attributes: productImageAttributes
+    });
 
     productImageFigureElement.append(productImageElement);
 
-    const productDetailListElement = createNewElement('div');
+    const productDetailListElement = createNewElement({ tag: 'div'});
 
-    const productTitleElement = createNewElement('h2',
-      'product-info product-title', product.name);
+    const productTitleElement = createNewElement({
+      tag: 'h2',
+      className: 'product-info product-title',
+      textContent: product.name
+    });
 
     // Creating the ul element for the product colors
-    const productColorsWrapperElement = createNewElement('ul', 'product-option-colors');
+    const productColorsWrapperElement = createNewElement({
+      tag: 'ul',
+      className: 'product-option-colors'
+    });
     const colorOptionList = this.createColorOptionList(colors);
     productColorsWrapperElement.append(...colorOptionList);
 
-    const productPriceElement = createNewElement('p',
-      'product-info product-price', `$ ${price}`);
+    const productPriceElement = createNewElement({
+      tag: 'p',
+      className: 'product-info product-price',
+      textContent: `$ ${price}`
+    });
 
-    const productDataElement = createNewElement('dl',
-      'product-data product-info');
+    const productDataElement = createNewElement({
+      tag: 'dl',
+      className: 'product-data product-info'
+    });
     // Define the product details to be displayed
     const details = {
       brand, modelName, formFactor, connectivityTechnology, amount
@@ -150,22 +165,36 @@ export default class ProductView {
       const term = convertCamelCaseToSpaces(detail);
       const desc = convertCamelCaseToSpaces(details[detail]);
 
-      const productInfoRowElement = createNewElement('div',
-        'product-info-row');
+      const productInfoRowElement = createNewElement({
+        tag: 'div',
+        className: 'product-info-row'
+      });
 
-      const productInfoTermElement = createNewElement('dt',
-        'product-info-term', term);
+      const productInfoTermElement = createNewElement({
+        tag: 'dt',
+        className: 'product-info-term',
+        textContent: term
+      });
 
-      const productInfoDescElement = createNewElement('dd',
-        'product-info-desc', desc);
+      const productInfoDescElement = createNewElement({
+        tag: 'dd',
+        className: 'product-info-desc',
+        textContent: desc
+      });
 
-      productInfoRowElement.append(productInfoTermElement, productInfoDescElement);
+      productInfoRowElement.append(
+        productInfoTermElement,
+        productInfoDescElement
+      );
 
       productDataElement.append(productInfoRowElement);
     }
 
-    const addToCartBtnElement = createNewElement('button',
-      'btn btn-primary btn-success', 'Add To Cart');
+    const addToCartBtnElement = createNewElement({
+      tag: 'button',
+      className: 'btn btn-primary btn-success',
+      textContent: 'Add To Cart'
+    });
 
     productDetailListElement.append(
       productTitleElement,
@@ -177,8 +206,10 @@ export default class ProductView {
 
     const mainContent = document.getElementById('main-content');
 
-    const productDetailElement = createNewElement('div',
-      'container product-detail-container product-detail-section');
+    const productDetailElement = createNewElement({
+      tag: 'div',
+      className: 'container product-detail-container product-detail-section'
+    });
     productDetailElement.append(
       productImageFigureElement,
       productDetailListElement
