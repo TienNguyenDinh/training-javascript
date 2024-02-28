@@ -6,7 +6,7 @@ export default class ProductService {
    * Gets products from the server.
    * @returns {Promise<Object[]>} An array of product objects
    */
-  async getProducts() {
+  async getAll() {
     const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
     const data = await APIHandler.get(endpoint);
@@ -19,7 +19,7 @@ export default class ProductService {
    * @param {string} id - The ID of the product
    * @returns {Promise<Object>} The object contains the product
    */
-  async getProductById(id) {
+  async getById(id) {
     const endpoint = `products/${id}`;
 
     const data = await APIHandler.get(endpoint);

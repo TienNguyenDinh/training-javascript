@@ -10,7 +10,7 @@ export default class ProductController {
    * Fetches products from the server and displays them
    */
   async displayProducts() {
-    const products = await this.service.getProducts();
+    const products = await this.service.getAll();
 
     this.view.renderProducts(products);
   }
