@@ -23,7 +23,7 @@ export default class ProductView {
       }
       const productImageLinkElement = createNewElement('a', '', '', productLinkAttributes);
       const productLinkElement = createNewElement('a', '', '', productLinkAttributes);
-      
+
       // Creating the img element for the product image
       const productImageAttributes = {
         src: imgUrl,
@@ -38,11 +38,12 @@ export default class ProductView {
       const productDetailElement = createNewElement('div');
 
       // Creating the h2 element for the product name
-      const productNameElement = createNewElement('h2', 'product-info', name);
+      const productNameElement = createNewElement('h2',
+        'product-info product-title', name);
       productLinkElement.append(productNameElement);
 
       // Creating the ul element for the product colors
-      const productColorsWrapperElement = createNewElement('ul');
+      const productColorsWrapperElement = createNewElement('ul', 'product-option-colors');
       const colorOptionList = this.createColorOptionList(colors);
       productColorsWrapperElement.append(...colorOptionList);
 
@@ -79,7 +80,7 @@ export default class ProductView {
 
     for (let color of colors) {
       const colorName = color.name;
-        
+
       const productColorWrapperElement = createNewElement('li');
 
       // Creating the label element for each color
