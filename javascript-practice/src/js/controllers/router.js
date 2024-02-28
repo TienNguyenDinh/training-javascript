@@ -19,7 +19,7 @@ const routes = {
   },
   [ROUTES.ADD_PRODUCT]: {
     handler: () => {
-      productController.renderAddProductPage();
+      productController.displayAddProductPage();
     }
   },
   [ROUTES.EDIT_PRODUCT]: {

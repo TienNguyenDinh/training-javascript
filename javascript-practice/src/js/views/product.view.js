@@ -23,7 +23,7 @@ export default class ProductView {
       }
       const productImageLinkElement = createNewElement('a', '', '', productLinkAttributes);
       const productLinkElement = createNewElement('a', '', '', productLinkAttributes);
-      
+
       // Creating the img element for the product image
       const productImageAttributes = {
         src: imgUrl,
@@ -69,6 +69,8 @@ export default class ProductView {
     mainContent.append(productListElement);
   }
 
+  r
+
   /**
  * Generates a list of color options for a product
  * @param {Object[]} colors An array of color object.
@@ -79,7 +81,7 @@ export default class ProductView {
 
     for (let color of colors) {
       const colorName = color.name;
-        
+
       const productColorWrapperElement = createNewElement('li');
 
       // Creating the label element for each color
