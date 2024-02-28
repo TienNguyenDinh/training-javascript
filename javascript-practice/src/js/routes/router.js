@@ -3,6 +3,10 @@ import ProductService from '../services/product.service';
 import ProductController from '../controllers/product.controller';
 import { ROUTES } from '../constants/routes';
 import findRoute from '../utils/findRoute';
+import ProductDetailController from '../controllers/product.detail.controller';
+
+const productView = new ProductView();
+const productService = new ProductService();
 
 /**
  * An object that maps route names to their respective handlers
@@ -10,14 +14,13 @@ import findRoute from '../utils/findRoute';
 const routes = {
   [ROUTES.HOME]: {
     handler: async () => {
-      const productView = new ProductView();
-      const productService = new ProductService();
-
-      return new ProductController(null, productView, productService)
+      return new ProductController(productView, productService)
     }
   },
   [ROUTES.PRODUCT_DETAIL]: {
-    handler: () => { }
+    handler: () => {
+      return new ProductDetailController(productView, productService)
+    }
   },
   [ROUTES.ADD_PRODUCT]: {
     handler: () => { }
