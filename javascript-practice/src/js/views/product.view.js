@@ -1,10 +1,10 @@
 import { API_ROUTES } from '../constants/url-api';
-import { createNewElement } from '../utils/dom';
+import { createNewElement, getEl } from '../utils/dom';
 
 export default class ProductView {
   // Remove every element on main-content
   clearMainContainer() {
-    const mainContent = document.getElementById('main-content');
+    const mainContent = getEl('main-content');
     mainContent.innerHTML = '';
   }
 
@@ -91,7 +91,7 @@ export default class ProductView {
       return productItemElement;
     });
 
-    const mainContent = document.getElementById('main-content');
+    const mainContent = getEl('main-content');
 
     // Creating the ul element for the product list
     const productListElement = createNewElement({
@@ -103,6 +103,9 @@ export default class ProductView {
     mainContent.append(productListElement);
   }
 
+  /**
+   * Renders add-product page
+   */
   renderAddProductPage() {
     this.clearMainContainer();
 
@@ -126,6 +129,7 @@ export default class ProductView {
       attributes: formAttributes
     });
 
+    // Define the fields for the form
     const formFields = {
       'Name': '',
       'Price': 0,
@@ -138,7 +142,11 @@ export default class ProductView {
       'Amount': 0,
       'Image Url': ''
     }
+    // Loop through each field and create the necessary elements
+    // on each field, we will create a new input field in the form
     for (const field in formFields) {
+      // Create a new div element that will contain the label
+      // and input elements for this field vertically
       const columnDivElement = createNewElement({
         tag: 'div',
         className: 'flex-column'
@@ -195,12 +203,10 @@ export default class ProductView {
 
     pageContainerElement.append(pageHeadingElement, formElement)
 
-    const mainContent = document.getElementById('main-content');
+    const mainContent = getEl('main-content');
 
     mainContent.append(pageContainerElement);
   }
-
-
 
   /**
    * Generates a list of color options for a product
