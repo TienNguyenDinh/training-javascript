@@ -9,25 +9,28 @@ import { ROUTES } from '../constants/routes';
  */
 export default function findRoute(pathName) {
   for (let route in ROUTES) {
-    const myRoute = ROUTES[route];
+    const routePath = ROUTES[route];
 
     // If the route exactly matches the path name
-    if (myRoute === pathName) {
+    if (routePath === pathName) {
       return {
-        route: myRoute,
+        route: routePath,
         params: {}
       };
     }
 
     // If the route includes an ':id' parameter
-    if (myRoute.includes(':id')) {
+    if (routePath.includes(':id')) {
+      const digitPattern = '\\d+';
       // Create a regular expression to match the route, replacing ':id' with a digit pattern
-      const regex = new RegExp(myRoute.replace(':id', '\\d+'));
+      const regex = new RegExp(routePath.replace(':id', digitPattern));
 
       if (regex.test(pathName)) {
         return {
-          route: myRoute,
-          params: { id: parseInt(pathName.split('/')[2]) }
+          route: routePath,
+          params: {
+            id: parseInt(pathName.split('/')[2])
+          }
         };
       }
     }
