@@ -20,4 +20,10 @@ export default class ProductController {
   displayAddProductPage() {
     this.productView.renderAddProductPage();
   }
+
+  async addProduct(product) {
+    await this.productService.addProduct(product);
+
+    this.productViews.addProduct(product);
+  }
 }
