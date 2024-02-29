@@ -1,3 +1,5 @@
+import { convertCamelCaseToSpaces } from './convertString';
+
 /**
  * Creates an HTML element with the specified tag, class name, text content, and attributes.
  * @param {string} tag - The tag name for the element
@@ -38,4 +40,25 @@ function getElementById(id) {
   return document.getElementById(id);
 }
 
-export { createNewElement, getElementById }
+/**
+ * This function generates error messages for a given product and key
+ * @param {Object} data - The data in object
+ * @param {string} clear - A flag indicating whether to clear the error messages
+ */
+function generateErrorMessages(data, clear=false) {
+  for (const key in data) {
+    let errorMsgElement;
+
+    errorMsgElement = getElementById(`${key}-error`);
+
+    if (typeof key === 'object') {
+      for (const key in product[key]) {
+        errorMsgElement = getElementById(`${key}-error`);
+      }
+    }
+
+    errorMsgElement.textContent = clear ? '' : convertCamelCaseToSpaces(data[key]);
+  }
+}
+
+export { createNewElement, getElementById, generateErrorMessages }
