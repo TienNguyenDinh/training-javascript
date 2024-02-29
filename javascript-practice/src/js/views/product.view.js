@@ -158,12 +158,10 @@ export default class ProductView {
 
     // Wait until the browser has updated the DOM
     // so the code would runs normally
-    setTimeout(() => {
-      const colorOptionListElement = document.getElementById('product-option-colors');
-      
-      const colorOptionList = this.createColorOptionList(colors);
-      colorOptionListElement.append(...colorOptionList);
-    }, 0);
+    const colorOptionListElement = document.getElementById('product-option-colors');
+
+    const colorOptionList = this.createColorOptionList(colors);
+    colorOptionListElement.append(...colorOptionList);
   }
 
   /**
