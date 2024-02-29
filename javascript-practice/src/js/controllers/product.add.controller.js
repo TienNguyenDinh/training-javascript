@@ -1,7 +1,5 @@
-import { getElementById } from '../utils/dom';
-import showToastify from '../utils/toastify';
+import { getElementById, generateErrorMessages } from '../utils/dom';
 import validateForm from '../utils/validateForm';
-import { convertCamelCaseToSpaces } from '../utils/convertString';
 
 export default class ProductAddController {
   constructor(view, service) {
@@ -24,19 +22,21 @@ export default class ProductAddController {
    */
   bindAddProductEvent() {
     const addProductBtnElement = document.getElementById('add-product');
-    addProductBtnElement.addEventListener('click', (event) => {
+    addProductBtnElement.addEventListener('click', async (event) => {
       event.preventDefault();
 
-      const nameValue = document.getElementById('name').value;
-      const priceValue = document.getElementById('price').value;
-      const brandValue = document.getElementById('brand').value;
-      const modelNameValue = document.getElementById('model-name').value;
-      const colorNameValue = document.getElementById('color').value;
-      const hexCodeValue = document.getElementById('hex-code').value;
-      const formFactorValue = document.getElementById('form-factor').value;
-      const connectivityTechnologyValue = document.getElementById('connectivity-technology').value;
-      const amountValue = document.getElementById('amount').value;
-      const imageUrlValue = document.getElementById('image-url').value;
+      const form = getElementById('product-form');
+
+      const nameValue = getElementById('name').value;
+      const priceValue = getElementById('price').value;
+      const brandValue = getElementById('brand').value;
+      const modelNameValue = getElementById('model-name').value;
+      const colorNameValue = getElementById('color').value;
+      const hexCodeValue = getElementById('hex-code').value;
+      const formFactorValue = getElementById('form-factor').value;
+      const connectivityTechnologyValue = getElementById('connectivity-technology').value;
+      const amountValue = getElementById('amount').value;
+      const imageUrlValue = getElementById('image-url').value;
 
       const product = {
         name: nameValue,
@@ -44,7 +44,7 @@ export default class ProductAddController {
         brand: brandValue,
         modelName: modelNameValue,
         colors: [{
-          color: colorNameValue,
+          name: colorNameValue,
           hexCode: hexCodeValue,
         }],
         formFactor: formFactorValue,
@@ -53,23 +53,23 @@ export default class ProductAddController {
         imgUrl: imageUrlValue
       }
 
-      const formError = validateForm(product);
+      const { formError, dataTest } = validateForm(product);
 
-      for (const key in product) {
-        const errorMsgElement = getElementById(`${key}-error`);
+      // Clear any previous error messages
+      generateErrorMessages(dataTest, true);
 
-        errorMsgElement.textContent = '';
-      }
+      // Generate new error messages based on the validation results
+      generateErrorMessages(formError);
 
-      for (const key in formError) {
-        const errorMsgElement = getElementById(`${key}-error`);
-
-        errorMsgElement.textContent = convertCamelCaseToSpaces(formError[key]);
-
+      // If there are any validation errors, stop the function
+      if(Object.keys(formError).length > 0) {
         return;
       }
 
-      this.service.addProduct(product);
+      await this.service.addProduct(product);
+
+      // Reset the form
+      form.reset();
     });
   }
 }
