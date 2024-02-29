@@ -20,8 +20,8 @@ export default class ProductService {
    * @returns {Promise<Object>} - The object contains a property 'isSuccess' which is a boolean indicating the success of the operation
    */
   async addProduct(product) {
-    const data = await handlePost(endpoint, product);
+    const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
-    return data;
+    APIHandler.post(endpoint, product);
   }
 }
