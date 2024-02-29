@@ -97,6 +97,72 @@ export default class ProductView {
   }
 
   /**
+   * Renders a product on the page
+   * @param {Object} product - The product to render
+   */
+  renderProduct(product) {
+    const {
+      name,
+      price,
+      colors,
+      brand,
+      modelName,
+      formFactor,
+      connectivityTechnology,
+      amount,
+      imgUrl
+    } = product;
+
+    const mainContent = document.getElementById('main-content');
+
+    mainContent.innerHTML = `
+      <div class="container product-detail-container">
+        <figure class="product-preview">
+          <img src="${imgUrl}" alt="${name}">
+        </figure>
+        <div class="product-details">
+          <h2 class="product-info">${name}</h2>
+          <ul id="product-option-colors" class="product-option-colors">
+          </ul>
+          <p class="product-info product-price">${price}</p>
+          <dl class="product-data product-info">
+            <div class="product-info-row">
+              <dt class="product-info-term">Brand</dt>
+              <dd class="product-info-value">${brand}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Model Name</dt>
+              <dd class="product-info-value">${modelName}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Color</dt>
+              <dd class="product-info-value">${colors[0].name}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Form</dt>
+              <dd class="product-info-value">${formFactor}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Connectivity Technology</dt>
+              <dd class="product-info-value">${connectivityTechnology}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Amount</dt>
+              <dd class="product-info-value">${amount}</dd>
+            </div>
+          </dl>
+          <button class="btn btn-primary btn-success">Add to Cart</button>
+        </div>
+      </div>
+    `;
+
+    const colorOptionListElement = document.getElementById('product-option-colors');
+
+    const colorOptionList = this.createColorOptionList(colors);
+    colorOptionListElement.append(...colorOptionList);
+  }
+
+  /**
    * Generates a list of color options for a product
    * @param {Object[]} colors An array of color object.
    * @returns {HTMLElement[]} An array of HTML elements representing color options
