@@ -34,8 +34,8 @@ function createNewElement({
  * @param {string} id - The ID of the HTML element
  * @returns {Element} The HTML element with the specified ID
  */
-function getEl(id) {
+function getElementById(id) {
   return document.getElementById(id);
 }
 
-export { createNewElement, getEl }
+export { createNewElement, getElementById }
