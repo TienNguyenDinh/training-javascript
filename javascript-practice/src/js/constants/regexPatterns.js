@@ -1,5 +1,5 @@
 const REGEX_PATTERNS = {
-  digit: '\\d+',
+  digit: /^-?\d*\.?\d+$/,
   camelCase: /([a-z])([A-Z])/g,
   firstCharacter: /^./
 }
