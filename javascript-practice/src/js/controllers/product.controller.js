@@ -15,6 +15,9 @@ export default class ProductController {
     this.view.renderProducts(products);
   }
 
+  /**
+   * Displays the Add Product Page
+   */
   displayAddProductPage() {
     this.view.renderAddProductPage();
   }
