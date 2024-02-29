@@ -121,37 +121,55 @@ export default class ProductView {
           <div class="flex-column">
             <label class="label-primary" for="name">Name</label>
             <input id="name" type="text" class="form-control input-size-md">
+            <p class="error-message" id="name-error"></p>
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="price">Price</label>
+            <input id="price" type="text" class="form-control input-size-md">
+            <p class="error-message" id="price-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="brand">Brand</label>
             <input id="brand" type="text" class="form-control input-size-md">
+            <p class="error-message" id="brand-error"></p>
           </div>
           <div class="flex-column">
-            <label class="label-primary" for="model">Model Name</label>
+            <label class="label-primary" for="model-name">Model Name</label>
             <input id="model-name" type="text" class="form-control input-size-md">
+            <p class="error-message" id="modelName-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="color">Color</label>
             <input id="color" type="text" class="form-control input-size-md">
+            <p class="error-message" id="color-error"></p>
           </div>
           <div class="flex-column">
-            <label class="label-primary" for="color">Hex Code</label>
+            <label class="label-primary" for="hex-code">Hex Code</label>
             <input id="hex-code" type="text" class="form-control input-size-md">
+            <p class="error-message" id="hexCode-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="form-factor">Form Factor</label>
             <input id="form-factor" type="text" class="form-control input-size-md">
+            <p class="error-message" id="formFactor-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="connectivity-technology">Connectivity Technology</label>
             <input id="connectivity-technology" type="text" class="form-control input-size-md">
+            <p class="error-message" id="connectivityTechnology-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="amount">Amount</label>
             <input id="amount" type="text" class="form-control input-size-md">
+            <p class="error-message" id="amount-error"></p>
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="image-url">Image URL</label>
+            <input id="image-url" type="text" class="form-control input-size-md">
+            <p class="error-message" id="imgUrl-error"></p>
           </div>
           <div class="flex-row">
-            <button id=" type="submit" class="btn btn-primary btn-submit">Submit</button>
+            <button id="add-product" type="submit" class="btn btn-primary btn-submit">Submit</button>
             <a href="/" class="btn btn-primary btn-danger">Cancel</a>
           </div>
         </form>
