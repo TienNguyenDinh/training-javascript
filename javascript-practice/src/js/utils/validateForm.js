@@ -13,13 +13,13 @@ function isString({ key, value }) {
 }
 
 function isNumber({ key, value }) {
-  const { digit } = REGEX_PATTERNS;
+  const { digitRegex } = REGEX_PATTERNS;
 
   if (key in formError) {
     return;
   }
 
-  if (digit.test(value)) {
+  if (!digitRegex.test(value)) {
     return formError[key] = `${key} must be a number.`;
   }
 }
@@ -53,12 +53,20 @@ function isPositive({ key, value }) {
     return;
   }
 
-  if (typeof value === 'string') {
+  if (parseInt(value) < 0) {
+    return formError[key] = `${key} needs to be a positive number.`;
+  }
+}
+
+function isHexCode({ key, value }) {
+  const { hexCodeRegex } = REGEX_PATTERNS;
+
+  if (key in formError) {
     return;
   }
 
-  if (value < 0) {
-    return formError[key] = `${key} needs to be a positive number.`;
+  if (!hexCodeRegex.test(value)) {
+    return formError[key] = `${key} needs to be a correct hex code eg: #333.`;
   }
 }
 
@@ -80,7 +88,7 @@ const validationSchema = {
   brand: [isString],
   modelName: [isString],
   color: [isString],
-  hexCode: [isString],
+  hexCode: [isHexCode],
   formFactor: [isString],
   connectivityTechnology: [isString],
   amount: [isNumber, isPositive],
@@ -88,17 +96,19 @@ const validationSchema = {
 };
 
 
-export default function validateForm(product) {
+export default function validateForm(data) {
   formError = {};
 
-  const colors = product.colors[0];
-  product.color = colors.color;
-  product.hexCode = colors.hexCode;
-  delete product.colors;
+  const dataTest = JSON.parse(JSON.stringify(data));
 
-  for (const key in product) {
+  const { name, hexCode } = dataTest.colors[0];
+  dataTest.color = name;
+  dataTest.hexCode = hexCode;
+  delete dataTest.colors;
+
+  for (const key in dataTest) {
     if (validationSchema.hasOwnProperty(key)) {
-      const value = product[key];
+      const value = dataTest[key];
       const validators = validationSchema[key];
 
       isNotEmpty({ key, value });
@@ -108,6 +118,6 @@ export default function validateForm(product) {
       }
     }
   }
-  console.log(formError)
-  return formError;
+
+  return { formError, dataTest };
 }

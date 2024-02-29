@@ -22,9 +22,9 @@ export default function findRoute(pathName) {
 
     // If the route includes an ':id' parameter
     if (routePath.includes(':id')) {
-      const { digit } = REGEX_PATTERNS;
+      const { digitRegex } = REGEX_PATTERNS;
       // Create a regular expression to match the route, replacing ':id' with a digit pattern
-      const regex = new RegExp(routePath.replace(':id', digit));
+      const regex = new RegExp(routePath.replace(':id', digitRegex));
 
       if (regex.test(pathName)) {
         return {

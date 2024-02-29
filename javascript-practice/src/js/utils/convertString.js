@@ -6,7 +6,7 @@ import { REGEX_PATTERNS } from '../constants/regexPatterns'
  * @returns {string} The converted string
  */
 function convertCamelCaseToSpaces(str) {
-  const { camelCase, firstCharacter } = REGEX_PATTERNS;
+  const { camelCaseRegex, firstCharacterRegex } = REGEX_PATTERNS;
 
   if (typeof str === 'number') {
     return str;
@@ -14,9 +14,9 @@ function convertCamelCaseToSpaces(str) {
 
   return str
     // Insert a space before all found uppercase letters that are both preceded and followed by lowercase letters
-    .replace(camelCase, '$1 $2')
+    .replace(camelCaseRegex, '$1 $2')
     // Uppercase the first character
-    .replace(firstCharacter, str => str.toUpperCase());
+    .replace(firstCharacterRegex, str => str.toUpperCase());
 }
 
 export { convertCamelCaseToSpaces }
