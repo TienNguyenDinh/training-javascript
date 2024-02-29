@@ -1,7 +1,7 @@
 export default class ProductController {
-  constructor(productView, productService) {
-    this.productView = productView;
-    this.productService = productService;
+  constructor(view, service) {
+    this.view = view;
+    this.service = service;
 
     this.displayProducts();
   }
@@ -10,9 +10,16 @@ export default class ProductController {
    * Fetches products from the server and displays them
    */
   async displayProducts() {
-    const products = await this.productService.getProducts();
+    const products = await this.service.getAll();
 
-    this.productView.renderProducts(products);
+    this.view.renderProducts(products);
+  }
+
+  /**
+   * Displays the Add Product Page
+   */
+  displayAddProductPage() {
+    this.view.renderAddProductPage();
   }
 
   async addProduct(product) {

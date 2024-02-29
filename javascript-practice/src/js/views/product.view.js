@@ -1,11 +1,13 @@
 import { API_ROUTES } from '../constants/url-api';
-import { createNewElement } from '../utils/dom';
+import { createNewElement, getElementById } from '../utils/dom';
 
 export default class ProductView {
-  // Clean the view to make sure nothing is there
-  cleanView() {
-    const mainContent = document.getElementById('main-content');
-
+  /**
+   * Clears the main content container on the page
+   * Effectively removing all of its child elements
+   */
+  clearMainContainer() {
+    const mainContent = getElementById('main-content');
     mainContent.innerHTML = '';
   }
 
@@ -14,7 +16,7 @@ export default class ProductView {
    * @param {Object[]} products - An array of product objects to be displayed
    */
   renderProducts(products) {
-    this.cleanView();
+    this.clearMainContainer();
 
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
@@ -92,8 +94,7 @@ export default class ProductView {
       return productItemElement;
     });
 
-    // Getting the main content
-    const mainContent = document.getElementById('main-content');
+    const mainContent = getElementById('main-content');
 
     // Creating the ul element for the product list
     const productListElement = createNewElement({
@@ -105,101 +106,129 @@ export default class ProductView {
     mainContent.append(productListElement);
   }
 
+  /**
+   * Renders add-product page
+   */
   renderAddProductPage() {
-    this.cleanView();
+    this.clearMainContainer();
 
-    const pageContainerElement = createNewElement({
-      tag: 'div',
-      className: 'container add-product-container'
+    const mainContent = getElementById('main-content');
+
+    mainContent.innerHTML = `
+      <div class="container add-product-container">
+        <h2 class="main-heading">Add New Product</h2>
+        <form action="javascript:void(0)" class="form-default add-form">
+          <div class="flex-column">
+            <label class="label-primary" for="name">Name</label>
+            <input id="name" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="brand">Brand</label>
+            <input id="brand" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="model">Model Name</label>
+            <input id="model-name" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="color">Color</label>
+            <input id="color" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="color">Hex Code</label>
+            <input id="hex-code" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="form-factor">Form Factor</label>
+            <input id="form-factor" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="connectivity-technology">Connectivity Technology</label>
+            <input id="connectivity-technology" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="amount">Amount</label>
+            <input id="amount" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-row">
+            <button id=" type="submit" class="btn btn-primary btn-submit">Submit</button>
+            <a href="/" class="btn btn-primary btn-danger">Cancel</a>
+          </div>
+        </form>
+      </div>
+    `;
+  }
+
+  /**
+   * Renders a product on the page
+   * @param {Object} product - The product to render
+   */
+  renderProduct(product) {
+    const {
+      name,
+      price,
+      colors,
+      brand,
+      modelName,
+      formFactor,
+      connectivityTechnology,
+      amount,
+      imgUrl
+    } = product;
+
+    const mainContent = getElementById('main-content');
+
+    let colorOptionListHtml = ``;
+
+    // Create list of product color element
+    const colorOptionList = this.createColorOptionList(colors);
+
+    // Appends color element to list in HTML
+    colorOptionList.forEach((colorOptionItem) => {
+      colorOptionListHtml += colorOptionItem.outerHTML;
     });
 
-    const pageHeadingElement = createNewElement({
-      tag: 'h2',
-      className: 'main-heading',
-      textContent: 'Add Product Page'
-    });
-
-    const formAttributes = {
-      action: 'javascript:void(0)'
-    }
-    const formElement = createNewElement({
-      tag: 'form',
-      className: 'form-default add-form',
-      attributes: formAttributes
-    });
-
-    const formFields = {
-      'Name': '',
-      'Price': 0,
-      'Brand': '',
-      'Model Name': '',
-      'Color': '',
-      'Hex Code': '',
-      'Form Factor': '',
-      'Connectivity Technology': '',
-      'Amount': 0,
-      'Image Url': ''
-    }
-    for (const field in formFields) {
-      const columnDivElement = createNewElement({
-        tag: 'div',
-        className: 'flex-column'
-      });
-
-      const inputAttributes = {
-        id: field
-      }
-      const inputElement = createNewElement({
-        tag: 'input',
-        className: 'form-control input-size-md',
-        attributes: inputAttributes
-      });
-      const labelElement = createNewElement({
-        tag: 'label',
-        className: 'label-primary',
-        textContent: field
-      });
-
-      columnDivElement.append(labelElement, inputElement);
-
-      formElement.append(columnDivElement);
-    }
-
-    const rowDivElement = createNewElement({
-      tag: 'div',
-      className: 'flex-row'
-    });
-
-    const submitBtnAttributes = {
-      id: 'add-product',
-      type: 'submit'
-    }
-    const submitBtnElement = createNewElement({
-      tag: 'button',
-      className: 'btn btn-primary btn-submit',
-      textContent: 'Submit',
-      attributes: submitBtnAttributes
-    });
-
-    const cancelBtnAttributes = {
-      href: '/'
-    }
-    const cancelBtnElement = createNewElement({
-      tag: 'a',
-      className: 'btn btn-primary btn-danger',
-      textContent: 'Cancel',
-      attributes: cancelBtnAttributes
-    })
-
-    rowDivElement.append(submitBtnElement, cancelBtnElement);
-
-    formElement.append(rowDivElement);
-
-    pageContainerElement.append(pageHeadingElement, formElement)
-
-    const mainContent = document.getElementById('main-content');
-
-    mainContent.append(pageContainerElement);
+    mainContent.innerHTML = `
+      <div class="container product-detail-container">
+        <figure class="product-preview">
+          <img src="${imgUrl}" alt="${name}">
+        </figure>
+        <div class="product-details">
+          <h2 class="product-info">${name}</h2>
+          <ul id="product-option-colors" class="product-option-colors">
+            ${colorOptionListHtml}
+          </ul>
+          <p class="product-info product-price">${price}</p>
+          <dl class="product-data product-info">
+            <div class="product-info-row">
+              <dt class="product-info-term">Brand</dt>
+              <dd class="product-info-value">${brand}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Model Name</dt>
+              <dd class="product-info-value">${modelName}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Color</dt>
+              <dd class="product-info-value">${colors[0].name}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Form</dt>
+              <dd class="product-info-value">${formFactor}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Connectivity Technology</dt>
+              <dd class="product-info-value">${connectivityTechnology}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Amount</dt>
+              <dd class="product-info-value">${amount}</dd>
+            </div>
+          </dl>
+          <button class="btn btn-primary btn-success">Add to Cart</button>
+        </div>
+      </div>
+    `;
   }
 
   /**

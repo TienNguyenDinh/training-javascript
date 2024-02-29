@@ -1,7 +1,8 @@
 <section>
   <div class="container add-product-container">
-    <h1 class="main-heading">Add New Product</h1>
-    <form action="javascript:void(0)" class="form-default add-form">
+    <h2 class="main-heading">Add New Product</h2>
+    <form action="javascript:void(0)" class="form-default add-form"
+    enctype="multipart/form-data">
       <div class="flex-column">
         <label class="label-primary" for="name">Name</label>
         <input type="text" class="form-control input-size-md">
@@ -30,9 +31,13 @@
         <label class="label-primary" for="amount">Amount</label>
         <input type="text" class="form-control input-size-md">
       </div>
+      <div class="flex-column">
+        <label class="label-primary" for="product-image">Image</label>
+        <input type="file" id="product-image" class="form-control input-size-md">
+      </div>
       <div class="flex-row">
         <button type="submit" class="btn btn-primary btn-submit">Submit</button>
-        <button type="reset" class="btn btn-primary btn-danger">Reset</button>
+        <button type="button" class="btn btn-primary btn-danger">Cancel</button>
       </div>
     </form>
   </div>

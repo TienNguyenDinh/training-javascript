@@ -2,6 +2,7 @@ import ProductView from '../views/product.view';
 import ProductService from '../services/product.service';
 import ProductController from '../controllers/product.controller';
 import ProductAddController from '../controllers/product.add.controller';
+import ProductDetailController from '../controllers/product-detail.controller';
 import { ROUTES } from '../constants/routes';
 import findRoute from '../utils/findRoute';
 
@@ -18,7 +19,9 @@ const routes = {
     }
   },
   [ROUTES.PRODUCT_DETAIL]: {
-    handler: () => { }
+    handler: () => {
+      return new ProductDetailController(productView, productService)
+    }
   },
   [ROUTES.ADD_PRODUCT]: {
     handler: () => {
@@ -31,15 +34,15 @@ const routes = {
 }
 
 // Add an event listener for clicking all links
-// Then call handleRoute that is passed in a link node
-// Which Handles route changes. Updates the browser history and triggers a location change
+// This is necessary because the website is a
+// Single Page Application and does not need to reload
+// which can lead to a faster user experience
 document.addEventListener('click', (e) => {
   const target = e.target;
 
   // If the clicked element is not a link, exit the function
   if (!target.matches('a')) return;
 
-  // Prevents the browser from reloading since the website is SPA
   e.preventDefault();
 
   handleRoute({
