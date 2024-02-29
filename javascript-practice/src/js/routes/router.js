@@ -1,7 +1,7 @@
 import ProductView from '../views/product.view';
 import ProductService from '../services/product.service';
 import ProductController from '../controllers/product.controller';
-import ProductDetailController from '../controllers/product.detail.controller';
+import ProductDetailController from '../controllers/product-detail.controller';
 import { ROUTES } from '../constants/routes';
 import findRoute from '../utils/findRoute';
 
