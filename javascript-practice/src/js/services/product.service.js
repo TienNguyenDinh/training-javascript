@@ -20,7 +20,8 @@ export default class ProductService {
    * @returns {Promise<Object>} The object contains the product
    */
   async getById(id) {
-    const endpoint = `products/${id}`;
+    const { PRODUCTS_ENDPOINT } = API_ROUTES;
+    const endpoint = `${PRODUCTS_ENDPOINT}/${id}`;
 
     const data = await APIHandler.get(endpoint);
 
