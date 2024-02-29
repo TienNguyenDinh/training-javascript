@@ -104,108 +104,69 @@ export default class ProductView {
   }
 
   /**
-   * Renders add-product page
+   * Renders a product on the page
+   * @param {Object} product - The product to render
    */
-  renderAddProductPage() {
-    this.clearMainContainer();
+  renderProduct(product) {
+    const {
+      name,
+      price,
+      colors,
+      brand,
+      modelName,
+      formFactor,
+      connectivityTechnology,
+      amount,
+      imgUrl
+    } = product;
 
-    const pageContainerElement = createNewElement({
-      tag: 'div',
-      className: 'container add-product-container'
-    });
+    const mainContent = document.getElementById('main-content');
 
-    const pageHeadingElement = createNewElement({
-      tag: 'h2',
-      className: 'main-heading',
-      textContent: 'Add Product Page'
-    });
+    mainContent.innerHTML = `
+      <div class="container product-detail-container">
+        <figure class="product-preview">
+          <img src="${imgUrl}" alt="${name}">
+        </figure>
+        <div class="product-details">
+          <h2 class="product-info">${name}</h2>
+          <ul id="product-option-colors" class="product-option-colors">
+          </ul>
+          <p class="product-info product-price">${price}</p>
+          <dl class="product-data product-info">
+            <div class="product-info-row">
+              <dt class="product-info-term">Brand</dt>
+              <dd class="product-info-value">${brand}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Model Name</dt>
+              <dd class="product-info-value">${modelName}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Color</dt>
+              <dd class="product-info-value">${colors[0].name}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Form</dt>
+              <dd class="product-info-value">${formFactor}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Connectivity Technology</dt>
+              <dd class="product-info-value">${connectivityTechnology}</dd>
+            </div>
+            <div class="product-info-row">
+              <dt class="product-info-term">Amount</dt>
+              <dd class="product-info-value">${amount}</dd>
+            </div>
+          </dl>
+          <button class="btn btn-primary btn-success">Add to Cart</button>
+        </div>
+      </div>
+    `;
 
-    const formAttributes = {
-      action: 'javascript:void(0)'
-    }
-    const formElement = createNewElement({
-      tag: 'form',
-      className: 'form-default add-form',
-      attributes: formAttributes
-    });
+    const colorOptionListElement = document.getElementById('product-option-colors');
 
-    // Define the fields for the form
-    const formFields = {
-      'Name': '',
-      'Price': 0,
-      'Brand': '',
-      'Model Name': '',
-      'Color': '',
-      'Hex Code': '',
-      'Form Factor': '',
-      'Connectivity Technology': '',
-      'Amount': 0,
-      'Image Url': ''
-    }
-    // Loop through each field and create the necessary elements
-    // on each field, we will create a new input field in the form
-    for (const field in formFields) {
-      // Create a new div element that will contain the label
-      // and input elements for this field vertically
-      const columnDivElement = createNewElement({
-        tag: 'div',
-        className: 'flex-column'
-      });
-
-      const inputAttributes = {
-        id: field
-      }
-      const inputElement = createNewElement({
-        tag: 'input',
-        className: 'form-control input-size-md',
-        attributes: inputAttributes
-      });
-      const labelElement = createNewElement({
-        tag: 'label',
-        className: 'label-primary',
-        textContent: field
-      });
-
-      columnDivElement.append(labelElement, inputElement);
-
-      formElement.append(columnDivElement);
-    }
-
-    const rowDivElement = createNewElement({
-      tag: 'div',
-      className: 'flex-row'
-    });
-
-    const submitBtnAttributes = {
-      id: 'add-product',
-      type: 'submit'
-    }
-    const submitBtnElement = createNewElement({
-      tag: 'button',
-      className: 'btn btn-primary btn-submit',
-      textContent: 'Submit',
-      attributes: submitBtnAttributes
-    });
-
-    const cancelBtnAttributes = {
-      href: '/'
-    }
-    const cancelBtnElement = createNewElement({
-      tag: 'a',
-      className: 'btn btn-primary btn-danger',
-      textContent: 'Cancel',
-      attributes: cancelBtnAttributes
-    })
-
-    rowDivElement.append(submitBtnElement, cancelBtnElement);
-
-    formElement.append(rowDivElement);
-
-    pageContainerElement.append(pageHeadingElement, formElement)
-
-    const mainContent = getEl('main-content');
-
-    mainContent.append(pageContainerElement);
+    const colorOptionList = this.createColorOptionList(colors);
+    colorOptionListElement.append(...colorOptionList);
   }
 
   /**

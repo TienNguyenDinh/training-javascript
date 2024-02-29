@@ -6,6 +6,8 @@
   display: flex;
   gap: 0 125px;
   justify-content: center;
+  padding-top: 36px;
+  padding-bottom: 36px;
 }
 
 .product-preview {
