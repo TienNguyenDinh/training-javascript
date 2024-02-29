@@ -117,7 +117,7 @@ export default class ProductView {
     mainContent.innerHTML = `
       <div class="container add-product-container">
         <h2 class="main-heading">Add New Product</h2>
-        <form action="javascript:void(0)" class="form-default add-form">
+        <form id="product-form" action="javascript:void(0)" class="form-default add-form">
           <div class="flex-column">
             <label class="label-primary" for="name">Name</label>
             <input id="name" type="text" class="form-control input-size-md">
