@@ -1,7 +1,5 @@
 const REGEX_PATTERNS = {
-  digit: '\\d+',
-  camelCase: /([a-z])([A-Z])/g,
-  firstCharacter: /^./
+  digit: '\\d+'
 }
 
 export { REGEX_PATTERNS }
