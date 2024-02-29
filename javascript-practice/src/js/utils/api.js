@@ -47,11 +47,7 @@ const APIHandler = {
         throw new Error(`Failed to post data to ${endpoint}`);
       }
 
-      const data = {
-        isSuccess: true
-      };
-
-      return data
+      showToastify('Product added successfully!', 'toastify-success');
     } catch(error) {
       console.error(error);
 
