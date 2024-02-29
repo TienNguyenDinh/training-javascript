@@ -130,7 +130,7 @@ export default class ProductView {
 
     productImageFigureElement.append(productImageElement);
 
-    const productDetailListElement = createNewElement({ tag: 'div'});
+    const productDetailListElement = createNewElement({ tag: 'div' });
 
     const productTitleElement = createNewElement({
       tag: 'h2',
@@ -156,39 +156,53 @@ export default class ProductView {
       tag: 'dl',
       className: 'product-data product-info'
     });
-    // Define the product details to be displayed
-    const details = {
-      brand, modelName, formFactor, connectivityTechnology, amount
-    }
-    // Loop through each detail and create a row for it
-    for (let detail in details) {
-      const term = convertCamelCaseToSpaces(detail);
-      const desc = convertCamelCaseToSpaces(details[detail]);
 
-      const productInfoRowElement = createNewElement({
-        tag: 'div',
-        className: 'product-info-row'
-      });
+    productDataElement.innerHTML = `
+      <dl class="product-data product-info">
+        <div class="product-info-row">
+          <dt class="product-info-term">Brand</dt>
+          <dd id="brand" class="product-info-value"></dd>
+        </div>
+        <div class="product-info-row">
+          <dt class="product-info-term">Model Name</dt>
+          <dd id="modelName" class="product-info-value"></dd>
+        </div>
+        <div class="product-info-row">
+          <dt class="product-info-term">Color</dt>
+          <dd id="color" class="product-info-value"></dd>
+        </div>
+        <div class="product-info-row">
+          <dt class="product-info-term">Form</dt>
+          <dd id="formFactor" class="product-info-value"></dd>
+        </div>
+        <div class="product-info-row">
+          <dt class="product-info-term">Connectivity Technology</dt>
+          <dd id="connectivityTechnology" class="product-info-value"></dd>
+        </div>
+        <div class="product-info-row">
+          <dt class="product-info-term">Amount</dt>
+          <dd id="amount" class="product-info-value"></dd>
+        </div>
+      </dl>
+    `;
 
-      const productInfoTermElement = createNewElement({
-        tag: 'dt',
-        className: 'product-info-term',
-        textContent: term
-      });
+    // Wait until the browser has updated the DOM
+    // so the code would runs normally
+    setTimeout(() => {
+      const brandDescElement = document.getElementById('brand');
+      const modelNameDescElement = document.getElementById('modelName');
+      const colorDescElement = document.getElementById('color');
+      const formFactorDescElement = document.getElementById('formFactor');
+      const connectivityTechnologyDescElement = document.getElementById('connectivityTechnology');
+      const amountDescElement = document.getElementById('amount');
 
-      const productInfoDescElement = createNewElement({
-        tag: 'dd',
-        className: 'product-info-desc',
-        textContent: desc
-      });
-
-      productInfoRowElement.append(
-        productInfoTermElement,
-        productInfoDescElement
-      );
-
-      productDataElement.append(productInfoRowElement);
-    }
+      brandDescElement.textContent = brand;
+      modelNameDescElement.textContent = modelName;
+      colorDescElement.textContent = colors[0].name;
+      formFactorDescElement.textContent = formFactor;
+      connectivityTechnologyDescElement.textContent = connectivityTechnology;
+      amountDescElement.textContent = amount;
+    }, 0);
 
     const addToCartBtnElement = createNewElement({
       tag: 'button',
