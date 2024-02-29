@@ -116,7 +116,7 @@ export default class ProductView {
 
     mainContent.innerHTML = `
       <div class="container add-product-container">
-        <h1 class="main-heading">Add New Product</h1>
+        <h2 class="main-heading">Add New Product</h2>
         <form action="javascript:void(0)" class="form-default add-form">
           <div class="flex-column">
             <label class="label-primary" for="name">Name</label>
@@ -178,6 +178,16 @@ export default class ProductView {
 
     const mainContent = getElementById('main-content');
 
+    let colorOptionListHtml = ``;
+
+    // Create list of product color element
+    const colorOptionList = this.createColorOptionList(colors);
+
+    // Appends color element to list in HTML
+    colorOptionList.forEach((colorOptionItem) => {
+      colorOptionListHtml += colorOptionItem.outerHTML;
+    });
+
     mainContent.innerHTML = `
       <div class="container product-detail-container">
         <figure class="product-preview">
@@ -186,7 +196,7 @@ export default class ProductView {
         <div class="product-details">
           <h2 class="product-info">${name}</h2>
           <ul id="product-option-colors" class="product-option-colors">
-
+            ${colorOptionListHtml}
           </ul>
           <p class="product-info product-price">${price}</p>
           <dl class="product-data product-info">
@@ -219,16 +229,6 @@ export default class ProductView {
         </div>
       </div>
     `;
-
-    const optionColorsElement = getElementById('product-option-colors');
-
-    // Create list of product color element
-    const colorOptionList = this.createColorOptionList(colors);
-
-    // Appends color element to list in HTML
-    colorOptionList.forEach((colorOptionItem) => {
-      optionColorsElement.innerHTML += colorOptionItem.outerHTML;
-    });
   }
 
   /**
