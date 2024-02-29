@@ -156,8 +156,6 @@ export default class ProductView {
       </div>
     `;
 
-    // Wait until the browser has updated the DOM
-    // so the code would runs normally
     const colorOptionListElement = document.getElementById('product-option-colors');
 
     const colorOptionList = this.createColorOptionList(colors);
