@@ -5,15 +5,16 @@ export default class ProductDetailController {
     this.view = view;
     this.service = service;
 
-    const { params } = findRoute(window.location.pathname);
-    this.displayProductById(params.id);
+    this.displayProductById();
   }
 
   /**
    * Fetches product by id from the server and displays them
    */
-  async displayProductById(id) {
-    const product = await this.service.getById(id);
+  async displayProductById() {
+    const { params } = findRoute(window.location.pathname);
+
+    const product = await this.service.getById(params.id);
 
     this.view.renderProduct(product);
   }
