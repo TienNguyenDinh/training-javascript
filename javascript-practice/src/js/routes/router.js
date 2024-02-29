@@ -1,7 +1,7 @@
 import ProductView from '../views/product.view';
 import ProductService from '../services/product.service';
 import ProductController from '../controllers/product.controller';
-import ProductAddController from '../controllers/product.add.controller';
+import ProductFormController from '../controllers/product-form.controller';
 import ProductDetailController from '../controllers/product-detail.controller';
 import { ROUTES } from '../constants/routes';
 import findRoute from '../utils/findRoute';
@@ -25,7 +25,7 @@ const routes = {
   },
   [ROUTES.ADD_PRODUCT]: {
     handler: () => {
-      return new ProductAddController(productView, productService);
+      return new ProductFormController(productView, productService);
     }
   },
   [ROUTES.EDIT_PRODUCT]: {

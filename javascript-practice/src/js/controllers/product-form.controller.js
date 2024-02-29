@@ -1,7 +1,7 @@
 import { getElementById, generateErrorMessages } from '../utils/dom';
 import validateForm from '../utils/validateForm';
 
-export default class ProductAddController {
+export default class ProductFormController {
   constructor(view, service) {
     this.view = view;
     this.service = service;
