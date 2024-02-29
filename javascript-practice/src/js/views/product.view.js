@@ -1,12 +1,23 @@
 import { API_ROUTES } from '../constants/url-api';
-import { createNewElement } from '../utils/dom';
+import { createNewElement, getElementById } from '../utils/dom';
 
 export default class ProductView {
+  /**
+   * Clears the main content container on the page
+   * Effectively removing all of its child elements
+   */
+  clearMainContainer() {
+    const mainContent = getElementById('main-content');
+    mainContent.innerHTML = '';
+  }
+
   /**
    * Displays product list of products on the view
    * @param {Object[]} products - An array of product objects to be displayed
    */
   renderProducts(products) {
+    this.clearMainContainer();
+
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
       const { PRODUCTS_ENDPOINT } = API_ROUTES;
@@ -83,8 +94,7 @@ export default class ProductView {
       return productItemElement;
     });
 
-    // Getting the main content
-    const mainContent = document.getElementById('main-content');
+    const mainContent = getElementById('main-content');
 
     // Creating the ul element for the product list
     const productListElement = createNewElement({
@@ -94,6 +104,59 @@ export default class ProductView {
     productListElement.append(...productElements);
 
     mainContent.append(productListElement);
+  }
+
+  /**
+   * Renders add-product page
+   */
+  renderAddProductPage() {
+    this.clearMainContainer();
+
+    const mainContent = getElementById('main-content');
+
+    mainContent.innerHTML = `
+      <div class="container add-product-container">
+        <h2 class="main-heading">Add New Product</h2>
+        <form action="javascript:void(0)" class="form-default add-form">
+          <div class="flex-column">
+            <label class="label-primary" for="name">Name</label>
+            <input id="name" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="brand">Brand</label>
+            <input id="brand" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="model">Model Name</label>
+            <input id="model-name" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="color">Color</label>
+            <input id="color" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="color">Hex Code</label>
+            <input id="hex-code" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="form-factor">Form Factor</label>
+            <input id="form-factor" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="connectivity-technology">Connectivity Technology</label>
+            <input id="connectivity-technology" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-column">
+            <label class="label-primary" for="amount">Amount</label>
+            <input id="amount" type="text" class="form-control input-size-md">
+          </div>
+          <div class="flex-row">
+            <button id=" type="submit" class="btn btn-primary btn-submit">Submit</button>
+            <a href="/" class="btn btn-primary btn-danger">Cancel</a>
+          </div>
+        </form>
+      </div>
+    `;
   }
 
   /**
@@ -113,7 +176,17 @@ export default class ProductView {
       imgUrl
     } = product;
 
-    const mainContent = document.getElementById('main-content');
+    const mainContent = getElementById('main-content');
+
+    let colorOptionListHtml = ``;
+
+    // Create list of product color element
+    const colorOptionList = this.createColorOptionList(colors);
+
+    // Appends color element to list in HTML
+    colorOptionList.forEach((colorOptionItem) => {
+      colorOptionListHtml += colorOptionItem.outerHTML;
+    });
 
     mainContent.innerHTML = `
       <div class="container product-detail-container">
@@ -123,6 +196,7 @@ export default class ProductView {
         <div class="product-details">
           <h2 class="product-info">${name}</h2>
           <ul id="product-option-colors" class="product-option-colors">
+            ${colorOptionListHtml}
           </ul>
           <p class="product-info product-price">${price}</p>
           <dl class="product-data product-info">
@@ -155,11 +229,6 @@ export default class ProductView {
         </div>
       </div>
     `;
-
-    const colorOptionListElement = document.getElementById('product-option-colors');
-
-    const colorOptionList = this.createColorOptionList(colors);
-    colorOptionListElement.append(...colorOptionList);
   }
 
   /**
