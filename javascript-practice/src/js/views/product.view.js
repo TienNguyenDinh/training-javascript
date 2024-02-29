@@ -118,37 +118,37 @@ export default class ProductView {
     mainContent.innerHTML = `
       <div class="container product-detail-container">
         <figure class="product-preview">
-          <img id="product-img" src="" alt="">
+          <img src="${imgUrl}" alt="${name}">
         </figure>
         <div class="product-details">
-          <h2 id="title" class="product-info"></h2>
+          <h2 class="product-info">${name}</h2>
           <ul id="product-option-colors" class="product-option-colors">
           </ul>
-          <p id="price" class="product-info product-price"></p>
+          <p class="product-info product-price">${price}</p>
           <dl class="product-data product-info">
             <div class="product-info-row">
               <dt class="product-info-term">Brand</dt>
-              <dd id="brand" class="product-info-value"></dd>
+              <dd class="product-info-value">${brand}</dd>
             </div>
             <div class="product-info-row">
               <dt class="product-info-term">Model Name</dt>
-              <dd id="model-name" class="product-info-value"></dd>
+              <dd class="product-info-value">${modelName}</dd>
             </div>
             <div class="product-info-row">
               <dt class="product-info-term">Color</dt>
-              <dd id="color" class="product-info-value"></dd>
+              <dd class="product-info-value">${colors[0].name}</dd>
             </div>
             <div class="product-info-row">
               <dt class="product-info-term">Form</dt>
-              <dd id="form-factor" class="product-info-value"></dd>
+              <dd class="product-info-value">${formFactor}</dd>
             </div>
             <div class="product-info-row">
               <dt class="product-info-term">Connectivity Technology</dt>
-              <dd id="connectivity-technology" class="product-info-value"></dd>
+              <dd class="product-info-value">${connectivityTechnology}</dd>
             </div>
             <div class="product-info-row">
               <dt class="product-info-term">Amount</dt>
-              <dd id="amount" class="product-info-value"></dd>
+              <dd class="product-info-value">${amount}</dd>
             </div>
           </dl>
           <button class="btn btn-primary btn-success">Add to Cart</button>
@@ -159,31 +159,10 @@ export default class ProductView {
     // Wait until the browser has updated the DOM
     // so the code would runs normally
     setTimeout(() => {
-      const titleElement = document.getElementById('title');
-      const priceElement = document.getElementById('price');
-      const productImageElement = document.getElementById('product-img');
       const colorOptionListElement = document.getElementById('product-option-colors');
-      const brandDescElement = document.getElementById('brand');
-      const modelNameDescElement = document.getElementById('model-name');
-      const colorDescElement = document.getElementById('color');
-      const formFactorDescElement = document.getElementById('form-factor');
-      const connectivityTechnologyDescElement = document.getElementById('connectivity-technology');
-      const amountDescElement = document.getElementById('amount');
-
-      productImageElement.src = imgUrl;
-      productImageElement.alt = name;
       
       const colorOptionList = this.createColorOptionList(colors);
       colorOptionListElement.append(...colorOptionList);
-
-      titleElement.textContent = name;
-      priceElement.textContent = `$ ${price}`;
-      brandDescElement.textContent = brand;
-      modelNameDescElement.textContent = modelName;
-      colorDescElement.textContent = colors[0].name;
-      formFactorDescElement.textContent = formFactor;
-      connectivityTechnologyDescElement.textContent = connectivityTechnology;
-      amountDescElement.textContent = amount;
     }, 0);
   }
 
