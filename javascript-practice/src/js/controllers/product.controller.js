@@ -14,17 +14,4 @@ export default class ProductController {
 
     this.view.renderProducts(products);
   }
-
-  /**
-   * Displays the Add Product Page
-   */
-  displayAddProductPage() {
-    this.view.renderAddProductPage();
-  }
-
-  async addProduct(product) {
-    await this.productService.addProduct(product);
-
-    this.productViews.addProduct(product);
-  }
 }
