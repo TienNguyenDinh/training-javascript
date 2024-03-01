@@ -38,4 +38,13 @@ export default class ProductService {
 
     APIHandler.post(endpoint, product);
   }
+
+  async editProduct(product, id) {
+    const { PRODUCTS_ENDPOINT } = API_ROUTES;
+    const endpoint = `${PRODUCTS_ENDPOINT}/${id}`;
+
+    const data = await APIHandler.put(endpoint, product);
+
+    return data;
+  }
 }
