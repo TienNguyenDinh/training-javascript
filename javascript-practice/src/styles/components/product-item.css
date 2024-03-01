@@ -1,7 +1,22 @@
 .product-thumbnail {
+  position: relative;
   margin-bottom: 25px;
   max-width: 303px;
   max-height: 359px;
+}
+
+.btn-delete-product {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  display: block;
+
+  &::before {
+    content: '\2716';
+    font-size: 20px;
+  }
 }
 
 .product-info {
