@@ -25,11 +25,13 @@ const routes = {
   },
   [ROUTES.ADD_PRODUCT]: {
     handler: () => {
-      return new ProductFormController(productView, productService);
+      return new ProductFormController(productView, productService, 'add');
     }
   },
   [ROUTES.EDIT_PRODUCT]: {
-    handler: () => { }
+    handler: () => {
+      return new ProductFormController(productView, productService, 'edit');
+    }
   }
 }
 

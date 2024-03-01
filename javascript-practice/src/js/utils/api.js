@@ -53,7 +53,33 @@ const APIHandler = {
 
       showToastify(error.message, 'toastify-danger');
     }
+  },
+
+  async put(endpoint, product) {
+    try {
+      console.log(product)
+      const res = await fetch(
+        `${API_ROUTES.BASE_URL}/${endpoint}`,
+        {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product)
+      });
+  
+      if(!res.ok) {
+        throw new Error(`Failed to update data to ${endpoint}`);
+      }
+
+      showToastify('Product updated successfully!', 'toastify-success');
+    } catch(error) {
+      console.error(error);
+
+      showToastify(error.message, 'toastify-danger');
+    }
   }
+  
 }
 
 export { APIHandler }

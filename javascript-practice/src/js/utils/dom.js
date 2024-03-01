@@ -47,6 +47,10 @@ function getElementById(id) {
  */
 function generateErrorMessages(data, clear=false) {
   for (const key in data) {
+    if (key === 'id') {
+      continue;
+    }
+
     let errorMsgElement;
 
     errorMsgElement = getElementById(`${key}-error`);
@@ -56,7 +60,7 @@ function generateErrorMessages(data, clear=false) {
         errorMsgElement = getElementById(`${key}-error`);
       }
     }
-
+    
     errorMsgElement.textContent = clear ? '' : convertCamelCaseToSpaces(data[key]);
   }
 }
