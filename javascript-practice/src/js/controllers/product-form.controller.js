@@ -1,32 +1,47 @@
 import { getElementById, generateErrorMessages } from '../utils/dom';
 import validateForm from '../utils/validateForm';
+import findRoute from '../utils/findRoute';
 
 export default class ProductFormController {
-  constructor(view, service) {
+  constructor(view, service, action) {
     this.view = view;
     this.service = service;
+    this.action = action;
 
-    this.displayAddProductPage();
-    this.bindAddProductEvent();
+    this.displayProductFormPage();
+
   }
 
   /**
    * Renders add-product page
    */
-  displayAddProductPage() {
-    this.view.renderAddProductPage();
+  async displayProductFormPage() {
+    let data = {};
+
+    if (this.action === 'edit') {
+      const { params } = findRoute(window.location.pathname);
+
+      data = await this.service.getById(params.id);
+    }
+
+    this.view.renderProductFormPage(data);
+
+    this.bindSubmitProductEvent();
   }
 
   /**
    * Binds event to handle product addition
    */
-  bindAddProductEvent() {
-    const addProductBtnElement = document.getElementById('add-product');
-    addProductBtnElement.addEventListener('click', async (event) => {
+  bindSubmitProductEvent() {
+    const submitProductBtnElement = getElementById('submit-button');
+
+    submitProductBtnElement.addEventListener('click', async (event) => {
+      console.log(1)
       event.preventDefault();
 
       const form = getElementById('product-form');
 
+      const idValue = form.dataset.productId;
       const nameValue = getElementById('name').value;
       const priceValue = getElementById('price').value;
       const brandValue = getElementById('brand').value;
@@ -62,14 +77,21 @@ export default class ProductFormController {
       generateErrorMessages(formError);
 
       // If there are any validation errors, stop the function
-      if(Object.keys(formError).length > 0) {
+      if (Object.keys(formError).length > 0) {
         return;
       }
 
-      await this.service.addProduct(product);
+      if (this.action === 'add') {
+        await this.service.addProduct(product);
 
-      // Reset the form
-      form.reset();
+        form.reset();
+      }
+
+      if (this.action === 'edit') {
+        await this.service.editProduct(product, idValue);
+
+        this.displayProductFormPage();
+      }
     });
   }
 }
