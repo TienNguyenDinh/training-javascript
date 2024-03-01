@@ -38,12 +38,23 @@ export default class ProductView {
       const productLinkAttributes = {
         href: `/${PRODUCTS_ENDPOINT}/${id}`
       }
-      const linkElement = createNewElement({
+      const productImageLinkElement = createNewElement({
         tag: 'a',
         attributes: productLinkAttributes
       });
-      const productImageLinkElement = linkElement;
-      const productLinkElement = linkElement;
+      const productLinkElement = createNewElement({
+        tag: 'a',
+        attributes: productLinkAttributes
+      });
+
+      const deleteBtnAttributes = {
+        href: `/${PRODUCTS_ENDPOINT}/${id}`,
+        className: 'btn btn-delete-product'
+      }
+      const deleteBtnElement = createNewElement({
+        tag: 'a',
+        attributes: deleteBtnAttributes
+      });
 
       // Creating the img element for the product image
       const productImageAttributes = {
@@ -56,7 +67,7 @@ export default class ProductView {
       });
 
       productImageLinkElement.append(productImageElement);
-      productImageFigureElement.append(productImageLinkElement);
+      productImageFigureElement.append(productImageLinkElement, deleteBtnElement);
 
       // Creating the div element for the product details
       const productDetailElement = createNewElement({ tag: 'div' });
