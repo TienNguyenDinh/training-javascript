@@ -26,7 +26,7 @@ export default function findRoute(pathName) {
 
       // Create a regular expression to match the route, replacing ':id' with a digit pattern
       const regex = new RegExp(routePath.replace(':id', wordRegexStr));
-      console.log(regex, pathName)
+
       if (regex.test(pathName)) {
         return {
           route: routePath,

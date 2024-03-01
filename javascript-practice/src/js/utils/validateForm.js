@@ -157,8 +157,8 @@ function getDataTest(data) {
 export default function validateForm(data) {
   formError = {};
 
-  const dataTest = getDataTest(JSON.stringify(data));
-  
+  const dataTest = getDataTest(data);
+
   for (const key in dataTest) {
     // If the key exists in the validationSchema
     if (validationSchema.hasOwnProperty(key)) {
@@ -174,6 +174,6 @@ export default function validateForm(data) {
       }
     }
   }
-
+  
   return { formError, dataTest };
 }
