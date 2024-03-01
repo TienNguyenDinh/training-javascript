@@ -107,9 +107,9 @@ export default class ProductView {
   }
 
   /**
-   * Renders add-product page
+   * Renders product form page
    */
-  renderAddProductPage() {
+  renderProductFormPage() {
     this.clearMainContainer();
 
     const mainContent = getElementById('main-content');
@@ -282,4 +282,6 @@ export default class ProductView {
 
     return colorOptionList;
   }
+
+
 }
