@@ -48,10 +48,15 @@ export default class ProductService {
   }
 
   /**
-   * Remove a product by its ID
+   * Delete a product by its ID
    * @param {string} id - The ID of the product
    */
-  async removeById(id) {
+  async deleteById(id) {
+    const { PRODUCTS_ENDPOINT } = API_ROUTES;
+    const endpoint = `${PRODUCTS_ENDPOINT}/${id}`;
 
+    const data = await APIHandler.delete(endpoint);
+
+    return data;
   }
 }
