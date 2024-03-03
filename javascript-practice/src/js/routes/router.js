@@ -61,15 +61,19 @@ document.addEventListener('click', (e) => {
 
   e.preventDefault();
 
-  handleRoute(target);
+  handleRoute({
+    target
+  });
 });
 
 /**
  * Handles route changes. Updates the browser history and triggers a location change
  * @param {EventTarget} target - The link element
  */
-function handleRoute(target) {
-  window.history.pushState(null, '', target.href);
+function handleRoute({ target, href }) {
+  const newHref = href || target;
+
+  window.history.pushState(null, '', newHref);
 
   handleRouteChange();
 }
@@ -77,7 +81,7 @@ function handleRoute(target) {
 /**
  * Handles location changes. Matches the current path to a route and calls the route's handler
  */
-export default function handleRouteChange() {
+function handleRouteChange() {
   const pathName = window.location.pathname;
   const {
     route: currentRoute,
@@ -87,3 +91,5 @@ export default function handleRouteChange() {
 
   route.handler(params);
 }
+
+export { handleRoute, handleRouteChange }
