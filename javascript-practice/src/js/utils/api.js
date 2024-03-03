@@ -38,7 +38,28 @@ const APIHandler = {
    * @returns {Promise<Object>} The JSON response
    */
   async post(endpoint, data) {
+    try {
+      const res = await fetch(
+        `${API_ROUTES.BASE_URL}/${endpoint}`,
+        {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        }
+      );
 
+      if(!res.ok) {
+        throw new Error(`Failed to post data to ${endpoint}`);
+      }
+
+      showToastify('Data added successfully!', 'toastify-success');
+    } catch(error) {
+      console.error(error);
+
+      showToastify(error.message, 'toastify-danger');
+    }
   },
 
   /**
