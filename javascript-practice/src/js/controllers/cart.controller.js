@@ -15,7 +15,7 @@ export default class CartController {
    * Fetches cart from the server and displays them
    */
   async displayCartPage() {
-
+    this.view.renderCart();
   }
 
   /**

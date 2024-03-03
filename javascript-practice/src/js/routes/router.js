@@ -3,11 +3,17 @@ import ProductService from '../services/product.service';
 import ProductController from '../controllers/product.controller';
 import ProductFormController from '../controllers/product.form.controller';
 import ProductDetailController from '../controllers/product-detail.controller';
+import CartView from '../views/cart.view';
+import CartService from '../services/cart.service';
+import CartController from '../controllers/cart.controller';
 import { ROUTES } from '../constants/routes';
 import findRoute from '../utils/findRoute';
 
 const productView = new ProductView();
 const productService = new ProductService();
+
+const cartView = new CartView();
+const cartService = new CartService();
 
 /**
  * An object that maps route names to their respective handlers
@@ -30,6 +36,11 @@ const routes = {
   },
   [ROUTES.EDIT_PRODUCT]: {
     handler: () => { }
+  },
+  [ROUTES.CART]: {
+    handler: () => {
+      return new CartController(cartView, cartService);
+    }
   }
 }
 
