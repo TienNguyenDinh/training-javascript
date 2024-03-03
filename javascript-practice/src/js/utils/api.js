@@ -48,7 +48,35 @@ const APIHandler = {
    * @returns {Promise<Object>} The JSON response
    */
   async put(endpoint, data) {
+    try {
+      const res = await fetch(
+        `${API_ROUTES.BASE_URL}/${endpoint}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
 
+      if (!res.ok) {
+        throw new Error(`Failed to update data to ${endpoint}`);
+      }
+
+      showToastify('Product updated successfully!', 'toastify-success');
+
+      return {
+        isSuccess: true
+      }
+    } catch (error) {
+      console.error(error);
+
+      showToastify(error.message, 'toastify-danger');
+
+      return {
+        isSuccess: false
+      }
+    }
   },
 
   /**
