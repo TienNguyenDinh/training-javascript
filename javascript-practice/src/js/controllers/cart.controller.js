@@ -1,4 +1,3 @@
-// TODO: Implement the displayCartPage method to fetch cart from the server and display them
 // TODO: Implement the bindModifyAmountBtnEvent method to handle the event of updating cart item amount
 // TODO: Implement the bindDeleteItemBtnEvent method to handle the event of removing an item from the cart
 // TODO: Implement the bindCheckoutBtnEvent method to handle the event of checking out the order
@@ -15,7 +14,9 @@ export default class CartController {
    * Fetches cart from the server and displays them
    */
   async displayCartPage() {
-    this.view.renderCart();
+    const cart = await this.service.getAll();
+
+    this.view.renderCart(cart);
   }
 
   /**
