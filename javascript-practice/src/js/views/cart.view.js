@@ -11,7 +11,7 @@ export default class CartView {
 
     let cartListHTML = '<ul class="shopping-cart">'
     for (const item of cart) {
-      const { name, color, amount, price, imgUrl } = item;
+      const { id, productId, name, color, amount, price, imgUrl } = item;
       const totalPrice = amount * price;
 
       const cartItemHTML = `
@@ -27,11 +27,11 @@ export default class CartView {
           <p class="cart-item-color">${color}</p>
         </div>
         <div class="cart-item-quantity">
-          <button class="btn btn-plus" type="button">
+          <button data-action="increment" data-cart-item-id="${id}" data-product-id="${productId}" class="btn btn-plus" type="button">
             +
           </button>
-          <input value="${amount}" disabled type="text" class="form-control input-quantity">
-          <button class="btn btn-minus" type="button">
+          <input id="amount-input-${id}" value="${amount}" disabled type="text" class="form-control input-quantity">
+          <button data-action="decrement" data-cart-item-id="${id}" data-product-id="${productId}" class="btn btn-minus" type="button">
             -
           </button>
         </div>
