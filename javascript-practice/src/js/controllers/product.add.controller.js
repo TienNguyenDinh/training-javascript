@@ -1,4 +1,4 @@
-import { getElementById, generateErrorMessages } from '../utils/dom';
+import { getElementById, getElementValueById, generateErrorMessages } from '../utils/dom';
 import validateForm from '../utils/validateForm';
 
 export default class ProductAddController {
@@ -21,22 +21,49 @@ export default class ProductAddController {
    * Binds event to handle product addition
    */
   bindAddProductEvent() {
-    const addProductBtnElement = document.getElementById('add-product');
+    const addProductBtnElement = getElementById('add-product');
+
+    // Bind the click event to the 'Add Product' button
     addProductBtnElement.addEventListener('click', async (event) => {
       event.preventDefault();
 
       const form = getElementById('product-form');
 
-      const nameValue = getElementById('name').value;
-      const priceValue = getElementById('price').value;
-      const brandValue = getElementById('brand').value;
-      const modelNameValue = getElementById('model-name').value;
-      const colorNameValue = getElementById('color').value;
-      const hexCodeValue = getElementById('hex-code').value;
-      const formFactorValue = getElementById('form-factor').value;
-      const connectivityTechnologyValue = getElementById('connectivity-technology').value;
-      const amountValue = getElementById('amount').value;
-      const imageUrlValue = getElementById('image-url').value;
+      // Get the values from the form inputs
+      const nameValue = getElementValueById('name');
+      const priceValue = getElementValueById('price');
+      const brandValue = getElementValueById('brand');
+      const modelNameValue = getElementValueById('model-name');
+      const colorNameValue = getElementValueById('color');
+      const hexCodeValue = getElementValueById('hex-code');
+      const formFactorValue = getElementValueById('form-factor');
+      const connectivityTechnologyValue = getElementValueById('connectivity-technology');
+      const amountValue = getElementValueById('amount');
+      const imageUrlValue = getElementValueById('image-url');
+
+      // Create a product object with the form input values
+      const productInputs = {
+        'Name': nameValue,
+        'Price': priceValue,
+        'Brand': brandValue,
+        'Model Name': modelNameValue,
+        'Color': colorNameValue,
+        'Hex Code': hexCodeValue,
+        'Form Factor': formFactorValue,
+        'Connectivity Technology': connectivityTechnologyValue,
+        'Amount': amountValue,
+        'Image URL': imageUrlValue
+      }
+
+      const { formError } = validateForm(productInputs);
+
+      // Generate new error messages based on the validation results
+      generateErrorMessages(formError);
+
+      // If there are any validation errors, stop the function
+      if(Object.keys(formError).length > 0) {
+        return;
+      }
 
       const product = {
         name: nameValue,
@@ -51,19 +78,6 @@ export default class ProductAddController {
         connectivityTechnology: connectivityTechnologyValue,
         amount: amountValue,
         imgUrl: imageUrlValue
-      }
-
-      const { formError, dataTest } = validateForm(product);
-
-      // Clear any previous error messages
-      generateErrorMessages(dataTest, true);
-
-      // Generate new error messages based on the validation results
-      generateErrorMessages(formError);
-
-      // If there are any validation errors, stop the function
-      if(Object.keys(formError).length > 0) {
-        return;
       }
 
       await this.service.addProduct(product);
