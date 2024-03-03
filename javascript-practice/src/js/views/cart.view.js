@@ -6,26 +6,8 @@ export default class CartView {
   /**
    * Renders list of cart items on the page
    */
-  renderCart() {
+  renderCart(cart) {
     const mainContent = getElementById('main-content');
-
-    // Test data
-    const cart = [
-      {
-        name: 'Adidas',
-        color: 'Black',
-        amount: 2,
-        price: 29.99,
-        imgUrl: 'https://ik.imagekit.io/kwzzowwcg/samsung-earphones-white.png'
-      },
-      {
-        name: 'Toshiba',
-        color: 'White',
-        amount: 1,
-        price: 49.99,
-        imgUrl: 'https://ik.imagekit.io/kwzzowwcg/samsung-earphones-white.png'
-      }
-    ];
 
     let cartListHTML = '<ul class="shopping-cart">'
     for (const item of cart) {
