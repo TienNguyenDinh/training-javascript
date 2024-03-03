@@ -9,12 +9,10 @@ let formError = {};
  * @param {string} param0.value - The value
  */
 function validateString({ key, value }) {
-  if (key in formError) {
-    return;
-  }
-
   if (typeof value !== 'string') {
     formError[key] = `${key} must be a string.`;
+  } else {
+    formError[key] = '';
   }
 }
 
@@ -27,12 +25,10 @@ function validateString({ key, value }) {
 function validateNumber({ key, value }) {
   const { digitRegex } = REGEX_PATTERNS;
 
-  if (key in formError) {
-    return;
-  }
-
   if (!digitRegex.test(value)) {
     formError[key] = `${key} must be a number.`;
+  } else {
+    formError[key] = '';
   }
 }
 
@@ -43,12 +39,10 @@ function validateNumber({ key, value }) {
  * @param {number} param0.value - The value
  */
 function validateEmptiness({ key, value }) {
-  if (key in formError) {
-    return;
-  }
-
   if (value.trim() === '') {
     formError[key] = `${key} is required.`;
+  } else {
+    formError[key] = '';
   }
 }
 
@@ -59,16 +53,10 @@ function validateEmptiness({ key, value }) {
  * @param {string} param0.value - The value
  */
 function validateLength({ key, value, min = 6 }) {
-  if (key in formError) {
-    return;
-  }
-
-  if (typeof value === 'number') {
-    return;
-  }
-
-  if (value.trim() < min) {
+  if (value.trim().length < min) {
     formError[key] = `${key} must have at least ${min} characters.`;
+  } else {
+    formError[key] = '';
   }
 }
 
@@ -79,12 +67,10 @@ function validateLength({ key, value, min = 6 }) {
  * @param {number} param0.value - The value
  */
 function validatePositive({ key, value }) {
-  if (key in formError) {
-    return;
-  }
-
   if (parseInt(value) < 0) {
     formError[key] = `${key} needs to be a positive number.`;
+  } else {
+    formError[key] = '';
   }
 }
 
@@ -97,12 +83,10 @@ function validatePositive({ key, value }) {
 function validateHexCode({ key, value }) {
   const { hexCodeRegex } = REGEX_PATTERNS;
 
-  if (key in formError) {
-    return;
-  }
-
   if (!hexCodeRegex.test(value)) {
     formError[key] = `${key} needs to be a correct hex code eg: #333.`;
+  } else {
+    formError[key] = '';
   }
 }
 
@@ -113,15 +97,17 @@ function validateHexCode({ key, value }) {
  * @param {string} param0.value - The value
  */
 function validateUrl({ key, value }) {
-  if (key in formError) {
+  if (key in formError && formError[key] !== '') {
     return;
   }
 
   try {
     new URL(value);
+
+    formError[key] = '';
   } catch (error) {
     formError[key] = `${key} must be a valid URL.`;
-  }
+  } 
 }
 
 const validationSchema = {
@@ -156,6 +142,10 @@ export default function validateForm(data) {
       validateEmptiness({ key, value });
 
       for (let validator of validators) {
+        if(formError[key] !== '') {
+          break;
+        }
+
         validator({ key, value });
       }
     }
