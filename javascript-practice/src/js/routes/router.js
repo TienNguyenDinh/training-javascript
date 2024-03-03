@@ -55,9 +55,9 @@ document.addEventListener('click', (e) => {
  * @param {EventTarget} target - The link element
  */
 function handleRoute({ target, href }) {
-  href = href || target
+  const newHref = href || target;
 
-  window.history.pushState(null, '', href);
+  window.history.pushState(null, '', newHref);
 
   handleRouteChange();
 }
