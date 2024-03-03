@@ -1,4 +1,4 @@
-import showToastify from '../utils/toastify';
+import Toast from '../utils/toastify';
 import { API_ROUTES } from '../constants/url-api';
 
 const APIHandler = {
@@ -21,7 +21,7 @@ const APIHandler = {
     } catch (error) {
       console.error(error);
 
-      showToastify(error.message, 'toastify-danger');
+      Toast.error(error.message);
     }
   },
 
@@ -30,7 +30,7 @@ const APIHandler = {
    * @param {string} endpoint - The endpoint to which the request should be sent
    * @param {Object} product - The product data to be sent
    */
-  async post(endpoint, product) {
+  async post(endpoint, data) {
     try {
       const res = await fetch(
         `${API_ROUTES.BASE_URL}/${endpoint}`,
@@ -39,7 +39,7 @@ const APIHandler = {
           headers: {
               'Content-Type': 'application/json',
           },
-          body: JSON.stringify(product)
+          body: JSON.stringify(data)
         }
       );
 
@@ -47,11 +47,11 @@ const APIHandler = {
         throw new Error(`Failed to post data to ${endpoint}`);
       }
 
-      showToastify('Product added successfully!', 'toastify-success');
+      Toast.success('Data added successfully!');
     } catch(error) {
       console.error(error);
 
-      showToastify(error.message, 'toastify-danger');
+      Toast.error(error.message);
     }
   }
 }
