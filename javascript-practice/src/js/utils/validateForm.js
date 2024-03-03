@@ -8,13 +8,13 @@ let formError = {};
  * @param {string} param0.key - The key
  * @param {string} param0.value - The value
  */
-function isString({ key, value }) {
+function validateString({ key, value }) {
   if (key in formError) {
     return;
   }
 
   if (typeof value !== 'string') {
-    return formError[key] = `${key} must be a string.`;
+    formError[key] = `${key} must be a string.`;
   }
 }
 
@@ -24,7 +24,7 @@ function isString({ key, value }) {
  * @param {string} param0.key - The key
  * @param {number} param0.value - The value
  */
-function isNumber({ key, value }) {
+function validateNumber({ key, value }) {
   const { digitRegex } = REGEX_PATTERNS;
 
   if (key in formError) {
@@ -32,7 +32,7 @@ function isNumber({ key, value }) {
   }
 
   if (!digitRegex.test(value)) {
-    return formError[key] = `${key} must be a number.`;
+    formError[key] = `${key} must be a number.`;
   }
 }
 
@@ -42,13 +42,13 @@ function isNumber({ key, value }) {
  * @param {string} param0.key - The key
  * @param {number} param0.value - The value
  */
-function isNotEmpty({ key, value }) {
+function validateEmptiness({ key, value }) {
   if (key in formError) {
     return;
   }
 
   if (value.trim() === '') {
-    return formError[key] = `${key} is required.`;
+    formError[key] = `${key} is required.`;
   }
 }
 
@@ -58,7 +58,7 @@ function isNotEmpty({ key, value }) {
  * @param {string} param0.key - The key
  * @param {string} param0.value - The value
  */
-function isLongerThan({ key, value, min = 6 }) {
+function validateLength({ key, value, min = 6 }) {
   if (key in formError) {
     return;
   }
@@ -68,7 +68,7 @@ function isLongerThan({ key, value, min = 6 }) {
   }
 
   if (value.trim() < min) {
-    return formError[key] = `${key} must have at least ${min} characters.`;
+    formError[key] = `${key} must have at least ${min} characters.`;
   }
 }
 
@@ -78,13 +78,13 @@ function isLongerThan({ key, value, min = 6 }) {
  * @param {string} param0.key - The key
  * @param {number} param0.value - The value
  */
-function isPositive({ key, value }) {
+function validatePositive({ key, value }) {
   if (key in formError) {
     return;
   }
 
   if (parseInt(value) < 0) {
-    return formError[key] = `${key} needs to be a positive number.`;
+    formError[key] = `${key} needs to be a positive number.`;
   }
 }
 
@@ -94,7 +94,7 @@ function isPositive({ key, value }) {
  * @param {string} param0.key - The key
  * @param {string} param0.value - The value
  */
-function isHexCode({ key, value }) {
+function validateHexCode({ key, value }) {
   const { hexCodeRegex } = REGEX_PATTERNS;
 
   if (key in formError) {
@@ -102,7 +102,7 @@ function isHexCode({ key, value }) {
   }
 
   if (!hexCodeRegex.test(value)) {
-    return formError[key] = `${key} needs to be a correct hex code eg: #333.`;
+    formError[key] = `${key} needs to be a correct hex code eg: #333.`;
   }
 }
 
@@ -112,7 +112,7 @@ function isHexCode({ key, value }) {
  * @param {string} param0.key - The key
  * @param {string} param0.value - The value
  */
-function isValidUrl({ key, value }) {
+function validateUrl({ key, value }) {
   if (key in formError) {
     return;
   }
@@ -120,60 +120,46 @@ function isValidUrl({ key, value }) {
   try {
     new URL(value);
   } catch (error) {
-    return formError[key] = `${key} must be a valid URL.`;
+    formError[key] = `${key} must be a valid URL.`;
   }
 }
 
 const validationSchema = {
-  name: [isString, isLongerThan],
-  price: [isNumber, isPositive],
-  brand: [isString],
-  modelName: [isString],
-  color: [isString],
-  hexCode: [isHexCode],
-  formFactor: [isString],
-  connectivityTechnology: [isString],
-  amount: [isNumber, isPositive],
-  imgUrl: [isValidUrl]
+  'Name': [validateString, validateLength],
+  'Price': [validateNumber, validatePositive],
+  'Brand': [validateString],
+  'Model Name': [validateString],
+  'Color': [validateString],
+  'Hex Code': [validateHexCode],
+  'Form Factor': [validateString],
+  'Connectivity Technology': [validateString],
+  'Amount': [validateNumber, validatePositive],
+  'Image URL': [validateUrl]
 };
-
-function getDataTest(data) {
-  const dataTest = JSON.parse(JSON.stringify(data));
-
-  const { name, hexCode } = dataTest.colors[0];
-  
-  dataTest.color = name;
-  dataTest.hexCode = hexCode;
-
-  delete dataTest.colors;
-
-  return dataTest;
-}
 
 /**
  * Validates the form data
  * @param {Object} data - The form data
+ * @returns {Object} An object containing validation results
  */
 export default function validateForm(data) {
   formError = {};
-
-  const dataTest = getDataTest(data);
-
-  for (const key in dataTest) {
+  
+  for (const key in data) {
     // If the key exists in the validationSchema
     if (validationSchema.hasOwnProperty(key)) {
-      const value = dataTest[key];
+      const value = data[key];
 
       // Get the array of validator methods associated with the key
       const validators = validationSchema[key];
 
-      isNotEmpty({ key, value });
+      validateEmptiness({ key, value });
 
       for (let validator of validators) {
         validator({ key, value });
       }
     }
   }
-  
-  return { formError, dataTest };
+
+  return { formError }
 }

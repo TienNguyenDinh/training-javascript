@@ -1,7 +1,12 @@
 .product-thumbnail {
+  position: relative;
   margin-bottom: 25px;
   max-width: 303px;
   max-height: 359px;
+
+  &:hover .btn-delete {
+    display: block;
+  }
 }
 
 .product-info {
