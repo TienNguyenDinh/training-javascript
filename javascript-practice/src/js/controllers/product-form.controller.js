@@ -1,6 +1,8 @@
 import { getElementById, generateErrorMessages } from '../utils/dom';
 import validateForm from '../utils/validateForm';
 import findRoute from '../utils/findRoute';
+import showToastify from '../utils/toastify';
+import { ACTION } from '../constants/action';
 
 export default class ProductFormController {
   constructor(view, service, action) {
@@ -9,7 +11,6 @@ export default class ProductFormController {
     this.action = action;
 
     this.displayProductFormPage();
-
   }
 
   /**
@@ -36,7 +37,6 @@ export default class ProductFormController {
     const submitProductBtnElement = getElementById('submit-button');
 
     submitProductBtnElement.addEventListener('click', async (event) => {
-      console.log(1)
       event.preventDefault();
 
       const form = getElementById('product-form');
@@ -81,16 +81,24 @@ export default class ProductFormController {
         return;
       }
 
-      if (this.action === 'add') {
-        await this.service.addProduct(product);
+      switch (this.action) {
+        case ACTION.ADD: {
+          await this.service.addProduct(product);
 
-        form.reset();
-      }
+          form.reset();
 
-      if (this.action === 'edit') {
-        await this.service.editProduct(product, idValue);
+          break;
+        }
+        case ACTION.EDIT: {
+          await this.service.editProduct(product, idValue);
 
-        this.displayProductFormPage();
+          this.displayProductFormPage();
+
+          break;
+        }
+        default: {
+          showToastify(`Invalid action: ${this.action}`, 'toastify-error');
+        }
       }
     });
   }
