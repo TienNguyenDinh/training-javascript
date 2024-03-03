@@ -18,92 +18,53 @@ export default class ProductView {
   renderProducts(products) {
     this.clearMainContainer();
 
+    const mainContent = getElementById('main-content');
+
+    let productListHTML = '<ul class="main-products-container">';
     // Mapping over the products array to create HTML elements for each product
     const productElements = products.map(product => {
       const { PRODUCTS_ENDPOINT } = API_ROUTES;
       const { id, name, price, colors, imgUrl } = product;
+      const productHref = `${PRODUCTS_ENDPOINT}/${id}`
 
-      // Creating the main div element for each product
-      const productItemElement = createNewElement({
-        tag: 'div',
-        className: 'product-item'
-      });
+      let colorOptionListHtml = ``;
 
-      // Creating the figure element for the product image
-      const productImageFigureElement = createNewElement({
-        tag: 'figure',
-        className: 'product-thumbnail'
-      });
-
-      const productLinkAttributes = {
-        href: `/${PRODUCTS_ENDPOINT}/${id}`
-      }
-      const linkElement = createNewElement({
-        tag: 'a',
-        attributes: productLinkAttributes
-      });
-      const productImageLinkElement = linkElement;
-      const productLinkElement = linkElement;
-
-      // Creating the img element for the product image
-      const productImageAttributes = {
-        src: imgUrl,
-        alt: name
-      }
-      const productImageElement = createNewElement({
-        tag: 'img',
-        attributes: productImageAttributes
-      });
-
-      productImageLinkElement.append(productImageElement);
-      productImageFigureElement.append(productImageLinkElement);
-
-      // Creating the div element for the product details
-      const productDetailElement = createNewElement({ tag: 'div' });
-
-      // Creating the h2 element for the product name
-      const productNameElement = createNewElement({
-        tag: 'h2',
-        className: 'product-info product-title',
-        textContent: name
-      });
-      productLinkElement.append(productNameElement);
-
-      // Creating the ul element for the product colors
-      const productColorsWrapperElement = createNewElement({
-        tag: 'ul',
-        className: 'product-option-colors'
-      });
+      // Create list of product color element
       const colorOptionList = this.createColorOptionList(colors);
-      productColorsWrapperElement.append(...colorOptionList);
 
-      // Creating the p element for the product price
-      const productPriceElement = createNewElement({
-        tag: 'p',
-        className: 'product-info',
-        textContent: `$ ${price}`
+      // Appends color element to list in HTML
+      colorOptionList.forEach((colorOptionItem) => {
+        colorOptionListHtml += colorOptionItem.outerHTML;
       });
 
-      productDetailElement.append(productLinkElement);
-      productDetailElement.append(productColorsWrapperElement);
-      productDetailElement.append(productPriceElement);
+      const productItemHTML = `
+        <li class="product-item">
+          <figure class="product-thumbnail">
+            <a href="${productHref}">
+              <img
+              src="${imgUrl}" alt="${name}">
+            </a>
+            <button id="btn-delete-${id}" data-id="${id}" class="btn btn-delete btn-primary"></button>
+          </figure>
+          <div class="product-details">
+            <a href="${productHref}">
+              <h2 class="product-title product-info">
+                ${name}
+              </h2>
+            </a>
+            <ul class="product-option-colors">
+              ${colorOptionListHtml}
+            </ul>
+            <p class="product-info">$ ${price}</p>
+          </div>
+        </div>
+      `;
 
-      productItemElement.append(productImageFigureElement);
-      productItemElement.append(productDetailElement);
-
-      return productItemElement;
+      productListHTML += productItemHTML;
     });
+    productListHTML += '</ul>'
 
-    const mainContent = getElementById('main-content');
-
-    // Creating the ul element for the product list
-    const productListElement = createNewElement({
-      tag: 'ul',
-      className: 'main-products-container'
-    });
-    productListElement.append(...productElements);
-
-    mainContent.append(productListElement);
+    mainContent.innerHTML += productListHTML;
   }
 
   /**

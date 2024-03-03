@@ -67,7 +67,31 @@ const APIHandler = {
    * @returns {Promise<Object>} The JSON response
    */
   async delete(endpoint) {
+    try {
+      const url = `${API_ROUTES.BASE_URL}/${endpoint}`;
 
+      const res = await fetch(url, {
+        method: 'DELETE',
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to delete data from ${url}`);
+      }
+
+      showToastify('Delete successfully!', 'toastify-success');
+
+      return {
+        isSuccess: true
+      }
+    } catch (error) {
+      console.error(error);
+
+      showToastify(error.message, 'toastify-danger');
+
+      return {
+        isSuccess: false
+      }
+    }
   }
 }
 
