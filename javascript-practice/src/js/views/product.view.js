@@ -44,7 +44,7 @@ export default class ProductView {
               <img
               src="${imgUrl}" alt="${name}">
             </a>
-            <button id="btn-delete-${id}" class="btn btn-delete btn-primary"></button>
+            <button id="btn-delete-${id}" data-id="${id}" class="btn btn-delete btn-primary"></button>
           </figure>
           <div class="product-details">
             <a href="${productHref}">
