@@ -57,7 +57,6 @@ const APIHandler = {
 
   async put(endpoint, product) {
     try {
-      console.log(product)
       const res = await fetch(
         `${API_ROUTES.BASE_URL}/${endpoint}`,
         {
