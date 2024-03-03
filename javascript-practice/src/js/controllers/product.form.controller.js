@@ -14,7 +14,7 @@ export default class ProductFormController {
    * Renders add-product page
    */
   displayProductFormPage() {
-    this.view.renderAddProductPage();
+    this.view.renderProductFormPage();
   }
 
   /**
