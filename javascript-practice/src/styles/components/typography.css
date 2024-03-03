@@ -17,5 +17,6 @@
 }
 
 .error-message {
+  font-weight: var(--font-weight-medium);
   color: red;
 }
