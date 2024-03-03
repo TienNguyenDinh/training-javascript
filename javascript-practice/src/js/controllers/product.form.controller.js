@@ -1,26 +1,26 @@
 import { getElementById, getElementValueById, generateErrorMessages } from '../utils/dom';
 import validateForm from '../utils/validateForm';
 
-export default class ProductAddController {
+export default class ProductFormController {
   constructor(view, service) {
     this.view = view;
     this.service = service;
 
-    this.displayAddProductPage();
-    this.bindAddProductEvent();
+    this.displayProductFormPage();
+    this.bindProductFormEvent();
   }
 
   /**
    * Renders add-product page
    */
-  displayAddProductPage() {
+  displayProductFormPage() {
     this.view.renderAddProductPage();
   }
 
   /**
    * Binds event to handle product addition
    */
-  bindAddProductEvent() {
+  bindProductFormEvent() {
     const addProductBtnElement = getElementById('add-product');
 
     // Bind the click event to the 'Add Product' button

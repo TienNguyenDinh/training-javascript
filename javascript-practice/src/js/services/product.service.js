@@ -1,3 +1,7 @@
+// TODO: Implement the add method to add a new product to the API
+// TODO: Implement the editById method to update a specific product in the API using its ID
+// TODO: Implement the removeById method to delete a specific product from the API using its ID
+
 import { API_ROUTES } from '../constants/url-api';
 import { APIHandler } from '../utils/api';
 
@@ -15,7 +19,7 @@ export default class ProductService {
   }
 
   /**
-   * Getches a product by its ID
+   * Gets a product by its ID
    * @param {string} id - The ID of the product
    * @returns {Promise<Object>} The object contains the product
    */
@@ -33,9 +37,30 @@ export default class ProductService {
    * @param {Object} product - The product data to be added
    * @returns {Promise<Object>} - The object contains a property 'isSuccess' which is a boolean indicating the success of the operation
    */
-  async addProduct(product) {
+  async add(product) {
     const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
     await APIHandler.post(endpoint, product);
+  }
+
+  /**
+   * Edit a product by its ID
+   * @param {string} id - The ID of the product
+   */
+  async editById(id) {
+
+  }
+
+  /**
+   * Delete a product by its ID
+   * @param {string} id - The ID of the product
+   */
+  async deleteById(id) {
+    const { PRODUCTS_ENDPOINT } = API_ROUTES;
+    const endpoint = `${PRODUCTS_ENDPOINT}/${id}`;
+
+    const data = await APIHandler.delete(endpoint);
+
+    return data;
   }
 }

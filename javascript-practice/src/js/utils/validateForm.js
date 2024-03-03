@@ -140,6 +140,7 @@ const validationSchema = {
 /**
  * Validates the form data
  * @param {Object} data - The form data
+ * @returns {Object} An object containing validation results
  */
 export default function validateForm(data) {
   formError = {};
@@ -160,5 +161,5 @@ export default function validateForm(data) {
     }
   }
 
-  return { formError };
+  return { formError }
 }
