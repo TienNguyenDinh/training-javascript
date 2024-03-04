@@ -1,5 +1,3 @@
-// TODO: Implement the removeById method to delete a specific cart item from the API using its ID
-
 import { API_ROUTES } from '../constants/url-api';
 import { APIHandler } from '../utils/api';
 
@@ -59,6 +57,11 @@ export default class CartService {
    * @param {string} id - The ID of the cart item
    */
   async removeById(id) {
+    const { CART_ENDPOINT } = API_ROUTES;
+    const endpoint = `${CART_ENDPOINT}/${id}`;
 
+    const data = await APIHandler.delete(endpoint);
+
+    return data;
   }
 }

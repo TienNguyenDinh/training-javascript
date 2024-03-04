@@ -1,6 +1,6 @@
+import { getElementById } from '../utils/dom';
 import Toast from '../utils/toastify';
 import { getElementById } from '../utils/dom'
-
 export default class CartController {
   constructor(view, services) {
     this.view = view;
@@ -18,6 +18,7 @@ export default class CartController {
     const cart = await this.cartService.getAll();
 
     this.view.renderCart(cart);
+    this.bindDeleteItemBtnEvent();
     this.bindModifyAmountBtnEvent();
   }
 
@@ -46,9 +47,9 @@ export default class CartController {
       const existingCartItem = await this.cartService.getByProductId(productId);
       const { amount: cartItemAmount, price } = existingCartItem ? existingCartItem : {};
 
-      switch(action) {
+      switch (action) {
         case 'increment': {
-          if(cartItemAmount >= productAmount) {
+          if (cartItemAmount >= productAmount) {
             return Toast.error('You cannot add more items!');
           }
 
@@ -65,7 +66,7 @@ export default class CartController {
           break;
         }
         case 'decrement': {
-          if(cartItemAmount === 0) {
+          if (cartItemAmount === 0) {
             return Toast.error('You cannot remove more items!');
           }
 
@@ -98,6 +99,22 @@ export default class CartController {
    * Binds event to handle remove item from cart
    */
   bindDeleteItemBtnEvent() {
+    const cartListElement = document.querySelector('.shopping-cart');
 
+    cartListElement.addEventListener('click', async (e) => {
+      const btnDeleteCartItemElement = e.target.classList.contains('btn-delete-cart-item');
+
+      if (btnDeleteCartItemElement) {
+        const id = e.target.dataset.cartItemId;
+
+        const { isSuccess } = await this.cartService.removeById(id);
+
+        if (!isSuccess) {
+          return ;
+        }
+
+        this.displayCartPage();
+      }
+    })
   }
 }

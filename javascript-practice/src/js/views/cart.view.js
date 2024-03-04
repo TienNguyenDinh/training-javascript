@@ -4,9 +4,20 @@ import { getElementById } from "../utils/dom";
 
 export default class CartView {
   /**
+   * Clears the main content container on the page
+   * Effectively removing all of its child elements
+   */
+  clearMainContainer() {
+    const mainContent = getElementById('main-content');
+    mainContent.innerHTML = '';
+  }
+
+  /**
    * Renders list of cart items on the page
    */
   renderCart(cart) {
+    this.clearMainContainer();
+
     const mainContent = getElementById('main-content');
 
     let cartListHTML = '<ul class="shopping-cart">'
@@ -17,7 +28,7 @@ export default class CartView {
       const cartItemHTML = `
        <li class="cart-item">
         <div class="cart-item-image">
-          <button type="button" class="btn btn-primary">X</button>
+          <button id="btn-delete-${id}" data-cart-item-id="${id}" type="button" class="btn btn-primary btn-delete-cart-item">X</button>
           <figure>
             <img src="${imgUrl}" alt="${name}" />
           </figure>
