@@ -29,6 +29,7 @@ export default class CartController {
     const btnPlusElements = document.querySelectorAll('.btn-plus');
     const btnMinusElements = document.querySelectorAll('.btn-minus');
 
+    // This function handles the click event of the plus and minus buttons
     const handleModifyAmount = async (e) => {
       const dataset = e.target.dataset;
       const action = dataset.action;
@@ -38,12 +39,13 @@ export default class CartController {
       const amountInputElement = getElementById(`amount-input-${cartItemId}`);
       const productTotalElement = getElementById(`product-total-${cartItemId}`);
 
+      // Get the product amount from the product service
       const product = await this.productService.getById(productId);
       const { amount: productAmount } = product;
 
-      const existingCartItem = await this.cartService.getByProductId(cartItemId);
-
-      const { amount: cartItemAmount, price } = existingCartItem;
+      // Get the cart item amount and price from the product service
+      const existingCartItem = await this.cartService.getByProductId(productId);
+      const { amount: cartItemAmount, price } = existingCartItem ? existingCartItem : {};
 
       switch (action) {
         case 'increment': {
@@ -51,11 +53,15 @@ export default class CartController {
             return Toast.error('You cannot add more items!');
           }
 
+          // Update the cart item with amount +1
           existingCartItem.amount += 1;
           await this.cartService.editById(cartItemId, existingCartItem);
 
-          amountInputElement.value = parseInt(++amountInputElement.value);
-          const total = (amountInputElement.value * price).toFixed(2);
+          let amount = parseInt(amountInputElement.value);
+          const priceNum = parseFloat(price);
+          amountInputElement.value = ++amount;
+          const total = (amount * priceNum).toFixed(2);
+
           productTotalElement.textContent = `$ ${total}`;
           break;
         }
@@ -64,11 +70,15 @@ export default class CartController {
             return Toast.error('You cannot remove more items!');
           }
 
+          // Update the cart item with amount -1
           existingCartItem.amount -= 1;
           await this.cartService.editById(cartItemId, existingCartItem);
 
-          amountInputElement.value = parseInt(--amountInputElement.value);
-          const total = (amountInputElement.value * price).toFixed(2);
+          let amount = parseInt(amountInputElement.value);
+          const priceNum = parseFloat(price);
+          amountInputElement.value = --amount;
+          const total = (amount * priceNum).toFixed(2);
+
           productTotalElement.textContent = `$ ${total}`;
 
           break;
@@ -106,12 +116,5 @@ export default class CartController {
         this.displayCartPage();
       }
     })
-  }
-
-  /**
-   * Binds event to handle checkout order
-   */
-  bindCheckoutBtnEvent() {
-
   }
 }

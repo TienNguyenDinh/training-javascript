@@ -1,6 +1,6 @@
 import { getElementById } from '../utils/dom';
 import findRoute from '../utils/findRoute';
-import showToastify from '../utils/toastify';
+import Toast from '../utils/toastify';
 
 export default class ProductDetailController {
   constructor(view, services) {
@@ -40,14 +40,14 @@ export default class ProductDetailController {
       const { cartItemAmount } = cartItem ? cartItem : {};
 
       if (productAmount <= 0) {
-        return showToastify('The product is running out of stock', 'toastify-danger');
+        return Toast.error('The product is running out of stock');
       }
 
       // Needs to implement edit cart item first to expand this
       // Update item amount if user already add it to cart
       if (cartItem) {
         // Will remove this when edit cart functionality has been added
-        return showToastify('The item is already been added to your cart', 'toastify-danger');
+        return Toast.error('The item is already been added to your cart');
       }
 
       const newCartItem = {

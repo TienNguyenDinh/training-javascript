@@ -117,7 +117,45 @@ const APIHandler = {
         isSuccess: false
       }
     }
+  },
+
+  /**
+   * Sends a PUT request to the specified endpoint
+   * @param {string} endpoint - The endpoint to send the PUT request to
+   * @returns {Promise<Object>} The JSON response
+   */
+  async put(endpoint, product) {
+    try {
+      const res = await fetch(
+        `${API_ROUTES.BASE_URL}/${endpoint}`,
+        {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product)
+      });
+
+      if(!res.ok) {
+        throw new Error(`Failed to update data to ${endpoint}`);
+      }
+
+      showToastify('Product updated successfully!', 'toastify-success');
+
+      return {
+        isSuccess: true
+      }
+    } catch(error) {
+      console.error(error);
+
+      showToastify(error.message, 'toastify-danger');
+
+      return {
+        isSuccess: false
+      }
+    }
   }
+
 }
 
 export { APIHandler }

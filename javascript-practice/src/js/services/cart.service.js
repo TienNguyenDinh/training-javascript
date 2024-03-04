@@ -21,7 +21,7 @@ export default class CartService {
    */
   async getByProductId(id) {
     const { CART_ENDPOINT } = API_ROUTES;
-    const endpoint = `${CART_ENDPOINT}?id=${id}`;
+    const endpoint = `${CART_ENDPOINT}?productId=${id}`;
 
     const data = await APIHandler.get(endpoint);
 

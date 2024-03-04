@@ -18,13 +18,6 @@ export default class ProductController {
   }
 
   /**
-   * Displays the Add Product Page
-   */
-  displayAddProductPage() {
-    this.view.renderAddProductPage();
-  }
-
-  /**
    * Binds the delete product event to each delete button
    * If the deletion is successful, it re-displays the products
    */
