@@ -7,6 +7,7 @@ import CartView from '../views/cart.view';
 import CartService from '../services/cart.service';
 import CartController from '../controllers/cart.controller';
 import { ROUTES } from '../constants/routes';
+import { ACTION } from '../constants/action';
 import findRoute from '../utils/findRoute';
 
 const productView = new ProductView();
@@ -36,12 +37,12 @@ const routes = {
   },
   [ROUTES.ADD_PRODUCT]: {
     handler: () => {
-      return new ProductFormController(productView, productService, 'add');
+      return new ProductFormController(productView, productService, ACTION.ADD);
     }
   },
   [ROUTES.EDIT_PRODUCT]: {
     handler: () => {
-      return new ProductFormController(productView, productService, 'edit');
+      return new ProductFormController(productView, productService, ACTION.EDIT);
     }
   },
   [ROUTES.CART]: {
