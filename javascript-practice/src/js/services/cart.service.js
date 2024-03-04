@@ -1,7 +1,8 @@
 // TODO: Implement the getAll method to fetch all cart items from the API
 // TODO: Implement the add method to add a new cart item to the API
 // TODO: Implement the editById method to update a specific cart item in the API using its ID
-// TODO: Implement the removeById method to delete a specific cart item from the API using its ID
+
+import { API_ROUTES } from '../constants/url-api'
 
 export default class CartService {
   /**
@@ -32,6 +33,11 @@ export default class CartService {
    * @param {string} id - The ID of the cart item
    */
   async removeById(id) {
+    const { CART_ENDPOINT } = API_ROUTES;
+    const endpoint = `${CART_ENDPOINT}/${id}`;
 
+    const data = await APIHandler.delete(endpoint);
+
+    return data;
   }
 }
