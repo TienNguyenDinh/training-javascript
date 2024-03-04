@@ -140,7 +140,7 @@ const APIHandler = {
         throw new Error(`Failed to update data to ${endpoint}`);
       }
 
-      showToastify('Product updated successfully!', 'toastify-success');
+      Toast.success('Product updated successfully!');
 
       return {
         isSuccess: true
@@ -148,7 +148,7 @@ const APIHandler = {
     } catch(error) {
       console.error(error);
 
-      showToastify(error.message, 'toastify-danger');
+      Toast.error(error.message);
 
       return {
         isSuccess: false
