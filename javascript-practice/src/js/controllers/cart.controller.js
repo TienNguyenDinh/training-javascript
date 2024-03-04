@@ -94,13 +94,13 @@ export default class CartController {
     cartListElement.addEventListener('click', async (e) => {
       const btnDeleteCartItemElement = e.target.classList.contains('btn-delete-cart-item');
 
-      if(btnDeleteCartItemElement) {
+      if (btnDeleteCartItemElement) {
         const id = e.target.dataset.cartItemId;
 
         const { isSuccess } = await this.cartService.removeById(id);
 
         if (!isSuccess) {
-          return;
+          return ;
         }
 
         this.displayCartPage();
