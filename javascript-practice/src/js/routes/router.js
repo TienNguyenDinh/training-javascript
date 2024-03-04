@@ -47,7 +47,7 @@ const routes = {
   },
   [ROUTES.CART]: {
     handler: () => {
-      return new CartController(cartView, productCartServices);
+      return new CartController(cartView, producDetailServices);
     }
   }
 }
