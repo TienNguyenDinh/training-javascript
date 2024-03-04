@@ -1,7 +1,3 @@
-// TODO: Implement the bindModifyAmountBtnEvent method to handle the event of updating cart item amount
-// TODO: Implement the bindDeleteItemBtnEvent method to handle the event of removing an item from the cart
-// TODO: Implement the bindCheckoutBtnEvent method to handle the event of checking out the order
-
 import Toast from '../utils/toastify';
 import { getElementById } from '../utils/dom'
 
@@ -44,9 +40,9 @@ export default class CartController {
       const product = await this.productService.getById(productId);
       const { amount: productAmount } = product;
 
-      const existingCartItem = await this.cartService.getByProductId(cartItemId);
-      
-      const { amount: cartItemAmount, price } = existingCartItem;
+      const existingCartItem = await this.cartService.getByProductId(productId);
+
+      const { amount: cartItemAmount, price } = existingCartItem ? existingCartItem : {};
 
       switch(action) {
         case 'increment': {
@@ -57,8 +53,10 @@ export default class CartController {
           existingCartItem.amount += 1;
           await this.cartService.editById(cartItemId, existingCartItem);
 
-          amountInputElement.value = parseInt(++amountInputElement.value);
-          const total = (amountInputElement.value * price).toFixed(2);
+          let amount = parseInt(amountInputElement.value);
+          const priceNum = parseFloat(price);
+          amountInputElement.value = ++amount;
+          const total = (amount * priceNum).toFixed(2);
           productTotalElement.textContent = `$ ${total}`;
           break;
         }
@@ -70,8 +68,10 @@ export default class CartController {
           existingCartItem.amount -= 1;
           await this.cartService.editById(cartItemId, existingCartItem);
 
-          amountInputElement.value = parseInt(--amountInputElement.value);
-          const total = (amountInputElement.value * price).toFixed(2);
+          let amount = parseInt(amountInputElement.value);
+          const priceNum = parseFloat(price);
+          amountInputElement.value = --amount;
+          const total = (amount * priceNum).toFixed(2);
           productTotalElement.textContent = `$ ${total}`;
 
           break;
@@ -92,13 +92,6 @@ export default class CartController {
    * Binds event to handle remove item from cart
    */
   bindDeleteItemBtnEvent() {
-
-  }
-
-  /**
-   * Binds event to handle checkout order
-   */
-  bindCheckoutBtnEvent() {
 
   }
 }
