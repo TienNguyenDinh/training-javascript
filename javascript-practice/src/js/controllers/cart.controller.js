@@ -1,7 +1,9 @@
 // TODO: Implement the displayCartPage method to fetch cart from the server and display them
 // TODO: Implement the bindModifyAmountBtnEvent method to handle the event of updating cart item amount
-// TODO: Implement the bindDeleteItemBtnEvent method to handle the event of removing an item from the cart
 // TODO: Implement the bindCheckoutBtnEvent method to handle the event of checking out the order
+
+import { getElementById } from '../utils/dom';
+import { APIHandler } from '../utils/api';
 
 export default class CartController {
   constructor(view, service) {
@@ -29,7 +31,21 @@ export default class CartController {
    * Binds event to handle remove item from cart
    */
   bindDeleteItemBtnEvent() {
+    const btnDeleteCartItemElements = document.querySelectorAll('.btn-delete-cart-item');
 
+    btnDeleteCartItemElements.forEach(element => {
+      element.addEventListener('click', async (e) => {
+        const id = e.target.dataset.cartItemId;
+
+        const data = await API_HANDLER.delete(id);
+
+        if(data.success === false) {
+          return;
+        }
+
+        displayCartPage();
+      });
+    });
   }
 
   /**
