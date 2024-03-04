@@ -45,9 +45,9 @@ export default class CartController {
 
       const { amount: cartItemAmount, price } = existingCartItem;
 
-      switch(action) {
+      switch (action) {
         case 'increment': {
-          if(cartItemAmount >= productAmount) {
+          if (cartItemAmount >= productAmount) {
             return Toast.error('You cannot add more items!');
           }
 
@@ -60,7 +60,7 @@ export default class CartController {
           break;
         }
         case 'decrement': {
-          if(cartItemAmount === 0) {
+          if (cartItemAmount === 0) {
             return Toast.error('You cannot remove more items!');
           }
 
@@ -96,8 +96,9 @@ export default class CartController {
         const id = e.target.dataset.cartItemId;
 
         const data = await this.service.removeById(id);
+        const { success } = data;
 
-        if(data.success === false) {
+        if (success === false) {
           return;
         }
 

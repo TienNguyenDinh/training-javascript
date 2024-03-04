@@ -20,7 +20,7 @@ export default class ProductDetailController {
     const product = await this.productService.getById(params.id);
 
     this.view.renderProduct(product);
-    
+
     this.bindAddCartBtnEvent();
   }
 
@@ -34,24 +34,23 @@ export default class ProductDetailController {
       const id = getElementById('product-id').value;
 
       const product = await this.productService.getById(id);
-      const { name, colors, price, imgUrl, amount: productAmount } = product;
+      const { name, colors, price, imgUrl, amount: productAmount } = product ? product : {};
 
-      const existingCartItem = await this.cartService.getByProductId(id);
-      const { cartItemAmount } = existingCartItem;
+      const cartItem = await this.cartService.getByProductId(id);
+      const { cartItemAmount } = cartItem ? cartItem : {};
 
-
-      if(productAmount <= 0) {
+      if (productAmount <= 0) {
         return showToastify('The product is running out of stock', 'toastify-danger');
       }
 
       // Needs to implement edit cart item first to expand this
       // Update item amount if user already add it to cart
-      if(existingCartItem) {
+      if (cartItem) {
         // Will remove this when edit cart functionality has been added
         return showToastify('The item is already been added to your cart', 'toastify-danger');
       }
 
-      const cartItem = {
+      const newCartItem = {
         name,
         productId: id,
         color: colors[0].name,
@@ -60,7 +59,7 @@ export default class ProductDetailController {
         imgUrl
       }
 
-      await this.cartService.add(cartItem);
+      await this.cartService.add(newCartItem);
     });
   }
 }
