@@ -1,3 +1,5 @@
+import { convertCamelCaseToSpaces } from './convertString';
+
 /**
  * Creates an HTML element with the specified tag, class name, text content, and attributes.
  * @param {string} tag - The tag name for the element
@@ -38,4 +40,36 @@ function getElementById(id) {
   return document.getElementById(id);
 }
 
-export { createNewElement, getElementById }
+/**
+ * Gets a value of an element by its ID
+ * @param {string} id - The ID of the HTML element
+ * @returns {string} The value of the element
+ */
+function getElementValueById(id) {
+  return document.getElementById(id).value;
+}
+
+/**
+ * This function generates error messages for a given product and key
+ * @param {Object} data - The data in object
+ * @param {string} clear - A flag indicating whether to clear the error messages
+ */
+function generateErrorMessages(formError) {
+  // Clear all the error messages first 
+  for (const key in formError) {
+    const errorMsgElement = document.querySelector(`[data-field-error="${key}"]`);
+
+    errorMsgElement.textContent = '';
+  }
+
+  // Render all the error messages that in form error 
+  for (const key in formError) {
+    const value = formError[key];
+
+    const errorMsgElement = document.querySelector(`[data-field-error="${key}"]`);
+
+    errorMsgElement.textContent = value;
+  }
+}
+
+export { createNewElement, getElementById, getElementValueById, generateErrorMessages }
