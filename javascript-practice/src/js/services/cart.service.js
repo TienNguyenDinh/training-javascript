@@ -1,8 +1,3 @@
-// TODO: Implement the add method to add a new cart item to the API
-// TODO: Implement the editById method to update a specific cart item in the API using its ID
-
-import { API_ROUTES } from '../constants/url-api'
-
 import { API_ROUTES } from '../constants/url-api';
 import { APIHandler } from '../utils/api';
 
@@ -39,7 +34,7 @@ export default class CartService {
    */
   async add(cartItem) {
     const endpoint = API_ROUTES.CART_ENDPOINT;
-    console.log(cartItem)
+
     await APIHandler.post(endpoint, cartItem);
   }
 
