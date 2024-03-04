@@ -1,5 +1,3 @@
-// TODO: Implement the add method to add a new cart item to the API
-// TODO: Implement the editById method to update a specific cart item in the API using its ID
 // TODO: Implement the removeById method to delete a specific cart item from the API using its ID
 
 import { API_ROUTES } from '../constants/url-api';
@@ -24,12 +22,12 @@ export default class CartService {
    * @returns {Promise<Object>} The object contains the cart item
    */
   async getByProductId(id) {
-    const { PRODUCTS_ENDPOINT } = API_ROUTES;
-    const endpoint = `${PRODUCTS_ENDPOINT}?id=${id}`;
+    const { CART_ENDPOINT } = API_ROUTES;
+    const endpoint = `${CART_ENDPOINT}?productId=${id}`;
 
     const data = await APIHandler.get(endpoint);
 
-    return data;
+    return data[0];
   }
 
   /**
@@ -38,7 +36,7 @@ export default class CartService {
    */
   async add(cartItem) {
     const endpoint = API_ROUTES.CART_ENDPOINT;
-    console.log(cartItem)
+
     await APIHandler.post(endpoint, cartItem);
   }
 
