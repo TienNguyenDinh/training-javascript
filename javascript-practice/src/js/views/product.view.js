@@ -144,6 +144,7 @@ export default class ProductView {
    */
   renderProduct(product) {
     const {
+      id,
       name,
       price,
       colors,
@@ -204,7 +205,8 @@ export default class ProductView {
               <dd class="product-info-value">${amount}</dd>
             </div>
           </dl>
-          <button class="btn btn-primary btn-success">Add to Cart</button>
+          <button id="btn-add-cart" class="btn btn-primary btn-success">Add to Cart</button>
+          <input type="hidden" value="${id}" id="product-id" >
         </div>
       </div>
     `;

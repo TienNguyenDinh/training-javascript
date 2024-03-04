@@ -19,25 +19,27 @@ export default class CartService {
   }
 
   /**
-   * Add a new cart item
    * Gets a cart item by its product ID
    * @param {string} id - The ID of the product
    * @returns {Promise<Object>} The object contains the cart item
    */
   async getByProductId(id) {
-    const { CART_ENDPOINT } = API_ROUTES;
-    const endpoint = `${CART_ENDPOINT}?id=${id}`;
+    const { PRODUCTS_ENDPOINT } = API_ROUTES;
+    const endpoint = `${PRODUCTS_ENDPOINT}?id=${id}`;
 
     const data = await APIHandler.get(endpoint);
 
-    return data[0];
+    return data;
   }
 
   /**
    * Add a new cart item
+   * @param {Object} cartItem - the object contains the cart item
    */
-  async add() {
-
+  async add(cartItem) {
+    const endpoint = API_ROUTES.CART_ENDPOINT;
+    console.log(cartItem)
+    await APIHandler.post(endpoint, cartItem);
   }
 
   /**
