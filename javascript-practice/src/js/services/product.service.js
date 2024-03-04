@@ -33,10 +33,14 @@ export default class ProductService {
   }
 
   /**
-   * Add a new product
+   * Adds a product by sending a POST request.
+   * @param {Object} product - The product data to be added
+   * @returns {Promise<Object>} - The object contains a property 'isSuccess' which is a boolean indicating the success of the operation
    */
-  async add() {
+  async add(product) {
+    const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
+    await APIHandler.post(endpoint, product);
   }
 
   /**
@@ -48,10 +52,15 @@ export default class ProductService {
   }
 
   /**
-   * Remove a product by its ID
+   * Delete a product by its ID
    * @param {string} id - The ID of the product
    */
-  async removeById(id) {
+  async deleteById(id) {
+    const { PRODUCTS_ENDPOINT } = API_ROUTES;
+    const endpoint = `${PRODUCTS_ENDPOINT}/${id}`;
 
+    const data = await APIHandler.delete(endpoint);
+
+    return data;
   }
 }

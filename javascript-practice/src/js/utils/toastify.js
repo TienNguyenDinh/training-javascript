@@ -2,6 +2,27 @@ import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 
 /**
+ * Toast object for displaying success and error messages
+ */
+export default Toast = {
+  /**
+   * Displays a success message using showToastify
+   * @param {string} msg - The message to be displayed
+   */
+  success(msg) {
+    showToastify(msg, 'toastify-success');
+  },
+
+  /**
+   * Displays an error message using showToastify
+   * @param {string} msg - The message to be displayed
+   */
+  error(msg) {
+    showToastify(msg, 'toastify-danger');
+  }
+}
+
+/**
  * Displays a toast notification
  * @param {string} msg - The message to display in the toast
  * @param {string} state - The state of the toast (e.g., 'toastify-success', 'toastify-danger')
@@ -9,7 +30,7 @@ import 'toastify-js/src/toastify.css';
  * @example
  * showToastify('Product added successfully!', 'toastify-success', 2000);
  */
-export default function showToastify(msg, state, duration = 3000) {
+function showToastify(msg, state, duration = 3000) {
   Toastify({
     text: msg,
     duration: duration,

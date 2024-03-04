@@ -1,4 +1,4 @@
-import handleRouteChange from './routes/router';
+import { handleRouteChange } from './routes/router';
 
 document.addEventListener('DOMContentLoaded', () => {
   handleRouteChange();

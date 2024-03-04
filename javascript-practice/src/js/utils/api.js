@@ -1,9 +1,8 @@
-// TODO: Implement the post method to send a POST request to the specified endpoint
 // TODO: Implement the put method to send a PUT request to the specified endpoint
 // TODO: Implement the patch method to send a PATCH request to the specified endpoint
 // TODO: Implement the delete method to send a DELETE request to the specified endpoint
 
-import showToastify from '../utils/toastify';
+import Toast from '../utils/toastify';
 import { API_ROUTES } from '../constants/url-api';
 
 const APIHandler = {
@@ -27,15 +26,14 @@ const APIHandler = {
     } catch (error) {
       console.error(error);
 
-      showToastify(error.message, 'toastify-danger');
+      Toast.error(error.message);
     }
   },
 
   /**
-   * Sends a POST request to the specified endpoint
-   * @param {string} endpoint - The endpoint to send the POST request to
-   * @param {Object} data - The data of the POST request
-   * @returns {Promise<Object>} The JSON response
+   * Sends a POST request to the endpoint with the provided product data
+   * @param {string} endpoint - The endpoint to which the request should be sent
+   * @param {Object} product - The product data to be sent
    */
   async post(endpoint, data) {
     try {
@@ -54,11 +52,11 @@ const APIHandler = {
         throw new Error(`Failed to post data to ${endpoint}`);
       }
 
-      showToastify('Data added successfully!', 'toastify-success');
+      Toast.success('Data added successfully!');
     } catch(error) {
       console.error(error);
 
-      showToastify(error.message, 'toastify-danger');
+      Toast.error(error.message);
     }
   },
 
@@ -88,7 +86,31 @@ const APIHandler = {
    * @returns {Promise<Object>} The JSON response
    */
   async delete(endpoint) {
+    try {
+      const url = `${API_ROUTES.BASE_URL}/${endpoint}`;
 
+      const res = await fetch(url, {
+        method: 'DELETE',
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to delete data from ${url}`);
+      }
+
+      Toast.success('Delete successfully!');
+
+      return {
+        isSuccess: true
+      }
+    } catch (error) {
+      console.error(error);
+
+      Toast.error(error.message);
+
+      return {
+        isSuccess: false
+      }
+    }
   }
 }
 
