@@ -89,22 +89,23 @@ export default class CartController {
    * Binds event to handle remove item from cart
    */
   bindDeleteItemBtnEvent() {
-    const btnDeleteCartItemElements = document.querySelectorAll('.btn-delete-cart-item');
+    const cartListElement = document.querySelector('.shopping-cart');
 
-    btnDeleteCartItemElements.forEach(element => {
-      element.addEventListener('click', async (e) => {
+    cartListElement.addEventListener('click', async (e) => {
+      const btnDeleteCartItemElement = e.target.classList.contains('btn-delete-cart-item');
+
+      if(btnDeleteCartItemElement) {
         const id = e.target.dataset.cartItemId;
 
-        const data = await this.service.removeById(id);
-        const { success } = data;
+        const { isSuccess } = await this.cartService.removeById(id);
 
-        if (success === false) {
+        if (!isSuccess) {
           return;
         }
 
         this.displayCartPage();
-      });
-    });
+      }
+    })
   }
 
   /**
