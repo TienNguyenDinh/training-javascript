@@ -19,6 +19,7 @@ export default class CartController {
     const cart = await this.service.getAll();
 
     this.view.renderCart(cart);
+    this.bindDeleteItemBtnEvent();
   }
 
   /**
@@ -38,13 +39,13 @@ export default class CartController {
       element.addEventListener('click', async (e) => {
         const id = e.target.dataset.cartItemId;
 
-        const data = await API_HANDLER.delete(id);
+        const data = await this.service.removeById(id);
 
         if(data.success === false) {
           return;
         }
 
-        displayCartPage();
+        this.displayCartPage();
       });
     });
   }
