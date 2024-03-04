@@ -67,7 +67,27 @@ const APIHandler = {
    * @returns {Promise<Object>} The JSON response
    */
   async put(endpoint, data) {
+    try {
+      const res = await fetch(
+        `${API_ROUTES.BASE_URL}/${endpoint}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
 
+      if (!res.ok) {
+        throw new Error(`Failed to update data to ${endpoint}`);
+      }
+
+      Toast.success('Product updated successfully!');
+    } catch (error) {
+      console.error(error);
+
+      Toast.error(error.message);
+    }
   },
 
   /**
@@ -97,7 +117,7 @@ const APIHandler = {
         throw new Error(`Failed to delete data from ${url}`);
       }
 
-      showToastify('Delete successfully!', 'toastify-success');
+      Toast.success('Delete successfully!');
 
       return {
         isSuccess: true
@@ -105,7 +125,7 @@ const APIHandler = {
     } catch (error) {
       console.error(error);
 
-      showToastify(error.message, 'toastify-danger');
+      Toast.error(error.message);
 
       return {
         isSuccess: false
