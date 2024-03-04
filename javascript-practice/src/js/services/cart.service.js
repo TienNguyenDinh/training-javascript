@@ -1,8 +1,10 @@
-// TODO: Implement the getAll method to fetch all cart items from the API
 // TODO: Implement the add method to add a new cart item to the API
 // TODO: Implement the editById method to update a specific cart item in the API using its ID
 
 import { API_ROUTES } from '../constants/url-api'
+
+import { API_ROUTES } from '../constants/url-api';
+import { APIHandler } from '../utils/api';
 
 export default class CartService {
   /**
@@ -10,14 +12,35 @@ export default class CartService {
    * @returns {Promise<Object[]>} An array of cart item objects
    */
   async getAll() {
+    const endpoint = API_ROUTES.CART_ENDPOINT;
 
+    const data = await APIHandler.get(endpoint);
+
+    return data;
+  }
+
+  /**
+   * Gets a cart item by its product ID
+   * @param {string} id - The ID of the product
+   * @returns {Promise<Object>} The object contains the cart item
+   */
+  async getByProductId(id) {
+    const { PRODUCTS_ENDPOINT } = API_ROUTES;
+    const endpoint = `${PRODUCTS_ENDPOINT}?id=${id}`;
+
+    const data = await APIHandler.get(endpoint);
+
+    return data;
   }
 
   /**
    * Add a new cart item
+   * @param {Object} cartItem - the object contains the cart item
    */
-  async add() {
-
+  async add(cartItem) {
+    const endpoint = API_ROUTES.CART_ENDPOINT;
+    console.log(cartItem)
+    await APIHandler.post(endpoint, cartItem);
   }
 
   /**
