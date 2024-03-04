@@ -35,7 +35,7 @@ export default class CartView {
             -
           </button>
         </div>
-        <p class="product-info">$ ${totalPrice}</p>
+        <p id="product-total-${id}" class="product-info">$ ${totalPrice.toFixed(2)}</p>
        </li>
       `
 
