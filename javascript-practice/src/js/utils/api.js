@@ -97,7 +97,7 @@ const APIHandler = {
         throw new Error(`Failed to delete data from ${url}`);
       }
 
-      showToastify('Delete successfully!', 'toastify-success');
+      Toast.success('Delete successfully!');
 
       return {
         isSuccess: true
@@ -105,7 +105,7 @@ const APIHandler = {
     } catch (error) {
       console.error(error);
 
-      showToastify(error.message, 'toastify-danger');
+      Toast.error(error.message);
 
       return {
         isSuccess: false
