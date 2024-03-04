@@ -1,20 +1,32 @@
 import { getElementById, getElementValueById, generateErrorMessages } from '../utils/dom';
 import validateForm from '../utils/validateForm';
+import findRoute from '../utils/findRoute';
+import { ACTION } from '../constants/action';
 
 export default class ProductFormController {
-  constructor(view, service) {
+  constructor(view, service, action) {
     this.view = view;
     this.service = service;
+    this.action = action;
 
     this.displayProductFormPage();
-    this.bindProductFormEvent();
   }
 
   /**
    * Renders add-product page
    */
-  displayProductFormPage() {
-    this.view.renderProductFormPage();
+  async displayProductFormPage() {
+    let data = {};
+
+    if (this.action === 'edit') {
+      const { params } = findRoute(window.location.pathname);
+
+      data = await this.service.getById(params.id);
+    }
+
+    this.view.renderProductFormPage(data);
+
+    this.bindProductFormEvent();
   }
 
   /**
@@ -81,7 +93,20 @@ export default class ProductFormController {
         imgUrl: imageUrlValue
       }
 
-      await this.service.add(product);
+      switch(this.action) {
+        case ACTION.ADD: {
+          await this.service.add(product);
+
+          break;
+        }
+        case ACTION.EDIT: {
+          const { params } = findRoute(window.location.pathname);
+
+          await this.service.editById(params.id, product);
+
+          break;
+        }
+      }
 
       // Reset the form
       form.reset();
