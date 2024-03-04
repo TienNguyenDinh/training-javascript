@@ -155,24 +155,6 @@
       "amount": 1,
       "price": 29.99,
       "imgUrl": "https://ik.imagekit.io/kwzzowwcg/apple-airpods-max.png"
-    },
-    {
-      "id": "412d",
-      "name": "JBL Speaker",
-      "productId": "2",
-      "color": "black",
-      "price": 39.99,
-      "amount": 1,
-      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/jbl-speaker.png"
-    },
-    {
-      "id": "aa6a",
-      "name": "JBL Speaker",
-      "productId": "2",
-      "color": "black",
-      "price": 39.99,
-      "amount": 1,
-      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/jbl-speaker.png"
     }
   ]
 }
