@@ -2,7 +2,7 @@
 // TODO: Implement the bindDeleteItemBtnEvent method to handle the event of removing an item from the cart
 // TODO: Implement the bindCheckoutBtnEvent method to handle the event of checking out the order
 
-import showToastify from '../utils/toastify';
+import Toast from '../utils/toastify';
 import { getElementById } from '../utils/dom'
 
 export default class CartController {
@@ -34,29 +34,47 @@ export default class CartController {
 
     const handleModifyAmount = async (e) => {
       const dataset = e.target.dataset;
+      const action = dataset.action;
       const cartItemId = dataset.cartItemId;
       const productId = dataset.productId;
+
       const amountInputElement = getElementById(`amount-input-${cartItemId}`);
+      const productTotalElement = getElementById(`product-total-${cartItemId}`);
 
       const product = await this.productService.getById(productId);
       const { amount: productAmount } = product;
 
       const existingCartItem = await this.cartService.getByProductId(cartItemId);
-      const { cartItemAmount } = existingCartItem;
+      
+      const { amount: cartItemAmount, price } = existingCartItem;
 
-      if (cartItemAmount < productAmount || cartItemAmount === 1) {
-        return showToastify('You cannot add or remove more item!', 'toastify-error');
-      }
+      switch(action) {
+        case 'increment': {
+          if(cartItemAmount >= productAmount) {
+            return Toast.error('You cannot add more items!');
+          }
 
-      const data = await this.cartService.put(id, { ...existingCartItem, amount: amount + 1 });
+          existingCartItem.amount += 1;
+          await this.cartService.editById(cartItemId, existingCartItem);
 
-      if (data.isSuccess) {
-        if (dataset.action === 'increment') {
-          amountInputElement.value += 1;
+          amountInputElement.value = parseInt(++amountInputElement.value);
+          const total = (amountInputElement.value * price).toFixed(2);
+          productTotalElement.textContent = `$ ${total}`;
+          break;
         }
+        case 'decrement': {
+          if(cartItemAmount === 0) {
+            return Toast.error('You cannot remove more items!');
+          }
 
-        if (dataset.action === 'decrement') {
-          amountInputElement.value -= 1
+          existingCartItem.amount -= 1;
+          await this.cartService.editById(cartItemId, existingCartItem);
+
+          amountInputElement.value = parseInt(--amountInputElement.value);
+          const total = (amountInputElement.value * price).toFixed(2);
+          productTotalElement.textContent = `$ ${total}`;
+
+          break;
         }
       }
     }
