@@ -63,4 +63,19 @@ export default class ProductService {
 
     return data;
   }
+
+  /**
+   * Edits a product
+   * @param {Object} product - The product object
+   * @param {string} id - The ID of the product
+   * @returns {Promise<Object>} The data returned
+   */
+  async editProduct(product, id) {
+    const { PRODUCTS_ENDPOINT } = API_ROUTES;
+    const endpoint = `${PRODUCTS_ENDPOINT}/${id}`;
+
+    const data = await APIHandler.put(endpoint, product);
+
+    return data;
+  }
 }

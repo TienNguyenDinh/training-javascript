@@ -21,10 +21,10 @@ export default class ProductFormController {
    * Binds event to handle product addition
    */
   bindProductFormEvent() {
-    const addProductBtnElement = getElementById('add-product');
+    const submitBtnElement = getElementById('submit-button');
 
     // Bind the click event to the 'Add Product' button
-    addProductBtnElement.addEventListener('click', async (event) => {
+    submitBtnElement.addEventListener('click', async (event) => {
       event.preventDefault();
 
       const form = getElementById('product-form');

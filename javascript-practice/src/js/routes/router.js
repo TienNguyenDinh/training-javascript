@@ -1,12 +1,13 @@
 import ProductView from '../views/product.view';
 import ProductService from '../services/product.service';
 import ProductController from '../controllers/product.controller';
-import ProductFormController from '../controllers/product.form.controller';
+import ProductFormController from '../controllers/product-form.controller';
 import ProductDetailController from '../controllers/product-detail.controller';
 import CartView from '../views/cart.view';
 import CartService from '../services/cart.service';
 import CartController from '../controllers/cart.controller';
 import { ROUTES } from '../constants/routes';
+import { ACTION } from '../constants/action';
 import findRoute from '../utils/findRoute';
 
 const productView = new ProductView();
@@ -36,11 +37,13 @@ const routes = {
   },
   [ROUTES.ADD_PRODUCT]: {
     handler: () => {
-      return new ProductFormController(productView, productService);
+      return new ProductFormController(productView, productService, ACTION.ADD);
     }
   },
   [ROUTES.EDIT_PRODUCT]: {
-    handler: () => { }
+    handler: () => {
+      return new ProductFormController(productView, productService, ACTION.EDIT);
+    }
   },
   [ROUTES.CART]: {
     handler: () => {
