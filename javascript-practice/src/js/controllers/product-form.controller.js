@@ -61,7 +61,8 @@ export default class ProductFormController {
       generateErrorMessages(formError);
 
       // If there are any validation errors, stop the function
-      if(Object.keys(formError).length > 0) {
+      const isPassed = Object.values(formError).every(value => value === '');
+      if(isPassed === false) {
         return;
       }
 
@@ -80,7 +81,7 @@ export default class ProductFormController {
         imgUrl: imageUrlValue
       }
 
-      await this.service.addProduct(product);
+      await this.service.add(product);
 
       // Reset the form
       form.reset();

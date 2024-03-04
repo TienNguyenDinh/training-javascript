@@ -136,5 +136,25 @@
       "amount": 100,
       "imgUrl": "https://ik.imagekit.io/kwzzowwcg/samsung-earphones-white.png"
     }
+  ],
+  "cart": [
+    {
+      "id": "1",
+      "productId": "8",
+      "name": "Samsung Earphones",
+      "color": "light",
+      "amount": 2,
+      "price": 29.99,
+      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/samsung-earphones-white.png"
+    },
+    {
+      "id": "2",
+      "productId": "7",
+      "name": "Apple Airbuds Max",
+      "color": "light",
+      "amount": 1,
+      "price": 29.99,
+      "imgUrl": "https://ik.imagekit.io/kwzzowwcg/apple-airpods-max.png"
+    }
   ]
 }

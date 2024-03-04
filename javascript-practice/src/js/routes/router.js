@@ -15,6 +15,11 @@ const productService = new ProductService();
 const cartView = new CartView();
 const cartService = new CartService();
 
+const productCartServices = {
+  productService: new ProductService(),
+  cartService: new CartService()
+}
+
 /**
  * An object that maps route names to their respective handlers
  */
@@ -41,7 +46,7 @@ const routes = {
   },
   [ROUTES.CART]: {
     handler: () => {
-      return new CartController(cartView, cartService);
+      return new CartController(cartView, productCartServices);
     }
   }
 }

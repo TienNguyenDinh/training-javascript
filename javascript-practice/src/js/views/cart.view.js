@@ -6,30 +6,12 @@ export default class CartView {
   /**
    * Renders list of cart items on the page
    */
-  renderCart() {
+  renderCart(cart) {
     const mainContent = getElementById('main-content');
-
-    // Test data
-    const cart = [
-      {
-        name: 'Adidas',
-        color: 'Black',
-        amount: 2,
-        price: 29.99,
-        imgUrl: 'https://ik.imagekit.io/kwzzowwcg/samsung-earphones-white.png'
-      },
-      {
-        name: 'Toshiba',
-        color: 'White',
-        amount: 1,
-        price: 49.99,
-        imgUrl: 'https://ik.imagekit.io/kwzzowwcg/samsung-earphones-white.png'
-      }
-    ];
 
     let cartListHTML = '<ul class="shopping-cart">'
     for (const item of cart) {
-      const { name, color, amount, price, imgUrl } = item;
+      const { id, productId, name, color, amount, price, imgUrl } = item;
       const totalPrice = amount * price;
 
       const cartItemHTML = `
@@ -45,15 +27,15 @@ export default class CartView {
           <p class="cart-item-color">${color}</p>
         </div>
         <div class="cart-item-quantity">
-          <button class="btn btn-plus" type="button">
+          <button data-action="increment" data-cart-item-id="${id}" data-product-id="${productId}" class="btn btn-plus" type="button">
             +
           </button>
-          <input value="${amount}" disabled type="text" class="form-control input-quantity">
-          <button class="btn btn-minus" type="button">
+          <input id="amount-input-${id}" value="${amount}" disabled type="text" class="form-control input-quantity">
+          <button data-action="decrement" data-cart-item-id="${id}" data-product-id="${productId}" class="btn btn-minus" type="button">
             -
           </button>
         </div>
-        <p class="product-info">$ ${totalPrice}</p>
+        <p id="product-total-${id}" class="product-info">$ ${totalPrice.toFixed(2)}</p>
        </li>
       `
 
