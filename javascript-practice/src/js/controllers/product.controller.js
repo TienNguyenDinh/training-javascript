@@ -2,8 +2,13 @@ export default class ProductController {
   constructor(view, service) {
     this.view = view;
     this.service = service;
+  }
 
-    this.displayProducts();
+  /**
+   * Calls displaying products
+   */
+  async init() {
+    await this.displayProducts();
   }
 
   /**
