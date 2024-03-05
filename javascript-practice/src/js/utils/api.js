@@ -21,8 +21,6 @@ const APIHandler = {
       return data;
     } catch (error) {
       console.error(error);
-
-      Toast.error(error.message);
     }
   },
 
@@ -48,11 +46,15 @@ const APIHandler = {
         throw new Error(`Failed to post data to ${endpoint}`);
       }
 
-      Toast.success('Data added successfully!');
+      return {
+        isSuccess: true
+      }
     } catch(error) {
       console.error(error);
 
-      Toast.error(error.message);
+      return {
+        isSuccess: false
+      }
     }
   },
 
@@ -78,11 +80,15 @@ const APIHandler = {
         throw new Error(`Failed to update data to ${endpoint}`);
       }
 
-      Toast.success('Product updated successfully!');
+      return {
+        isSuccess: true
+      }
     } catch (error) {
       console.error(error);
 
-      Toast.error(error.message);
+      return {
+        isSuccess: true
+      }
     }
   },
 
@@ -103,59 +109,17 @@ const APIHandler = {
         throw new Error(`Failed to delete data from ${url}`);
       }
 
-      Toast.success('Delete successfully!');
-
       return {
         isSuccess: true
       }
     } catch (error) {
       console.error(error);
 
-      Toast.error(error.message);
-
-      return {
-        isSuccess: false
-      }
-    }
-  },
-
-  /**
-   * Sends a PUT request to the specified endpoint
-   * @param {string} endpoint - The endpoint to send the PUT request to
-   * @returns {Promise<Object>} The JSON response
-   */
-  async put(endpoint, product) {
-    try {
-      const res = await fetch(
-        `${API_ROUTES.BASE_URL}/${endpoint}`,
-        {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(product)
-      });
-
-      if(!res.ok) {
-        throw new Error(`Failed to update data to ${endpoint}`);
-      }
-
-      Toast.success('Product updated successfully!');
-
-      return {
-        isSuccess: true
-      }
-    } catch(error) {
-      console.error(error);
-
-      Toast.error(error.message);
-
       return {
         isSuccess: false
       }
     }
   }
-
 }
 
 export { APIHandler }
