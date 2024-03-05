@@ -36,7 +36,9 @@ export default class ProductService {
   async add(product) {
     const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
-    await APIHandler.post(endpoint, product);
+    const data = await APIHandler.post(endpoint, product);
+
+    return data;
   }
 
   /**
