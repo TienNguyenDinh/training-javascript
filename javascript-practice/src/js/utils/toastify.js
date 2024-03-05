@@ -4,7 +4,7 @@ import 'toastify-js/src/toastify.css';
 /**
  * Toast object for displaying success and error messages
  */
-export default Toast = {
+const Toast = {
   /**
    * Displays a success message using showToastify
    * @param {string} msg - The message to be displayed
@@ -45,3 +45,5 @@ function showToastify(msg, state, duration = 1000) {
     className: state
   }).showToast();
 }
+
+export default Toast;
