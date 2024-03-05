@@ -92,7 +92,7 @@ async function handleRouteChange() {
   } = findRoute(pathName);
   const route = routes[currentRoute];
 
-  const controller = await route.handler(params);
+  const controller = route.handler(params);
   await controller.init();
 }
 
