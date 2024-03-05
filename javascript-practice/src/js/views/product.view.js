@@ -136,7 +136,7 @@ export default class ProductView {
           </div>
           <div class="flex-column">
             <label class="label-primary" for="hex-code">Hex Code</label>
-            <input value=${hexCode} data-field="Hex Code" id="hex-code" type="text" class="form-control input-size-md">
+            <input value="${hexCode}" data-field="Hex Code" id="hex-code" type="text" class="form-control input-size-md">
             <p data-field-error="Hex Code" class="error-message" id="hexCode-error"></p>
           </div>
           <div class="flex-column">
