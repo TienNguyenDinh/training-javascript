@@ -112,8 +112,7 @@ export default class ProductFormController {
         }
       }
 
-      // Reset the form
-      form.reset();
+      this.displayProductFormPage();
     });
   }
 }
