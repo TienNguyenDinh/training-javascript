@@ -1,4 +1,8 @@
-import { getElementById, getElementValueById, generateErrorMessages } from '../utils/dom';
+import {
+  getElementById,
+  getElementValueById,
+  generateErrorMessages
+} from '../utils/dom';
 import validateForm from '../utils/validateForm';
 import findRoute from '../utils/findRoute';
 import { ACTION } from '../constants/action';
@@ -18,7 +22,7 @@ export default class ProductFormController {
   async displayProductFormPage() {
     let data = {};
 
-    if (this.action === 'edit') {
+    if (this.action === ACTION.EDIT) {
       const { params } = findRoute(window.location.pathname);
 
       data = await this.service.getById(params.id);
