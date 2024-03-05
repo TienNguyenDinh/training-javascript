@@ -6,6 +6,7 @@ import {
 import validateForm from '../utils/validateForm';
 import findRoute from '../utils/findRoute';
 import { ACTION } from '../constants/action';
+import Toast from '../utils/toastify';
 
 export default class ProductFormController {
   constructor(view, service, action) {
@@ -43,8 +44,6 @@ export default class ProductFormController {
     submitBtnElement.addEventListener('click', async (event) => {
       event.preventDefault();
 
-      const form = getElementById('product-form');
-
       // Get the values from the form inputs
       const nameValue = getElementValueById('name');
       const priceValue = getElementValueById('price');
@@ -78,7 +77,7 @@ export default class ProductFormController {
 
       // If there are any validation errors, stop the function
       const isPassed = Object.values(formError).every(value => value === '');
-      if(isPassed === false) {
+      if (isPassed === false) {
         return;
       }
 
@@ -97,16 +96,24 @@ export default class ProductFormController {
         imgUrl: imageUrlValue
       }
 
-      switch(this.action) {
+      switch (this.action) {
         case ACTION.ADD: {
-          await this.service.add(product);
+          const { isSuccess } = await this.service.add(product);
+
+          if (!isSuccess) {
+            return Toast.error('Failed to add the product!');
+          }
 
           break;
         }
         case ACTION.EDIT: {
           const { params } = findRoute(window.location.pathname);
 
-          await this.service.editById(params.id, product);
+          const { isSuccess } = await this.service.editById(params.id, product);
+
+          if (!isSuccess) {
+            return Toast.error('Failed to edit the product!');
+          }
 
           break;
         }

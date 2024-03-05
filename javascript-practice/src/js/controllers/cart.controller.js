@@ -55,7 +55,11 @@ export default class CartController {
 
           // Update the cart item with amount +1
           existingCartItem.amount += 1;
-          await this.cartService.editById(cartItemId, existingCartItem);
+          const { isSuccess } = await this.cartService.editById(cartItemId, existingCartItem);
+
+          if (!isSuccess) {
+            return Toast.error('The item is not updated!');
+          }
 
           let amount = parseInt(amountInputElement.value);
           const priceNum = parseFloat(price);
@@ -72,9 +76,13 @@ export default class CartController {
 
           // Update the cart item with amount -1
           existingCartItem.amount -= 1;
-          await this.cartService.editById(cartItemId, existingCartItem);
+          const { isSuccess } = await this.cartService.editById(cartItemId, existingCartItem);
 
-          let amount = parseInt(amountInputElement.value);
+          if (!isSuccess) {
+            return Toast.error('The item is not updated!');
+          }
+
+            let amount = parseInt(amountInputElement.value);
           const priceNum = parseFloat(price);
           amountInputElement.value = --amount;
           const total = (amount * priceNum).toFixed(2);
@@ -110,9 +118,10 @@ export default class CartController {
         const { isSuccess } = await this.cartService.removeById(id);
 
         if (!isSuccess) {
-          return ;
+          return Toast.error('This item can\'t be deleted right now!');
         }
 
+        Toast.success('The item is deleted!');
         this.displayCartPage();
       }
     })

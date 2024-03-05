@@ -59,7 +59,13 @@ export default class ProductDetailController {
         imgUrl
       }
 
-      await this.cartService.add(newCartItem);
+      const { isSuccess } = await this.cartService.add(newCartItem);
+
+      if (!isSuccess) {
+        return Toast.error('This item can\'t be added right now!');
+      }
+
+      Toast.success('The item is added to your cart!');
     });
   }
 }
