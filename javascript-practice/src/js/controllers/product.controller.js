@@ -1,3 +1,5 @@
+import Toast from '../utils/toastify';
+
 export default class ProductController {
   constructor(view, service) {
     this.view = view;
@@ -29,11 +31,14 @@ export default class ProductController {
         const target = e.target;
         const id = target.dataset.id;
 
-        const data = await this.service.deleteById(id);
+        const { isSuccess } = await this.service.deleteById(id);
 
-        if(data.isSuccess) {
-          this.displayProducts();
+        if(!isSuccess) {
+          return Toast.error('Failed to delete the product!');
         }
+
+        Toast.success('Successfully deleted the product!');
+        this.displayProducts();
       });
     });
   }
