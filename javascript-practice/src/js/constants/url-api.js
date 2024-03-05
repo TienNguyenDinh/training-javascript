@@ -1,5 +1,5 @@
 const API_ROUTES = {
-  BASE_URL: 'http://localhost:3001',
+  BASE_URL: 'http://localhost:3000',
   PRODUCTS_ENDPOINT: 'products',
   CART_ENDPOINT: 'cart'
 }

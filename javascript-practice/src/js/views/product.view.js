@@ -111,53 +111,53 @@ export default class ProductView {
         <form data-product-id="${id}" id="product-form" action="javascript:void(0)" class="form-default add-form">
           <div class="flex-column">
             <label class="label-primary" for="name">Name</label>
-            <input value="${name}" id="name" type="text" class="form-control input-size-md">
-            <p class="error-message" id="name-error"></p>
+            <input value="${name}" data-field="Name" id="name" type="text" class="form-control input-size-md">
+            <p data-field-error="Name" class="error-message" id="name-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="price">Price</label>
-            <input value="${price}" id="price" type="text" class="form-control input-size-md">
-            <p class="error-message" id="price-error"></p>
+            <input value="${price}" data-field="Price" id="price" type="text" class="form-control input-size-md">
+            <p data-field-error="Price" class="error-message" id="price-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="brand">Brand</label>
-            <input value="${brand}" id="brand" type="text" class="form-control input-size-md">
-            <p class="error-message" id="brand-error"></p>
+            <input value="${brand}" data-field="Brand" id="brand" type="text" class="form-control input-size-md">
+            <p data-field-error="Brand" class="error-message" id="brand-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="model-name">Model Name</label>
-            <input value="${modelName}" id="model-name" type="text" class="form-control input-size-md">
-            <p class="error-message" id="modelName-error"></p>
+            <input value="${modelName}" data-field="Model Name" id="model-name" type="text" class="form-control input-size-md">
+            <p data-field-error="Model Name" class="error-message" id="modelName-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="color">Color</label>
-            <input value="${color}" id="color" type="text" class="form-control input-size-md">
-            <p class="error-message" id="color-error"></p>
+            <input value="${color}" data-field="Color" id="color" type="text" class="form-control input-size-md">
+            <p data-field-error="Color" class="error-message" id="color-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="hex-code">Hex Code</label>
-            <input value="${hexCode}" id="hex-code" type="text" class="form-control input-size-md">
-            <p class="error-message" id="hexCode-error"></p>
+            <input value=${hexCode} data-field="Hex Code" id="hex-code" type="text" class="form-control input-size-md">
+            <p data-field-error="Hex Code" class="error-message" id="hexCode-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="form-factor">Form Factor</label>
-            <input value="${formFactor}" id="form-factor" type="text" class="form-control input-size-md">
-            <p class="error-message" id="formFactor-error"></p>
+            <input value="${formFactor}" data-field="Form Factor" id="form-factor" type="text" class="form-control input-size-md">
+            <p data-field-error="Form Factor" class="error-message" id="formFactor-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="connectivity-technology">Connectivity Technology</label>
-            <input value="${connectivityTechnology}" id="connectivity-technology" type="text" class="form-control input-size-md">
-            <p class="error-message" id="connectivityTechnology-error"></p>
+            <input value="${connectivityTechnology}" data-field="Connectivity Technology" id="connectivity-technology" type="text" class="form-control input-size-md">
+            <p data-field-error="Connectivity Technology" class="error-message" id="connectivityTechnology-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="amount">Amount</label>
-            <input value="${amount}" id="amount" type="text" class="form-control input-size-md">
-            <p class="error-message" id="amount-error"></p>
+            <input value="${amount}" data-field="Amount" id="amount" type="text" class="form-control input-size-md">
+            <p data-field-error="Amount" class="error-message" id="amount-error"></p>
           </div>
           <div class="flex-column">
             <label class="label-primary" for="image-url">Image URL</label>
-            <input value="${imgUrl}" id="image-url" type="text" class="form-control input-size-md">
-            <p class="error-message" id="imgUrl-error"></p>
+            <input value="${imgUrl}" data-field="Image URL" id="image-url" type="text" class="form-control input-size-md">
+            <p data-field-error="Image URL" class="error-message" id="imgUrl-error"></p>
           </div>
           <div class="flex-row">
             <button id="submit-button" type="submit" class="btn btn-primary btn-submit">Submit</button>
