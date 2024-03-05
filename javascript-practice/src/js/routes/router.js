@@ -26,7 +26,7 @@ const producDetailServices = {
  */
 const routes = {
   [ROUTES.HOME]: {
-    handler: async () => {
+    handler: () => {
       return new ProductController(productView, productService)
     }
   },
@@ -84,7 +84,7 @@ function handleRoute({ target, href }) {
 /**
  * Handles location changes. Matches the current path to a route and calls the route's handler
  */
-function handleRouteChange() {
+async function handleRouteChange() {
   const pathName = window.location.pathname;
   const {
     route: currentRoute,
@@ -92,7 +92,8 @@ function handleRouteChange() {
   } = findRoute(pathName);
   const route = routes[currentRoute];
 
-  route.handler(params);
+  const controller = route.handler(params);
+  await controller.init();
 }
 
 export { handleRoute, handleRouteChange }

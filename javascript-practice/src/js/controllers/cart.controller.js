@@ -6,9 +6,13 @@ export default class CartController {
     this.view = view;
     this.cartService = services.cartService;
     this.productService = services.productService;
+  }
 
-    this.displayCartPage();
-
+  /**
+   * Calls displaying cart page
+   */
+  async init() {
+    await this.displayCartPage();
   }
 
   /**

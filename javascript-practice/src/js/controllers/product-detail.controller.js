@@ -7,8 +7,13 @@ export default class ProductDetailController {
     this.view = view;
     this.productService = services.productService;
     this.cartService = services.cartService;
+  }
 
-    this.displayProductDetail();
+  /**
+   * Calling displaying product-detail page
+   */
+  async init() {
+    await this.displayProductDetail();
   }
 
   /**

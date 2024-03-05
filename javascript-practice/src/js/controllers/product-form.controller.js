@@ -13,8 +13,13 @@ export default class ProductFormController {
     this.view = view;
     this.service = service;
     this.action = action;
+  }
 
-    this.displayProductFormPage();
+  /**
+   * Calls displaying product-form page
+   */
+  async init() {
+    await this.displayProductFormPage();
   }
 
   /**
