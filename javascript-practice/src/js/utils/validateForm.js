@@ -1,7 +1,7 @@
 import { REGEX_PATTERNS } from '../constants/regexPatterns';
 
 let formError = {};
-const { digitRegex, hexCodeRegex } = REGEX_PATTERNS;
+const { digitRegex, integerRegex, hexCodeRegex } = REGEX_PATTERNS;
 
 /**
  * Checks if the value is a string
@@ -18,8 +18,17 @@ const validateString = ({ key, value }) =>
  * @param {string} params.key - The field that needs to check
  * @param {number} params.value - The value of that field
  */
-const validateNumber = ({ key, value }) =>
-  formError[key] = !digitRegex.test(value) ? `${key} must be a number.` : '';
+const validateInteger = ({ key, value }) =>
+  formError[key] = !integerRegex.test(value) ? `${key} must be an integer.` : '';
+
+/**
+ * Checks if the value is a number
+ * @param {Object} params - An object
+ * @param {string} params.key - The field that needs to check
+ * @param {number} params.value - The value of that field
+ */
+const validateFloat = ({ key, value }) =>
+  formError[key] = !digitRegex.test(value) ? `${key} must be a float.` : '';
 
 /**
  * Checks if the value is a number
@@ -90,14 +99,14 @@ function validateUrl({ key, value }) {
 export default function validateForm(data) {
   const validationSchema = {
     'Name': [validateString, validateLength],
-    'Price': [validateNumber, validatePositive],
+    'Price': [validateFloat, validatePositive],
     'Brand': [validateString],
     'Model Name': [validateString],
     'Color': [validateString],
     'Hex Code': [validateHexCode],
     'Form Factor': [validateString],
     'Connectivity Technology': [validateString],
-    'Amount': [validateNumber, validatePositive],
+    'Amount': [validateInteger, validatePositive],
     'Image URL': [validateUrl]
   };
 
