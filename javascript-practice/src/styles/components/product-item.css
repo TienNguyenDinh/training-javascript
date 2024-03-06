@@ -1,8 +1,11 @@
 .product-thumbnail {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 25px;
-  max-width: 303px;
-  max-height: 359px;
+  min-width: 303px;
+  min-height: 359px;
 
   &:hover .btn-delete,
   &:hover .btn-edit {

@@ -12,6 +12,16 @@
   min-width: 600px;
 }
 
-.flex-row > .btn-submit {
-  flex-grow: 1;
+.form-btn-group {
+  justify-content: flex-end;
+
+  & .btn-submit {
+    min-width: 144px;
+  }
+
+  & .btn-cancel {
+    border: 1px solid var(--color-primary);
+    background-color: transparent;
+    color: var(--color-primary)
+  }
 }
