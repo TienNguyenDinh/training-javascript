@@ -82,25 +82,25 @@ function validateUrl({ key, value }) {
   }
 }
 
-const validationSchema = {
-  'Name': [validateString, validateLength],
-  'Price': [validateNumber, validatePositive],
-  'Brand': [validateString],
-  'Model Name': [validateString],
-  'Color': [validateString],
-  'Hex Code': [validateHexCode],
-  'Form Factor': [validateString],
-  'Connectivity Technology': [validateString],
-  'Amount': [validateNumber, validatePositive],
-  'Image URL': [validateUrl]
-};
-
 /**
  * Validates the form data
  * @param {Object} data - The form data
  * @returns {Object} An object containing validation results
  */
 export default function validateForm(data) {
+  const validationSchema = {
+    'Name': [validateString, validateLength],
+    'Price': [validateNumber, validatePositive],
+    'Brand': [validateString],
+    'Model Name': [validateString],
+    'Color': [validateString],
+    'Hex Code': [validateHexCode],
+    'Form Factor': [validateString],
+    'Connectivity Technology': [validateString],
+    'Amount': [validateNumber, validatePositive],
+    'Image URL': [validateUrl]
+  };
+
   formError = {};
 
   for (const key in data) {
