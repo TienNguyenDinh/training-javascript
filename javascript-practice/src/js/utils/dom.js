@@ -54,10 +54,8 @@ function getElementValueById(id) {
  */
 function generateErrorMessages(formError) {
   // Clear all the error messages first
-  for (const key in formError) {
-    const errorMsgElement = document.querySelector(`[data-field-error="${key}"]`);
-    errorMsgElement.textContent = '';
-  }
+  const errorMsgElements = document.querySelectorAll(`[data-field-error]`);
+  errorMsgElements.forEach(element => element.textContent = '');
 
   // Render all the error messages that in form error
   for (const key in formError) {
