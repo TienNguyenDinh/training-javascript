@@ -56,7 +56,6 @@ function generateErrorMessages(formError) {
   // Clear all the error messages first
   for (const key in formError) {
     const errorMsgElement = document.querySelector(`[data-field-error="${key}"]`);
-
     errorMsgElement.textContent = '';
   }
 
@@ -65,9 +64,12 @@ function generateErrorMessages(formError) {
     const value = formError[key];
 
     const errorMsgElement = document.querySelector(`[data-field-error="${key}"]`);
-
     errorMsgElement.textContent = value;
   }
 }
 
-export { createNewElement, getElementById, getElementValueById, generateErrorMessages }
+export {
+  createNewElement,
+  getElementById,
+  getElementValueById,
+  generateErrorMessages }
