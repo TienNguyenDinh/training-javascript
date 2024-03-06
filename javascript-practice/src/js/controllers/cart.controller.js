@@ -5,6 +5,7 @@ import {
 } from '../utils/dom';
 import Toast from '../utils/toastify';
 import { ACTION } from '../constants/action';
+import MESSAGES from '../constants/messages';
 
 export default class CartController {
   constructor(view, services) {
@@ -20,18 +21,28 @@ export default class CartController {
     await this.displayCartPage();
   }
 
+  /**
+   * Deletes a cart item by its ID after user confirmation
+   * @param {string} id - The ID of the cart item to be deleted
+   */
   async deleteCartItem(id) {
-    if(!confirm('Are you sure that you want to delete this item?')) {
+    const {
+      DELETE_CONFIRMATION_MSG,
+      DELETE_CART_FAILED_MSG,
+      DELETE_CART_SUCCESS_MSG
+    } = MESSAGES;
+
+    if (!confirm(DELETE_CONFIRMATION_MSG)) {
       return;
     }
 
     const { isSuccess } = await this.cartService.removeById(id);
 
     if (!isSuccess) {
-      return Toast.error('This item can\'t be deleted right now!');
+      return Toast.error(DELETE_CART_FAILED_MSG);
     }
 
-    Toast.success('The item is deleted!');
+    Toast.success(DELETE_CART_SUCCESS_MSG);
     this.displayCartPage();
   }
 
@@ -50,6 +61,10 @@ export default class CartController {
    * Binds event to handle update cart item amount
    */
   bindModifyAmountBtnEvent() {
+    const {
+      UPDATE_ITEM_FAILED_MSG,
+      INCREMENT_CART_FAILED_MSG
+    } = MESSAGES;
     const btnPlusElements = querySelectorAll('.btn-plus');
     const btnMinusElements = querySelectorAll('.btn-minus');
 
@@ -73,7 +88,7 @@ export default class CartController {
       switch (action) {
         case INCREMENT: {
           if (cartItemAmount >= productAmount) {
-            return Toast.error('You cannot add more items!');
+            return Toast.error(INCREMENT_CART_FAILED_MSG);
           }
 
           // Update the cart item with amount +1
@@ -81,13 +96,13 @@ export default class CartController {
           const { isSuccess } = await this.cartService.editById(cartItemId, existingCartItem);
 
           if (!isSuccess) {
-            return Toast.error('The item is not updated!');
+            return Toast.error(UPDATE_ITEM_FAILED_MSG);
           }
 
           let amount = parseInt(amountInputElement.value);
-          const priceNum = parseFloat(price);
+          const priceFloat = parseFloat(price);
           amountInputElement.value = ++amount;
-          const total = (amount * priceNum).toFixed(2);
+          const total = (amount * priceFloat).toFixed(2);
 
           productTotalElement.textContent = `$ ${total}`;
 
@@ -103,13 +118,13 @@ export default class CartController {
           const { isSuccess } = await this.cartService.editById(cartItemId, existingCartItem);
 
           if (!isSuccess) {
-            return Toast.error('The item is not updated!');
+            return Toast.error(UPDATE_ITEM_FAILED_MSG);
           }
 
           let amount = parseInt(amountInputElement.value);
-          const priceNum = parseFloat(price);
+          const priceFloat = parseFloat(price);
           amountInputElement.value = --amount;
-          const total = (amount * priceNum).toFixed(2);
+          const total = (amount * priceFloat).toFixed(2);
 
           productTotalElement.textContent = `$ ${total}`;
 

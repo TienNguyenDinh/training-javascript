@@ -1,5 +1,6 @@
 import Toast from '../utils/toastify';
 import { querySelectorAll } from '../utils/dom';
+import MESSAGES from '../constants/messages';
 
 export default class ProductController {
   constructor(view, service) {
@@ -37,7 +38,7 @@ export default class ProductController {
         const target = e.target;
         const id = target.dataset.id;
 
-        if(!confirm('Are you sure that you want to delete this product?')) {
+        if (!confirm(MESSAGES.DELETE_CONFIRMATION_MSG)) {
           return;
         }
 

@@ -61,7 +61,7 @@ export default class ProductDetailController {
           return Toast.error('The item is not updated!');
         }
 
-        return Toast.success('You\'ve bought one more or this item!');
+        return Toast.success('You\'ve bought one more of this item!');
       }
 
       const newCartItem = {
