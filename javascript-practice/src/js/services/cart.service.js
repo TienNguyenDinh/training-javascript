@@ -1,4 +1,4 @@
-import { API_ROUTES } from '../constants/url-api';
+import { API_ROUTES } from '../constants/apiRoutes';
 import { APIHandler } from '../utils/api';
 
 export default class CartService {

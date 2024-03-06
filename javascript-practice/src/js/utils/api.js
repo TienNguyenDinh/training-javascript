@@ -1,5 +1,5 @@
 import Toast from '../utils/toastify';
-import { API_ROUTES } from '../constants/url-api';
+import { API_ROUTES } from '../constants/apiRoutes';
 
 const APIHandler = {
   /**

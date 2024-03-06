@@ -1,4 +1,4 @@
-import { API_ROUTES } from '../constants/url-api';
+import { API_ROUTES } from '../constants/apiRoutes';
 import { createNewElement, getElementById } from '../utils/dom';
 
 export default class ProductView {
