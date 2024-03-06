@@ -82,7 +82,7 @@ export default class ProductFormController {
 
       // If there are any validation errors, stop the function
       const isPassed = Object.values(formError).every(value => value === '');
-      if (isPassed === false) {
+      if (!isPassed) {
         return;
       }
 
