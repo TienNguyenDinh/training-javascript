@@ -37,6 +37,10 @@ export default class ProductController {
         const target = e.target;
         const id = target.dataset.id;
 
+        if(!confirm('Are you sure that you want to delete this product?')) {
+          return;
+        }
+
         const { isSuccess } = await this.service.deleteById(id);
 
         if (!isSuccess) {

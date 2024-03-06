@@ -20,6 +20,21 @@ export default class CartController {
     await this.displayCartPage();
   }
 
+  async deleteCartItem(id) {
+    if(!confirm('Are you sure that you want to delete this item?')) {
+      return;
+    }
+
+    const { isSuccess } = await this.cartService.removeById(id);
+
+    if (!isSuccess) {
+      return Toast.error('This item can\'t be deleted right now!');
+    }
+
+    Toast.success('The item is deleted!');
+    this.displayCartPage();
+  }
+
   /**
    * Fetches cart from the server and displays them
    */
@@ -75,11 +90,12 @@ export default class CartController {
           const total = (amount * priceNum).toFixed(2);
 
           productTotalElement.textContent = `$ ${total}`;
+
           break;
         }
         case DECREMENT: {
-          if (cartItemAmount === 0) {
-            return Toast.error('You cannot remove more items!');
+          if (cartItemAmount <= 1) {
+            return this.deleteCartItem(cartItemId);
           }
 
           // Update the cart item with amount -1
@@ -90,7 +106,7 @@ export default class CartController {
             return Toast.error('The item is not updated!');
           }
 
-            let amount = parseInt(amountInputElement.value);
+          let amount = parseInt(amountInputElement.value);
           const priceNum = parseFloat(price);
           amountInputElement.value = --amount;
           const total = (amount * priceNum).toFixed(2);
@@ -123,14 +139,7 @@ export default class CartController {
       if (btnDeleteCartItemElement) {
         const id = e.target.dataset.cartItemId;
 
-        const { isSuccess } = await this.cartService.removeById(id);
-
-        if (!isSuccess) {
-          return Toast.error('This item can\'t be deleted right now!');
-        }
-
-        Toast.success('The item is deleted!');
-        this.displayCartPage();
+        this.deleteCartItem(id);
       }
     })
   }
