@@ -7,6 +7,7 @@ import validateForm from '../utils/validateForm';
 import findRoute from '../utils/findRoute';
 import { ACTION } from '../constants/action';
 import Toast from '../utils/toastify';
+import { handleRoute } from '../routes/router';
 
 export default class ProductFormController {
   constructor(view, service, action) {
@@ -109,6 +110,10 @@ export default class ProductFormController {
             return Toast.error('Failed to add the product!');
           }
 
+          Toast.success('Successfully added the product!');
+
+          return handleRoute({ href: '/' });
+
           break;
         }
         case ACTION.EDIT: {
@@ -119,6 +124,8 @@ export default class ProductFormController {
           if (!isSuccess) {
             return Toast.error('Failed to edit the product!');
           }
+
+          Toast.success('Successfully updated the product!');
 
           break;
         }
