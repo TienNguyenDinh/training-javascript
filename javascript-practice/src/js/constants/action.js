@@ -1,6 +1,8 @@
 const ACTION = {
   ADD: 'add',
-  EDIT: 'edit'
+  EDIT: 'edit',
+  INCREMENT: 'increment',
+  DECREMENT: 'decrement'
 }
 
 export { ACTION }
