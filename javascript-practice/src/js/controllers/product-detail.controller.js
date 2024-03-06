@@ -1,4 +1,4 @@
-import { getElementById } from '../utils/dom';
+import { getElementById, getElementValueById } from '../utils/dom';
 import findRoute from '../utils/findRoute';
 import Toast from '../utils/toastify';
 
@@ -36,7 +36,7 @@ export default class ProductDetailController {
     const addCartItemBtnElement = getElementById('btn-add-cart');
 
     addCartItemBtnElement.addEventListener('click', async () => {
-      const productId = getElementById('product-id').value;
+      const productId = getElementValueById('product-id');
 
       const product = await this.productService.getById(productId);
       const { name, colors, price, imgUrl, amount: productAmount } = product || {};
