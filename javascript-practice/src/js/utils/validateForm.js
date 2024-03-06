@@ -1,5 +1,5 @@
-import { REGEX_PATTERNS } from '../constants/regexPatterns'
-  ;
+import { REGEX_PATTERNS } from '../constants/regexPatterns';
+
 let formError = {};
 const { digitRegex, hexCodeRegex } = REGEX_PATTERNS;
 
@@ -107,7 +107,6 @@ export default function validateForm(data) {
     // If the key exists in the validationSchema
     if (validationSchema.hasOwnProperty(key)) {
       const value = data[key];
-
       // Get the array of validator methods associated with the key
       const validators = validationSchema[key];
 

@@ -1,5 +1,3 @@
-import { convertCamelCaseToSpaces } from './convertString';
-
 /**
  * Creates an HTML element with the specified tag, class name, text content, and attributes.
  * @param {string} tag - The tag name for the element
@@ -64,9 +62,12 @@ function generateErrorMessages(formError) {
     const value = formError[key];
 
     const errorMsgElement = document.querySelector(`[data-field-error="${key}"]`);
-
     errorMsgElement.textContent = value;
   }
 }
 
-export { createNewElement, getElementById, getElementValueById, generateErrorMessages }
+export {
+  createNewElement,
+  getElementById,
+  getElementValueById,
+  generateErrorMessages }
