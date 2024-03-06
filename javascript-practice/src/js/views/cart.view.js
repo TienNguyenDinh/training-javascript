@@ -18,6 +18,12 @@ export default class CartView {
 
     const mainContent = getElementById('main-content');
 
+    if(cart.length === 0) {
+      mainContent.innerHTML = '<h2 class="product-info">You should buy at least 1 item then come back here.</h2>';
+
+      return;
+    }
+
     let cartListHTML = '<ul class="shopping-cart">'
     for (const item of cart) {
       const { id, productId, name, color, amount, price, imgUrl } = item;

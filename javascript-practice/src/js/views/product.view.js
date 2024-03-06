@@ -20,9 +20,15 @@ export default class ProductView {
 
     const mainContent = getElementById('main-content');
 
+    if(!products) {
+      mainContent.innerHTML = '<h2 class="product-info">No products here yet.</h2>';
+
+      return;
+    }
+
     let productListHTML = '<ul class="main-products-container">';
     // Mapping over the products array to create HTML elements for each product
-    const productElements = products.map(product => {
+    products.forEach(product => {
       const { PRODUCTS_ENDPOINT } = API_ROUTES;
       const { id, name, price, colors, imgUrl } = product;
       const productHref = `${PRODUCTS_ENDPOINT}/${id}`
@@ -71,7 +77,7 @@ export default class ProductView {
 
       productListHTML += productItemHTML;
     });
-    productListHTML += '</ul>'
+    productListHTML += '</ul>';
 
     mainContent.innerHTML += productListHTML;
   }
@@ -82,7 +88,7 @@ export default class ProductView {
   renderProductFormPage(data = {}) {
     this.clearMainContainer();
 
-    const headingPage = window.location.pathname.replace('/', '').toUpperCase();
+    const headingPage = Object.keys(data).length === 0 ? 'ADD PRODUCT PAGE' : 'EDIT PRODUCT PAGE';
 
     const {
       id,
@@ -159,9 +165,9 @@ export default class ProductView {
             <input value="${imgUrl}" data-field="Image URL" id="image-url" type="text" class="form-control input-size-md">
             <p data-field-error="Image URL" class="error-message" id="imgUrl-error"></p>
           </div>
-          <div class="flex-row">
-            <button id="submit-button" type="submit" class="btn btn-primary btn-submit">Submit</button>
-            <a href="/" class="btn btn-primary btn-danger">Cancel</a>
+          <div class="flex-row form-btn-group">
+            <a href="/" class="btn btn-cancel btn-primary btn-danger">Cancel</a>
+            <button id="submit-button" type="submit" class="btn btn-primary btn-submit">Save</button>
           </div>
         </form>
       </div>
