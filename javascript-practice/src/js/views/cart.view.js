@@ -1,6 +1,4 @@
-// TODO: Implement the renderCart method to render the list of cart items on the page
-
-import { getElementById } from "../utils/dom";
+import { getElementById } from '../utils/dom';
 
 export default class CartView {
   /**
@@ -23,6 +21,7 @@ export default class CartView {
     let cartListHTML = '<ul class="shopping-cart">'
     for (const item of cart) {
       const { id, productId, name, color, amount, price, imgUrl } = item;
+
       const totalPrice = amount * price;
 
       const cartItemHTML = `

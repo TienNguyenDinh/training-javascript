@@ -293,6 +293,4 @@ export default class ProductView {
 
     return colorOptionList;
   }
-
-
 }
