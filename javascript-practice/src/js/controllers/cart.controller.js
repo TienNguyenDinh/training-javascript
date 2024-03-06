@@ -1,6 +1,9 @@
-import { getElementById } from '../utils/dom';
+import {
+  getElementById,
+  querySelector,
+  querySelectorAll
+} from '../utils/dom';
 import Toast from '../utils/toastify';
-import { getElementById } from '../utils/dom';
 import { ACTION } from '../constants/action';
 
 export default class CartController {
@@ -32,8 +35,8 @@ export default class CartController {
    * Binds event to handle update cart item amount
    */
   bindModifyAmountBtnEvent() {
-    const btnPlusElements = document.querySelectorAll('.btn-plus');
-    const btnMinusElements = document.querySelectorAll('.btn-minus');
+    const btnPlusElements = querySelectorAll('.btn-plus');
+    const btnMinusElements = querySelectorAll('.btn-minus');
 
     // This function handles the click event of the plus and minus buttons
     const handleModifyAmount = async (e) => {
@@ -112,7 +115,7 @@ export default class CartController {
    * Binds event to handle remove item from cart
    */
   bindDeleteItemBtnEvent() {
-    const cartListElement = document.querySelector('.shopping-cart');
+    const cartListElement = querySelector('.shopping-cart');
 
     cartListElement.addEventListener('click', async (e) => {
       const btnDeleteCartItemElement = e.target.classList.contains('btn-delete-cart-item');

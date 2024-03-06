@@ -48,20 +48,49 @@ function getElementValueById(id) {
 }
 
 /**
+ * Gets the first element that matches a specified CSS selectors
+ * @param {string} selector - The CSS selectors
+ * @returns {Element} The first Element object that matches the specified CSS selector
+ */
+function querySelector(selector) {
+  return document.querySelector(selector);
+}
+
+/**
+ * Gets the collection of elements that matches a specified CSS selectors
+ * @param {string} selector - The CSS selectors
+ * @returns {Element[]} The collection of elements that matches the specified CSS selector
+ */
+function querySelectorAll(selector) {
+  return document.querySelectorAll(selector);
+}
+
+/**
+ * Adds an event listener to an element
+ * @param {Element} element - The target element
+ * @param {string} event - The event to listen for
+ * @param {Function} handler - The function to execute when the event is triggered
+ */
+function addEventListener(element, event, handler) {
+  element.addEventListener(event, handler);
+}
+
+/**
  * This function generates error messages for a given product and key
  * @param {Object} data - The data in object
  * @param {string} clear - A flag indicating whether to clear the error messages
  */
 function generateErrorMessages(formError) {
   // Clear all the error messages first
-  const errorMsgElements = document.querySelectorAll(`[data-field-error]`);
+
+  const errorMsgElements = querySelectorAll('[data-field-error]');
   errorMsgElements.forEach(element => element.textContent = '');
 
   // Render all the error messages that in form error
   for (const key in formError) {
     const value = formError[key];
 
-    const errorMsgElement = document.querySelector(`[data-field-error="${key}"]`);
+    const errorMsgElement = querySelector(`[data-field-error="${key}"]`);
     errorMsgElement.textContent = value;
   }
 }
@@ -70,4 +99,8 @@ export {
   createNewElement,
   getElementById,
   getElementValueById,
-  generateErrorMessages }
+  querySelector,
+  querySelectorAll,
+  addEventListener,
+  generateErrorMessages
+}

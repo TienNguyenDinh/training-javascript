@@ -1,5 +1,6 @@
 import { handleRouteChange } from './routes/router';
+import { addEventListener } from './utils/dom';
 
-document.addEventListener('DOMContentLoaded', async () => {
+addEventListener(document, 'DOMContentLoaded', async () => {
   await handleRouteChange();
 });
