@@ -1,4 +1,4 @@
-import { getElementById } from '../utils/dom';
+import { getElementById, getElementValueById } from '../utils/dom';
 import findRoute from '../utils/findRoute';
 import Toast from '../utils/toastify';
 
@@ -36,28 +36,37 @@ export default class ProductDetailController {
     const addCartItemBtnElement = getElementById('btn-add-cart');
 
     addCartItemBtnElement.addEventListener('click', async () => {
-      const id = getElementById('product-id').value;
+      const productId = getElementValueById('product-id');
 
-      const product = await this.productService.getById(id);
-      const { name, colors, price, imgUrl, amount: productAmount } = product ? product : {};
+      const product = await this.productService.getById(productId);
+      const { name, colors, price, imgUrl, amount: productAmount } = product || {};
 
-      const cartItem = await this.cartService.getByProductId(id);
-      const { cartItemAmount } = cartItem ? cartItem : {};
+      const cartItem = await this.cartService.getByProductId(productId);
+      const { id: cartItemId, amount: cartItemAmount } = cartItem || {};
 
       if (productAmount <= 0) {
         return Toast.error('The product is running out of stock');
       }
 
-      // Needs to implement edit cart item first to expand this
       // Update item amount if user already add it to cart
       if (cartItem) {
-        // Will remove this when edit cart functionality has been added
-        return Toast.error('The item is already been added to your cart');
+        if (cartItemAmount >= productAmount) {
+          return Toast.error('You cannot add more items!');
+        }
+
+        cartItem.amount += 1;
+        const { isSuccess } = await this.cartService.editById(cartItemId, cartItem);
+
+        if (!isSuccess) {
+          return Toast.error('The item is not updated!');
+        }
+
+        return Toast.success('Successfully added item to cart!');
       }
 
       const newCartItem = {
         name,
-        productId: id,
+        productId,
         color: colors[0].name,
         price,
         amount: 1,
