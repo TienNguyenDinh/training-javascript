@@ -5,63 +5,63 @@ const { digitRegex, hexCodeRegex } = REGEX_PATTERNS;
 
 /**
  * Checks if the value is a string
- * @param {Object} param0 - An object
- * @param {string} param0.key - The field that needs to check
- * @param {string} param0.value - The value of that field
+ * @param {Object} params - An object
+ * @param {string} params.key - The field that needs to check
+ * @param {string} params.value - The value of that field
  */
 const validateString = ({ key, value }) =>
   formError[key] = typeof value !== 'string' ? `${key} must be a string.` : '';
 
 /**
  * Checks if the value is a number
- * @param {Object} param0 - An object
- * @param {string} param0.key - The field that needs to check
- * @param {number} param0.value - The value of that field
+ * @param {Object} params - An object
+ * @param {string} params.key - The field that needs to check
+ * @param {number} params.value - The value of that field
  */
 const validateNumber = ({ key, value }) =>
   formError[key] = !digitRegex.test(value) ? `${key} must be a number.` : '';
 
 /**
  * Checks if the value is a number
- * @param {Object} param0 - An object
- * @param {string} param0.key - The field that needs to check
- * @param {number} param0.value - The value of that field
+ * @param {Object} params - An object
+ * @param {string} params.key - The field that needs to check
+ * @param {number} params.value - The value of that field
  */
 const validateEmptiness = ({ key, value }) =>
   formError[key] = value.trim() === '' ? `${key} is required.` : '';
 
 /**
  * Checks if the value is longer than mininum length
- * @param {Object} param0 - An object
- * @param {string} param0.key - The field that needs to check
- * @param {string} param0.value - The value of that field
+ * @param {Object} params - An object
+ * @param {string} params.key - The field that needs to check
+ * @param {string} params.value - The value of that field
  */
 const validateLength = ({ key, value, min = 6 }) =>
   formError[key] = value.trim().length < min ? `${key} must have at least ${min} characters.` : '';
 
 /**
  * Checks if the value is a positive number
- * @param {Object} param0 - An object
- * @param {string} param0.key - The field that needs to check
- * @param {number} param0.value - The value of that field
+ * @param {Object} params - An object
+ * @param {string} params.key - The field that needs to check
+ * @param {number} params.value - The value of that field
  */
 const validatePositive = ({ key, value }) =>
   formError[key] = parseInt(value) < 0 ? `${key} needs to be a positive number.` : '';
 
 /**
  * Checks if the value is a hex code
- * @param {Object} param0 - An object
- * @param {string} param0.key - The field that needs to check
- * @param {string} param0.value - The value of that field
+ * @param {Object} params - An object
+ * @param {string} params.key - The field that needs to check
+ * @param {string} params.value - The value of that field
  */
 const validateHexCode = ({ key, value }) =>
   formError[key] = !hexCodeRegex.test(value) ? `${key} needs to be a correct hex code eg: #333.` : '';
 
 /**
  * Checks if the value is a valid url
- * @param {Object} param0 - An object
- * @param {string} param0.key - The field that needs to check
- * @param {string} param0.value - The value of that field
+ * @param {Object} params - An object
+ * @param {string} params.key - The field that needs to check
+ * @param {string} params.value - The value of that field
  */
 function validateUrl({ key, value }) {
   if (key in formError && formError[key] !== '') {
