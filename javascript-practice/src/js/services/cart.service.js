@@ -20,8 +20,7 @@ export default class CartService {
    * @returns {Promise<Object>} The object contains the cart item
    */
   async getByProductId(id) {
-    const { CART_ENDPOINT } = API_ROUTES;
-    const endpoint = `${CART_ENDPOINT}?productId=${id}`;
+    const endpoint = `${API_ROUTES.CART_ENDPOINT}?productId=${id}`;
 
     const data = await APIHandler.get(endpoint);
 
@@ -31,37 +30,39 @@ export default class CartService {
   /**
    * Add a new cart item
    * @param {Object} cartItem - the object contains the cart item
+   * @param {Object} result - The result
    */
   async add(cartItem) {
     const endpoint = API_ROUTES.CART_ENDPOINT;
 
-    await APIHandler.post(endpoint, cartItem);
+    const result = await APIHandler.post(endpoint, cartItem);
+
+    return result;
   }
 
   /**
    * Edit a cart item by its ID
    * @param {string} id - The ID of the cart item
-   * @param {Object} data - New data to be updated
+   * @param {Object} result - The result
    */
   async editById(id, data) {
-    const { CART_ENDPOINT } = API_ROUTES;
-    const endpoint = `${CART_ENDPOINT}/${id}`;
+    const endpoint = `${API_ROUTES.CART_ENDPOINT}/${id}`;
 
-    const returningData = await APIHandler.put(endpoint, data);
+    const result = await APIHandler.put(endpoint, data);
 
-    return returningData;
+    return result;
   }
 
   /**
    * Remove a cart item by its ID
    * @param {string} id - The ID of the cart item
+   * @param {Object} result - The result
    */
   async removeById(id) {
-    const { CART_ENDPOINT } = API_ROUTES;
-    const endpoint = `${CART_ENDPOINT}/${id}`;
+    const endpoint = `${API_ROUTES.CART_ENDPOINT}/${id}`;
 
-    const data = await APIHandler.delete(endpoint);
+    const result = await APIHandler.delete(endpoint);
 
-    return data;
+    return result;
   }
 }

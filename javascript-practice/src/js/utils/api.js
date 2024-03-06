@@ -1,4 +1,3 @@
-import Toast from '../utils/toastify';
 import { API_ROUTES } from '../constants/apiRoutes';
 
 const APIHandler = {
@@ -10,7 +9,8 @@ const APIHandler = {
    */
   async get(endpoint) {
     try {
-      const res = await fetch(`${API_ROUTES.BASE_URL}/${endpoint}`);
+      const url = `${API_ROUTES.BASE_URL}/${endpoint}`;
+      const res = await fetch(url);
 
       if (!res.ok) {
         throw new Error(`Failed to fetch data from ${url}`);
@@ -31,25 +31,26 @@ const APIHandler = {
    */
   async post(endpoint, data) {
     try {
+      const url = `${API_ROUTES.BASE_URL}/${endpoint}`;
       const res = await fetch(
-        `${API_ROUTES.BASE_URL}/${endpoint}`,
+        url,
         {
           method: 'POST',
           headers: {
-              'Content-Type': 'application/json',
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(data)
         }
       );
 
-      if(!res.ok) {
+      if (!res.ok) {
         throw new Error(`Failed to post data to ${endpoint}`);
       }
 
       return {
         isSuccess: true
       }
-    } catch(error) {
+    } catch (error) {
       console.error(error);
 
       return {
@@ -66,8 +67,9 @@ const APIHandler = {
    */
   async put(endpoint, data) {
     try {
+      const url = `${API_ROUTES.BASE_URL}/${endpoint}`;
       const res = await fetch(
-        `${API_ROUTES.BASE_URL}/${endpoint}`,
+        url,
         {
           method: 'PUT',
           headers: {
@@ -100,7 +102,6 @@ const APIHandler = {
   async delete(endpoint) {
     try {
       const url = `${API_ROUTES.BASE_URL}/${endpoint}`;
-
       const res = await fetch(url, {
         method: 'DELETE',
       });
