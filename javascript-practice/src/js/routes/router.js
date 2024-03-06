@@ -9,7 +9,7 @@ import CartController from '../controllers/cart.controller';
 import { ROUTES } from '../constants/routes';
 import { ACTION } from '../constants/action';
 import findRoute from '../utils/findRoute';
-import { onEvent } from '../utils/dom';
+import { addEventListener } from '../utils/dom';
 
 const productView = new ProductView();
 const productService = new ProductService();
@@ -57,7 +57,7 @@ const routes = {
 // This is necessary because the website is a
 // Single Page Application and does not need to reload
 // which can lead to a faster user experience
-onEvent(document, 'click', (e) => {
+addEventListener(document, 'click', (e) => {
   const target = e.target;
 
   // If the clicked element is not a link, exit the function

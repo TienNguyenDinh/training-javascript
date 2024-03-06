@@ -71,7 +71,7 @@ function querySelectorAll(selector) {
  * @param {string} event - The event to listen for
  * @param {Function} handler - The function to execute when the event is triggered
  */
-function onEvent(element, event, handler) {
+function addEventListener(element, event, handler) {
   element.addEventListener(event, handler);
 }
 
@@ -82,7 +82,7 @@ function onEvent(element, event, handler) {
  */
 function generateErrorMessages(formError) {
   // Clear all the error messages first
-  const errorMsgElements = querySelectorAll(`[data-field-error]`);
+  const errorMsgElements = querySelectorAll('[data-field-error]');
   errorMsgElements.forEach(element => element.textContent = '');
 
   // Render all the error messages that in form error
@@ -100,6 +100,6 @@ export {
   getElementValueById,
   querySelector,
   querySelectorAll,
-  onEvent,
+  addEventListener,
   generateErrorMessages
 }

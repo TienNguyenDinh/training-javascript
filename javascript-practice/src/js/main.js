@@ -1,6 +1,6 @@
 import { handleRouteChange } from './routes/router';
-import { onEvent } from './utils/dom';
+import { addEventListener } from './utils/dom';
 
-onEvent(document, 'DOMContentLoaded', async () => {
+addEventListener(document, 'DOMContentLoaded', async () => {
   await handleRouteChange();
 });
