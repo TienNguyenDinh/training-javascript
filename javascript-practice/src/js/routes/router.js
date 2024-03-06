@@ -16,9 +16,9 @@ const productService = new ProductService();
 const cartView = new CartView();
 const cartService = new CartService();
 
-const producDetailServices = {
-  productService: new ProductService(),
-  cartService: new CartService()
+const productDetailServices = {
+  productService,
+  cartService
 }
 
 /**
@@ -32,7 +32,7 @@ const routes = {
   },
   [ROUTES.PRODUCT_DETAIL]: {
     handler: () => {
-      return new ProductDetailController(productView, producDetailServices)
+      return new ProductDetailController(productView, productDetailServices)
     }
   },
   [ROUTES.ADD_PRODUCT]: {
@@ -47,7 +47,7 @@ const routes = {
   },
   [ROUTES.CART]: {
     handler: () => {
-      return new CartController(cartView, producDetailServices);
+      return new CartController(cartView, productDetailServices);
     }
   }
 }
