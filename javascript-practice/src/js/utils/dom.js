@@ -82,6 +82,7 @@ function addEventListener(element, event, handler) {
  */
 function generateErrorMessages(formError) {
   // Clear all the error messages first
+
   const errorMsgElements = querySelectorAll('[data-field-error]');
   errorMsgElements.forEach(element => element.textContent = '');
 
