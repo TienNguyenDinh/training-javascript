@@ -4,6 +4,8 @@ import {
   querySelectorAll
 } from '../utils/dom';
 import Toast from '../utils/toastify';
+import { ACTION } from '../constants/action';
+
 export default class CartController {
   constructor(view, services) {
     this.view = view;
@@ -39,9 +41,7 @@ export default class CartController {
     // This function handles the click event of the plus and minus buttons
     const handleModifyAmount = async (e) => {
       const dataset = e.target.dataset;
-      const action = dataset.action;
-      const cartItemId = dataset.cartItemId;
-      const productId = dataset.productId;
+      const { action, cartItemId, productId } = dataset;
 
       const amountInputElement = getElementById(`amount-input-${cartItemId}`);
       const productTotalElement = getElementById(`product-total-${cartItemId}`);
@@ -54,8 +54,9 @@ export default class CartController {
       const existingCartItem = await this.cartService.getByProductId(productId);
       const { amount: cartItemAmount, price } = existingCartItem ? existingCartItem : {};
 
+      const { INCREMENT, DECREMENT } = ACTION;
       switch (action) {
-        case 'increment': {
+        case INCREMENT: {
           if (cartItemAmount >= productAmount) {
             return Toast.error('You cannot add more items!');
           }
@@ -76,7 +77,7 @@ export default class CartController {
           productTotalElement.textContent = `$ ${total}`;
           break;
         }
-        case 'decrement': {
+        case DECREMENT: {
           if (cartItemAmount === 0) {
             return Toast.error('You cannot remove more items!');
           }

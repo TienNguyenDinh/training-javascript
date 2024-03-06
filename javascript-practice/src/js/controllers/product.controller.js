@@ -39,7 +39,7 @@ export default class ProductController {
 
         const { isSuccess } = await this.service.deleteById(id);
 
-        if(!isSuccess) {
+        if (!isSuccess) {
           return Toast.error('Failed to delete the product!');
         }
 

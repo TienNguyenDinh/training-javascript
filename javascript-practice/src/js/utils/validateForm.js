@@ -1,5 +1,5 @@
-import { REGEX_PATTERNS } from '../constants/regexPatterns'
-;
+import { REGEX_PATTERNS } from '../constants/regexPatterns';
+
 let formError = {};
 
 /**
@@ -107,7 +107,7 @@ function validateUrl({ key, value }) {
     formError[key] = '';
   } catch (error) {
     formError[key] = `${key} must be a valid URL.`;
-  } 
+  }
 }
 
 const validationSchema = {
@@ -130,19 +130,18 @@ const validationSchema = {
  */
 export default function validateForm(data) {
   formError = {};
-  
+
   for (const key in data) {
     // If the key exists in the validationSchema
     if (validationSchema.hasOwnProperty(key)) {
       const value = data[key];
-
       // Get the array of validator methods associated with the key
       const validators = validationSchema[key];
 
       validateEmptiness({ key, value });
 
       for (let validator of validators) {
-        if(formError[key] !== '') {
+        if (formError[key] !== '') {
           break;
         }
 
