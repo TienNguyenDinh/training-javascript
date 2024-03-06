@@ -1,4 +1,5 @@
 import Toast from '../utils/toastify';
+import { querySelectorAll } from '../utils/dom';
 
 export default class ProductController {
   constructor(view, service) {
@@ -29,7 +30,7 @@ export default class ProductController {
    * If the deletion is successful, it re-displays the products
    */
   bindDeleteProductEvent() {
-    const btnDeleteElements = document.querySelectorAll('.btn-delete');
+    const btnDeleteElements = querySelectorAll('.btn-delete');
 
     btnDeleteElements.forEach(element => {
       element.addEventListener('click', async (e) => {
