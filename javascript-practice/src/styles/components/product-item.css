@@ -27,6 +27,10 @@
   font-weight: var(--font-weight-medium);
 }
 
+.product-info-value {
+  text-transform: capitalize;
+}
+
 .product-title {
   margin-bottom: 9px;
 }
