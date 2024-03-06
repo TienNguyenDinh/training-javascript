@@ -31,6 +31,10 @@ export default class ProductController {
    * If the deletion is successful, it re-displays the products
    */
   bindDeleteProductEvent() {
+    const {
+      DELETE_PRODUCT_SUCCESS_MSG,
+      DELETE_PRODUCT_FAILED_MSG
+    } = MESSAGES;
     const btnDeleteElements = querySelectorAll('.btn-delete');
 
     btnDeleteElements.forEach(element => {
@@ -41,14 +45,13 @@ export default class ProductController {
         if (!confirm(MESSAGES.DELETE_CONFIRMATION_MSG)) {
           return;
         }
-
         const { isSuccess } = await this.service.deleteById(id);
 
         if (!isSuccess) {
-          return Toast.error('Failed to delete the product!');
+          return Toast.error(DELETE_PRODUCT_FAILED_MSG);
         }
 
-        Toast.success('Successfully deleted the product!');
+        Toast.success(DELETE_PRODUCT_SUCCESS_MSG);
         this.displayProducts();
       });
     });

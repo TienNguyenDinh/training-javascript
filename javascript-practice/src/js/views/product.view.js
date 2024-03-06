@@ -1,4 +1,5 @@
 import { API_ROUTES } from '../constants/apiRoutes';
+import MESSAGES from '../constants/messages';
 import { createNewElement, getElementById } from '../utils/dom';
 
 export default class ProductView {
@@ -18,10 +19,11 @@ export default class ProductView {
   renderProducts(products) {
     this.clearMainContainer();
 
+    const { EMPTY_PRODUCT_LIST_HEADING } = MESSAGES;
     const mainContent = getElementById('main-content');
 
     if (!products) {
-      mainContent.innerHTML = '<h2 class="product-info">No products here yet.</h2>';
+      mainContent.innerHTML = `<h2 class="product-info">${EMPTY_PRODUCT_LIST_HEADING}</h2>`;
 
       return;
     }
@@ -88,7 +90,11 @@ export default class ProductView {
   renderProductFormPage(data = {}) {
     this.clearMainContainer();
 
-    const headingPage = Object.keys(data).length === 0 ? 'ADD PRODUCT PAGE' : 'EDIT PRODUCT PAGE';
+    const {
+      ADD_PRODUCT_HEADING,
+      EDIT_PRODUCT_HEADING
+    } = MESSAGES;
+    const headingPage = Object.keys(data).length === 0 ? ADD_PRODUCT_HEADING : EDIT_PRODUCT_HEADING;
 
     const {
       id,
