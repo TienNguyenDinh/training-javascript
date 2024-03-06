@@ -18,8 +18,8 @@ export default class CartView {
 
     const mainContent = getElementById('main-content');
 
-    if(cart.length === 0) {
-      mainContent.innerHTML = '<h2 class="product-info">You should buy at least 1 item then come back here.</h2>';
+    if (cart.length === 0) {
+      mainContent.innerHTML = '<h2 class="product-info">Your cart is empty.</h2>';
 
       return;
     }

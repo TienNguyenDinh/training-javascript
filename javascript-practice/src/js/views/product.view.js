@@ -20,7 +20,7 @@ export default class ProductView {
 
     const mainContent = getElementById('main-content');
 
-    if(!products) {
+    if (!products) {
       mainContent.innerHTML = '<h2 class="product-info">No products here yet.</h2>';
 
       return;
