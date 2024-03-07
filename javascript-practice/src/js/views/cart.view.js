@@ -41,7 +41,7 @@ export default class CartView {
           </figure>
         </div>
         <div class="cart-item-info">
-          <h2 class="product-info">${name}</h2>
+          <h2 class="product-info product-title">${name}</h2>
           <p class="cart-item-color">${color}</p>
         </div>
         <div class="cart-item-quantity">
