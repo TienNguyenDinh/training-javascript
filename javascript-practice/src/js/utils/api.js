@@ -51,8 +51,6 @@ const APIHandler = {
         isSuccess: true
       }
     } catch (error) {
-      console.error(error);
-
       return {
         isSuccess: false
       }
@@ -86,8 +84,6 @@ const APIHandler = {
         isSuccess: true
       }
     } catch (error) {
-      console.error(error);
-
       return {
         isSuccess: true
       }
@@ -114,8 +110,6 @@ const APIHandler = {
         isSuccess: true
       }
     } catch (error) {
-      console.error(error);
-
       return {
         isSuccess: false
       }
