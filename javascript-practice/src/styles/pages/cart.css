@@ -70,14 +70,14 @@
   }
 
   .cart-item-info {
-    gap: 0 0;
+    gap: 0;
     padding-top: 10px;
     padding-left: 26px;
   }
 
   .cart-item-image {
     grid-column: span 2;
-    gap: 0 0;
+    gap: 0;
   }
 
   .product-total {
