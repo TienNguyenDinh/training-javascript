@@ -32,6 +32,10 @@
   gap: 12px 0;
 }
 
+.cart-item-color {
+  text-transform: capitalize;
+}
+
 .cart-item-quantity {
   flex-grow: 1;
 }
