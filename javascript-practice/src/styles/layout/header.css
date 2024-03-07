@@ -60,12 +60,22 @@
   }
 }
 
+.entry-links {
+    text-align: center;
+  }
+
 @media (max-width: 600px) {
   .header-container {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     justify-content: unset;
+    justify-items: center;
     gap: 20px 0;
     padding-bottom: 15px;
+  }
+
+  .entry-links {
+    grid-column: span 2;
   }
 }
 
