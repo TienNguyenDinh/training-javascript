@@ -1,3 +1,4 @@
+import MESSAGES from '../constants/messages';
 import { getElementById } from '../utils/dom';
 
 export default class CartView {
@@ -16,7 +17,14 @@ export default class CartView {
   renderCart(cart) {
     this.clearMainContainer();
 
+    const { EMPTY_CART_HEADING } = MESSAGES;
     const mainContent = getElementById('main-content');
+
+    if (cart.length === 0) {
+      mainContent.innerHTML = `<h2 class="product-info">${EMPTY_CART_HEADING}</h2>`;
+
+      return;
+    }
 
     let cartListHTML = '<ul class="shopping-cart">'
     for (const item of cart) {
@@ -45,7 +53,7 @@ export default class CartView {
             -
           </button>
         </div>
-        <p id="product-total-${id}" class="product-info">$ ${totalPrice.toFixed(2)}</p>
+        <p id="product-total-${id}" class="product-total product-info">$ ${totalPrice.toFixed(2)}</p>
        </li>
       `
 

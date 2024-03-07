@@ -1,5 +1,6 @@
 import Toast from '../utils/toastify';
-import { querySelectorAll } from '../utils/dom';
+import { addEventListener, querySelector } from '../utils/dom';
+import MESSAGES from '../constants/messages';
 
 export default class ProductController {
   constructor(view, service) {
@@ -12,6 +13,8 @@ export default class ProductController {
    */
   async init() {
     await this.displayProducts();
+
+    this.bindDeleteProductEvent();
   }
 
   /**
@@ -21,8 +24,6 @@ export default class ProductController {
     const products = await this.service.getAll();
 
     this.view.renderProducts(products);
-
-    this.bindDeleteProductEvent();
   }
 
   /**
@@ -30,22 +31,33 @@ export default class ProductController {
    * If the deletion is successful, it re-displays the products
    */
   bindDeleteProductEvent() {
-    const btnDeleteElements = querySelectorAll('.btn-delete');
+    const {
+      DELETE_PRODUCT_SUCCESS_MSG,
+      DELETE_PRODUCT_FAILED_MSG
+    } = MESSAGES;
+    const productListElement = querySelector('.main-products-container');
 
-    btnDeleteElements.forEach(element => {
-      element.addEventListener('click', async (e) => {
-        const target = e.target;
-        const id = target.dataset.id;
+    addEventListener(productListElement, 'click', async (e) => {
+      const { target } = e;
 
-        const { isSuccess } = await this.service.deleteById(id);
+      if (!target.classList.contains('btn-delete')) {
+        return;
+      }
 
-        if (!isSuccess) {
-          return Toast.error('Failed to delete the product!');
-        }
+      const id = target.dataset.id;
 
-        Toast.success('Successfully deleted the product!');
-        this.displayProducts();
-      });
+      if (!confirm(MESSAGES.DELETE_CONFIRMATION_MSG)) {
+        return;
+      }
+      const { isSuccess } = await this.service.deleteById(id);
+
+      if (!isSuccess) {
+        return Toast.error(DELETE_PRODUCT_FAILED_MSG);
+      }
+
+      Toast.success(DELETE_PRODUCT_SUCCESS_MSG);
+      this.displayProducts();
+
     });
   }
 }

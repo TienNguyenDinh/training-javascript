@@ -7,6 +7,8 @@ import validateForm from '../utils/validateForm';
 import findRoute from '../utils/findRoute';
 import { ACTION } from '../constants/action';
 import Toast from '../utils/toastify';
+import { handleRoute } from '../routes/router';
+import MESSAGES from '../constants/messages';
 
 export default class ProductFormController {
   constructor(view, service, action) {
@@ -20,6 +22,8 @@ export default class ProductFormController {
    */
   async init() {
     await this.displayProductFormPage();
+
+    this.bindProductFormEvent();
   }
 
   /**
@@ -35,14 +39,18 @@ export default class ProductFormController {
     }
 
     this.view.renderProductFormPage(data);
-
-    this.bindProductFormEvent();
   }
 
   /**
    * Binds event to handle product addition
    */
   bindProductFormEvent() {
+    const {
+      ADD_PRODUCT_FAILED_MSG,
+      ADD_PRODUCT_SUCCESS_MSG,
+      UPDATE_ITEM_FAILED_MSG,
+      UPDATE_ITEM_SUCCESS_MSG
+    } = MESSAGES
     const submitBtnElement = getElementById('submit-button');
 
     // Bind the click event to the 'Add Product' button
@@ -106,8 +114,12 @@ export default class ProductFormController {
           const { isSuccess } = await this.service.add(product);
 
           if (!isSuccess) {
-            return Toast.error('Failed to add the product!');
+            return Toast.error(ADD_PRODUCT_FAILED_MSG);
           }
+
+          Toast.success(ADD_PRODUCT_SUCCESS_MSG);
+
+          return handleRoute({ href: '/' });
 
           break;
         }
@@ -117,8 +129,10 @@ export default class ProductFormController {
           const { isSuccess } = await this.service.editById(params.id, product);
 
           if (!isSuccess) {
-            return Toast.error('Failed to edit the product!');
+            return Toast.error(UPDATE_ITEM_FAILED_MSG);
           }
+
+          Toast.success(UPDATE_ITEM_SUCCESS_MSG);
 
           break;
         }

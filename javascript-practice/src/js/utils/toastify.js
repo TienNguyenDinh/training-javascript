@@ -35,8 +35,8 @@ function showToastify(msg, state, duration = 2000) {
     text: msg,
     duration: duration,
     newWindow: true,
-    gravity: 'bottom',
-    position: 'right',
+    gravity: 'center',
+    position: 'center',
     offset: {
       x: '2rem',
       y: '1rem',

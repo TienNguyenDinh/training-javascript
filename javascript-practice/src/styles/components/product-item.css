@@ -1,8 +1,11 @@
 .product-thumbnail {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 25px;
-  max-width: 303px;
-  max-height: 359px;
+  width: 303px;
+  height: 359px;
 
   &:hover .btn-delete,
   &:hover .btn-edit {
@@ -22,6 +25,10 @@
   font-size: var(--font-size-2md);
   line-height: var(--line-height-lg);
   font-weight: var(--font-weight-medium);
+}
+
+.product-info-value {
+  text-transform: capitalize;
 }
 
 .product-title {

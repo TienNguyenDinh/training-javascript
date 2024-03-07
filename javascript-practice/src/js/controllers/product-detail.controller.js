@@ -1,3 +1,4 @@
+import MESSAGES from '../constants/messages';
 import { getElementById, getElementValueById } from '../utils/dom';
 import findRoute from '../utils/findRoute';
 import Toast from '../utils/toastify';
@@ -33,6 +34,14 @@ export default class ProductDetailController {
    * Binds events to handle add product to cart
    */
   bindAddCartBtnEvent() {
+    const {
+      PRODUCT_EMPTY_MSG,
+      ADD_CART_SUCCESS_MSG,
+      ADD_CART_FAILED_MSG,
+      INCREMENT_CART_FAILED_MSG,
+      UPDATE_ITEM_FAILED_MSG
+    } = MESSAGES;
+
     const addCartItemBtnElement = getElementById('btn-add-cart');
 
     addCartItemBtnElement.addEventListener('click', async () => {
@@ -45,23 +54,23 @@ export default class ProductDetailController {
       const { id: cartItemId, amount: cartItemAmount } = cartItem || {};
 
       if (productAmount <= 0) {
-        return Toast.error('The product is running out of stock');
+        return Toast.error(PRODUCT_EMPTY_MSG);
       }
 
       // Update item amount if user already add it to cart
       if (cartItem) {
         if (cartItemAmount >= productAmount) {
-          return Toast.error('You cannot add more items!');
+          return Toast.error(INCREMENT_CART_FAILED_MSG);
         }
 
         cartItem.amount += 1;
         const { isSuccess } = await this.cartService.editById(cartItemId, cartItem);
 
         if (!isSuccess) {
-          return Toast.error('The item is not updated!');
+          return Toast.error(UPDATE_ITEM_FAILED_MSG);
         }
 
-        return Toast.success('Successfully added item to cart!');
+        return Toast.success(ADD_CART_SUCCESS_MSG);
       }
 
       const newCartItem = {
@@ -76,10 +85,10 @@ export default class ProductDetailController {
       const { isSuccess } = await this.cartService.add(newCartItem);
 
       if (!isSuccess) {
-        return Toast.error('This item can\'t be added right now!');
+        return Toast.error(ADD_CART_FAILED_MSG);
       }
 
-      Toast.success('The item is added to your cart!');
+      Toast.success(ADD_CART_SUCCESS_MSG);
     });
   }
 }

@@ -1,4 +1,5 @@
 import { API_ROUTES } from '../constants/apiRoutes';
+import MESSAGES from '../constants/messages';
 import { createNewElement, getElementById } from '../utils/dom';
 
 export default class ProductView {
@@ -18,11 +19,18 @@ export default class ProductView {
   renderProducts(products) {
     this.clearMainContainer();
 
+    const { EMPTY_PRODUCT_LIST_HEADING } = MESSAGES;
     const mainContent = getElementById('main-content');
+
+    if (!products) {
+      mainContent.innerHTML = `<h2 class="product-info">${EMPTY_PRODUCT_LIST_HEADING}</h2>`;
+
+      return;
+    }
 
     let productListHTML = '<ul class="main-products-container">';
     // Mapping over the products array to create HTML elements for each product
-    const productElements = products.map(product => {
+    products.forEach(product => {
       const { PRODUCTS_ENDPOINT } = API_ROUTES;
       const { id, name, price, colors, imgUrl } = product;
       const productHref = `${PRODUCTS_ENDPOINT}/${id}`
@@ -71,7 +79,7 @@ export default class ProductView {
 
       productListHTML += productItemHTML;
     });
-    productListHTML += '</ul>'
+    productListHTML += '</ul>';
 
     mainContent.innerHTML += productListHTML;
   }
@@ -82,7 +90,11 @@ export default class ProductView {
   renderProductFormPage(data = {}) {
     this.clearMainContainer();
 
-    const headingPage = window.location.pathname.replace('/', '').toUpperCase();
+    const {
+      ADD_PRODUCT_HEADING,
+      EDIT_PRODUCT_HEADING
+    } = MESSAGES;
+    const headingPage = Object.keys(data).length === 0 ? ADD_PRODUCT_HEADING : EDIT_PRODUCT_HEADING;
 
     const {
       id,
@@ -159,9 +171,9 @@ export default class ProductView {
             <input value="${imgUrl}" data-field="Image URL" id="image-url" type="text" class="form-control input-size-md">
             <p data-field-error="Image URL" class="error-message" id="imgUrl-error"></p>
           </div>
-          <div class="flex-row">
-            <button id="submit-button" type="submit" class="btn btn-primary btn-submit">Submit</button>
-            <a href="/" class="btn btn-primary btn-danger">Cancel</a>
+          <div class="flex-row form-btn-group">
+            <a href="/" class="btn btn-cancel btn-primary btn-danger">Cancel</a>
+            <button id="submit-button" type="submit" class="btn btn-primary btn-submit">Save</button>
           </div>
         </form>
       </div>
