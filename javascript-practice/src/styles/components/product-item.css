@@ -43,7 +43,6 @@
   margin-bottom: 9px;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .product-name {
