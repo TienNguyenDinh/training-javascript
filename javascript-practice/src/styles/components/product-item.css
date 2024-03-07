@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  max-width: 353px;
 
   &:hover .btn-delete,
   &:hover .btn-edit {
@@ -34,6 +35,9 @@
 
 .product-title {
   margin-bottom: 9px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .product-name {
