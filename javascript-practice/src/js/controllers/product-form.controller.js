@@ -1,6 +1,7 @@
 import {
   getElementById,
   getElementValueById,
+  addEventListener,
   generateErrorMessages
 } from '../utils/dom';
 import validateForm from '../utils/validateForm';
@@ -54,7 +55,7 @@ export default class ProductFormController {
     const submitBtnElement = getElementById('submit-button');
 
     // Bind the click event to the 'Add Product' button
-    submitBtnElement.addEventListener('click', async (event) => {
+    addEventListener(submitBtnElement, 'click', async (event) => {
       event.preventDefault();
 
       // Get the values from the form inputs

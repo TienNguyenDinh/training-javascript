@@ -1,7 +1,8 @@
 import {
   getElementById,
   querySelector,
-  querySelectorAll
+  querySelectorAll,
+  addEventListener
 } from '../utils/dom';
 import Toast from '../utils/toastify';
 import { ACTION } from '../constants/action';
@@ -134,11 +135,11 @@ export default class CartController {
     }
 
     btnPlusElements.forEach(element => {
-      element.addEventListener('click', handleModifyAmount);
+      addEventListener(element, 'click', handleModifyAmount);
     });
 
     btnMinusElements.forEach(element => {
-      element.addEventListener('click', handleModifyAmount);
+      addEventListener(element, 'click', handleModifyAmount);
     });
   }
 
@@ -148,7 +149,7 @@ export default class CartController {
   bindDeleteItemBtnEvent() {
     const cartListElement = querySelector('.shopping-cart');
 
-    cartListElement.addEventListener('click', async (e) => {
+    addEventListener(cartListElement, 'click', async (e) => {
       const btnDeleteCartItemElement = e.target.classList.contains('btn-delete-cart-item');
 
       if (btnDeleteCartItemElement) {
