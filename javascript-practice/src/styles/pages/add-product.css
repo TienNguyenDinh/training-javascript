@@ -9,7 +9,12 @@
 .add-form {
   justify-items: center;
   gap: 24px 0;
-  min-width: 600px;
+  width: 90%;
+  max-width: 600px;
+
+  & .flex-column {
+    flex-grow: 1;
+  }
 }
 
 .form-btn-group {

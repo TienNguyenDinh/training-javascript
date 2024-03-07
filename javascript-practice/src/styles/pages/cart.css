@@ -1,6 +1,6 @@
 .shopping-cart {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-auto-rows: 1fr;
   gap: 32px 0;
   border-radius: 6px;
   margin: 40px auto;
@@ -9,9 +9,10 @@
 }
 
 .cart-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(200px, 1.4fr) 1fr auto auto;
+  gap: 0 20px;
   align-items: center;
-  justify-content: space-between;
 }
 
 .shopping-cart .btn-primary {
@@ -29,8 +30,6 @@
   display: flex;
   flex-direction: column;
   gap: 12px 0;
-  flex-grow: 2;
-  margin-left: 40px;
 }
 
 .cart-item-quantity {
@@ -59,4 +58,10 @@
 
 .product-total {
   min-width: 120px;
+}
+
+@media (max-width: 700px) {
+  .cart-item-quantity {
+    flex-direction: column;
+  }
 }
