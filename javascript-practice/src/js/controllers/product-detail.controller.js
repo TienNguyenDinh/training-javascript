@@ -35,7 +35,7 @@ export default class ProductDetailController {
    */
   bindAddCartBtnEvent() {
     const {
-      NO_PRODUCT_LEFT_MSG,
+      PRODUCT_EMPTY_MSG,
       ADD_CART_SUCCESS_MSG,
       ADD_CART_FAILED_MSG,
       INCREMENT_CART_FAILED_MSG,
@@ -54,7 +54,7 @@ export default class ProductDetailController {
       const { id: cartItemId, amount: cartItemAmount } = cartItem || {};
 
       if (productAmount <= 0) {
-        return Toast.error(NO_PRODUCT_LEFT_MSG);
+        return Toast.error(PRODUCT_EMPTY_MSG);
       }
 
       // Update item amount if user already add it to cart

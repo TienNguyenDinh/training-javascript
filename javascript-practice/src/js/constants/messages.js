@@ -1,5 +1,5 @@
 const MESSAGES = {
-  NO_PRODUCT_LEFT_MSG: 'The product is running out of stock',
+  PRODUCT_EMPTY_MSG: 'The product is running out of stock',
   ADD_CART_SUCCESS_MSG: 'The item is added to your cart!',
   ADD_CART_FAILED_MSG: 'This item can\'t be added right now!',
   ADD_PRODUCT_SUCCESS_MSG: 'Successfully added the product!',
