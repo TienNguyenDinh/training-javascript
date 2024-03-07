@@ -45,9 +45,7 @@
 - User can view all products.
 - User can create a new product by name, price, image, description, brand, color, total, form factor, connectivity technology.
 - Notes:
-  - Name, price, image and brand are required.
-  - Description, color, form factor, total and connectivity technology aren't required.
-    - We assume a default value of 1 for the total product if you don't provide a value when creating a new product.
+  - Name, price, image, brand, description, color, form factor, total and connectivity technology are required.
 - User can view detail of a product.
 - User can edit a exist product.
 - User can delete a product.
