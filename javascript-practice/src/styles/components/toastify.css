@@ -12,7 +12,7 @@
 }
 
 .toastify {
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   padding: 24px;
   border-radius: 6px;
   text-align: center;
@@ -27,5 +27,11 @@
     color: var(--color-text-danger);
     background: var(--background-color-danger);
     border-color: var(--border-color-danger);
+  }
+}
+
+@media (max-width: 700px) {
+  div.toastify {
+    max-width: calc(80% - 20px);
   }
 }

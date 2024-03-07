@@ -4,10 +4,13 @@
 
 .product-detail-container {
   display: flex;
-  gap: 0 125px;
+  gap: 0 45px;
   justify-content: center;
-  padding-top: 36px;
-  padding-bottom: 36px;
+  padding: 36px 10px;
+}
+
+.product-detail-container .product-title {
+  max-width: 400px;
 }
 
 .product-preview {
