@@ -22,8 +22,6 @@ export default class ProductFormController {
    */
   async init() {
     await this.displayProductFormPage();
-
-    this.bindProductFormEvent();
   }
 
   /**
@@ -39,6 +37,8 @@ export default class ProductFormController {
     }
 
     this.view.renderProductFormPage(data);
+
+    this.bindProductFormEvent();
   }
 
   /**
