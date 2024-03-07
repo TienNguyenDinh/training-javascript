@@ -37,10 +37,6 @@ function showToastify(msg, state, duration = 2000) {
     newWindow: true,
     gravity: 'center',
     position: 'center',
-    offset: {
-      x: '2rem',
-      y: '1rem',
-    },
     stopOnFocus: true,
     className: state
   }).showToast();
