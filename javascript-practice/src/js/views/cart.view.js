@@ -53,7 +53,7 @@ export default class CartView {
             -
           </button>
         </div>
-        <p id="product-total-${id}" class="product-info">$ ${totalPrice.toFixed(2)}</p>
+        <p id="product-total-${id}" class="product-total product-info">$ ${totalPrice.toFixed(2)}</p>
        </li>
       `
 

@@ -29,6 +29,12 @@
   display: flex;
   flex-direction: column;
   gap: 12px 0;
+  flex-grow: 2;
+  margin-left: 40px;
+}
+
+.cart-item-quantity {
+  flex-grow: 1;
 }
 
 .cart-item-price {
@@ -49,4 +55,8 @@
   &:disabled {
     color: var(--color-text-primary);
   }
+}
+
+.product-total {
+  min-width: 120px;
 }
