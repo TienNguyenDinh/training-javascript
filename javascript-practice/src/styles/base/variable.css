@@ -28,3 +28,14 @@
   --bg-color-btn-primary: #af367b;
   --bg-color-input-primary: #e8e8e8;
 }
+
+@media (max-width: 700px) {
+  :root {
+    --font-size-base: calc(14 / var(--base-font-size) * 1rem);
+    --font-size-sm: calc(15 / var(--base-font-size) * 1rem);
+    --font-size-2sm: calc(16 / var(--base-font-size) * 1rem);
+    --font-size-md: calc(20 / var(--base-font-size) * 1rem);
+    --font-size-2md: calc(21 / var(--base-font-size) * 1rem);
+    --font-size-lg: calc(30 / var(--base-font-size) * 1rem);
+  }
+}

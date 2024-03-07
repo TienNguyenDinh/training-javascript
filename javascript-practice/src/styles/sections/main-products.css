@@ -1,6 +1,7 @@
 .main-products-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 32px 22px;
-  padding-bottom: 114px;
+  padding-left: 15px;
+  padding-right: 15px;
 }

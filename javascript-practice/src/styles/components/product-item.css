@@ -1,11 +1,12 @@
+.product-item .product-thumbnail {
+  margin-bottom: 25px;
+}
+
 .product-thumbnail {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 25px;
-  width: 303px;
-  height: 359px;
 
   &:hover .btn-delete,
   &:hover .btn-edit {

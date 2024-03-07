@@ -20,7 +20,7 @@ export default class CartView {
     const { EMPTY_CART_HEADING } = MESSAGES;
     const mainContent = getElementById('main-content');
 
-    if (cart.length === 0) {
+    if (!cart || cart.length === 0) {
       mainContent.innerHTML = `<h2 class="product-info">${EMPTY_CART_HEADING}</h2>`;
 
       return;
@@ -36,7 +36,7 @@ export default class CartView {
        <li class="cart-item">
         <div class="cart-item-image">
           <button id="btn-delete-${id}" data-cart-item-id="${id}" type="button" class="btn btn-primary btn-delete-cart-item">X</button>
-          <figure>
+          <figure class="product-thumbnail">
             <img src="${imgUrl}" alt="${name}" />
           </figure>
         </div>

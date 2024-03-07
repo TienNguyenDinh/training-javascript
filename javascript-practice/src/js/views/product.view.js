@@ -22,7 +22,7 @@ export default class ProductView {
     const { EMPTY_PRODUCT_LIST_HEADING } = MESSAGES;
     const mainContent = getElementById('main-content');
 
-    if (!products) {
+    if (!products || products.length === 0) {
       mainContent.innerHTML = `<h2 class="product-info">${EMPTY_PRODUCT_LIST_HEADING}</h2>`;
 
       return;
@@ -270,6 +270,7 @@ export default class ProductView {
       // Creating the label element for each color
       const productColorLabelAttributes = {
         'data-color': name,
+        'style': `background-color: ${hexCode}`,
         for: name
       }
       const productColorLabelElement = createNewElement({

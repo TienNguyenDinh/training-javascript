@@ -13,8 +13,6 @@ export default class ProductController {
    */
   async init() {
     await this.displayProducts();
-
-    this.bindDeleteProductEvent();
   }
 
   /**
@@ -24,6 +22,8 @@ export default class ProductController {
     const products = await this.service.getAll();
 
     this.view.renderProducts(products);
+
+    this.bindDeleteProductEvent();
   }
 
   /**
@@ -39,6 +39,8 @@ export default class ProductController {
 
     addEventListener(productListElement, 'click', async (e) => {
       const { target } = e;
+
+      console.log(target)
 
       if (!target.classList.contains('btn-delete')) {
         return;
