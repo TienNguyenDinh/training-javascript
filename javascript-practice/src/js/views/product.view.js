@@ -65,7 +65,7 @@ export default class ProductView {
           </figure>
           <div class="product-details">
             <a href="${productHref}">
-              <h2 class="product-title product-info">
+              <h2 title="${name}" class="product-title product-info">
                 ${name}
               </h2>
             </a>
@@ -216,7 +216,7 @@ export default class ProductView {
           <img src="${imgUrl}" alt="${name}">
         </figure>
         <div class="product-details">
-          <h2 class="product-info">${name}</h2>
+          <h2 title="${name}" class="product-title product-info">${name}</h2>
           <ul id="product-option-colors" class="product-option-colors">
             ${colorOptionListHtml}
           </ul>
