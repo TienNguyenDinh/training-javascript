@@ -7,7 +7,7 @@
 ## TIMELINE
 
 - Expected: 40 hours (from 2024/01/30 - to 2024/02/16).
-- Actual: 116 hours (from 2024/01/30 - to 2024/03/07)
+- Actual: 120 hours (from 2024/01/30 - to 2024/03/07).
 
 ## TEAM SIZE
 
