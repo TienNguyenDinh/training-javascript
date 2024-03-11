@@ -34,8 +34,8 @@ function createNewElement({
  * @param {string} id - The ID of the HTML element
  * @returns {Element} The HTML element with the specified ID
  */
-function getElementById(id) {
-  return document.getElementById(id);
+function getElementById(element = document, id) {
+  return element.getElementById(id);
 }
 
 /**
@@ -43,8 +43,8 @@ function getElementById(id) {
  * @param {string} id - The ID of the HTML element
  * @returns {string} The value of the element
  */
-function getElementValueById(id) {
-  return document.getElementById(id).value;
+function getElementValueById(element = document, id) {
+  return element.getElementById(id).value;
 }
 
 /**
@@ -52,8 +52,8 @@ function getElementValueById(id) {
  * @param {string} selector - The CSS selectors
  * @returns {Element} The first Element object that matches the specified CSS selector
  */
-function querySelector(selector) {
-  return document.querySelector(selector);
+function querySelector(element = document, selector) {
+  return element.querySelector(selector);
 }
 
 /**
@@ -61,8 +61,8 @@ function querySelector(selector) {
  * @param {string} selector - The CSS selectors
  * @returns {Element[]} The collection of elements that matches the specified CSS selector
  */
-function querySelectorAll(selector) {
-  return document.querySelectorAll(selector);
+function querySelectorAll(element = document, selector) {
+  return element.querySelectorAll(selector);
 }
 
 /**
