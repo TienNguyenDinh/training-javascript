@@ -12,6 +12,7 @@ export default class ProductController {
    * Calls displaying products
    */
   async init() {
+    await this.service.getAll();
     await this.displayProducts();
   }
 

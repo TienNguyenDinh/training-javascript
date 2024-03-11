@@ -33,6 +33,7 @@ export default class ProductFormController {
    * Calls displaying product-form page
    */
   async init() {
+    await this.service.getAll();
     await this.displayProductFormPage();
   }
 

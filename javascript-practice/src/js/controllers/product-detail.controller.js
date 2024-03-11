@@ -18,6 +18,7 @@ export default class ProductDetailController {
    * Calling displaying product-detail page
    */
   async init() {
+    await this.cartService.getAll();
     await this.displayProductDetail();
   }
 

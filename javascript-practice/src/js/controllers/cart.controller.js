@@ -19,6 +19,7 @@ export default class CartController {
    * Calls displaying cart page
    */
   async init() {
+    await this.cartService.getAll();
     await this.displayCartPage();
   }
 
