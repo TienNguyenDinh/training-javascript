@@ -55,7 +55,7 @@ const validateLength = ({ key, value, min = 6 }) =>
  * @param {number} params.value - The value of that field
  */
 const validatePositive = ({ key, value }) =>
-  formError[key] = parseInt(value) < 0 ? `${key} needs to be a positive number.` : '';
+  formError[key] = parseFloat(value) < 0 ? `${key} needs to be a positive number.` : '';
 
 /**
  * Checks if the value is a hex code
@@ -73,10 +73,11 @@ const validateHexCode = ({ key, value }) =>
  * @param {string} params.value - The value of that field
  */
 function validateUrl({ key, value }) {
+  console.log(key, value)
   if (key in formError && formError[key] !== '') {
     return;
   }
-
+  console.log(key, value)
   try {
     new URL(value);
 
@@ -96,40 +97,33 @@ function validateUrl({ key, value }) {
  * @param {Object} data - The form data
  * @returns {Object} An object containing validation results
  */
-export default function validateForm(data) {
-  const validationSchema = {
-    'Name': [validateString, validateLength],
-    'Price': [validateFloat, validatePositive],
-    'Brand': [validateString],
-    'Model Name': [validateString],
-    'Color': [validateString],
-    'Hex Code': [validateHexCode],
-    'Form Factor': [validateString],
-    'Connectivity Technology': [validateString],
-    'Amount': [validateInteger, validatePositive],
-    'Image URL': [validateUrl]
-  };
-
+function validateForm(validationSchema) {
   formError = {};
 
-  for (const key in data) {
-    // If the key exists in the validationSchema
-    if (validationSchema.hasOwnProperty(key)) {
-      const value = data[key];
-      // Get the array of validator methods associated with the key
-      const validators = validationSchema[key];
-
-      validateEmptiness({ key, value });
-
-      for (let validator of validators) {
-        if (formError[key] !== '') {
-          break;
-        }
-
-        validator({ key, value });
+  for (const key in validationSchema) {
+    const { field, value, validators } = validationSchema[key];
+    validateEmptiness({ key: field, value });
+    
+    for (const validator of validators) {
+      if (formError[field] !== '') {
+        break;
       }
+
+      validator({ key: field, value });
     }
   }
-
+  
   return { formError }
+}
+
+export {
+  validateString,
+  validateEmptiness,
+  validateFloat,
+  validateHexCode,
+  validateInteger,
+  validateLength,
+  validatePositive,
+  validateUrl,
+  validateForm
 }

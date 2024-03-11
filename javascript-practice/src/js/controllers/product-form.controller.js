@@ -10,6 +10,17 @@ import { ACTION } from '../constants/action';
 import Toast from '../utils/toastify';
 import { handleRoute } from '../routes/router';
 import MESSAGES from '../constants/messages';
+import {
+  validateString,
+  validateFloat,
+  validateForm,
+  validateHexCode,
+  validateInteger,
+  validateLength,
+  validatePositive,
+  validateUrl,
+  validateForm
+} from '../utils/validateForm';
 
 export default class ProductFormController {
   constructor(view, service, action) {
@@ -70,21 +81,59 @@ export default class ProductFormController {
       const amountValue = getElementValueById('amount');
       const imageUrlValue = getElementValueById('image-url');
 
-      // Create a product object with the form input values
-      const productInputs = {
-        'Name': nameValue,
-        'Price': priceValue,
-        'Brand': brandValue,
-        'Model Name': modelNameValue,
-        'Color': colorNameValue,
-        'Hex Code': hexCodeValue,
-        'Form Factor': formFactorValue,
-        'Connectivity Technology': connectivityTechnologyValue,
-        'Amount': amountValue,
-        'Image URL': imageUrlValue
+      const validationSchema = {
+        name: {
+          field: 'Name',
+          value: nameValue,
+          validators: [validateString, validateLength]
+        },
+        price: {
+          field: 'Price',
+          value: priceValue,
+          validators: [validateFloat, validatePositive]
+        },
+        brand: {
+          field: 'Brand',
+          value: brandValue,
+          validators: [validateString]
+        },
+        modelName: {
+          field: 'Model Name',
+          value: modelNameValue,
+          validators: [validateString]
+        },
+        color: {
+          field: 'Color',
+          value: colorNameValue,
+          validators: [validateString]
+        },
+        hexCode: {
+          field: 'Hex Code',
+          value: hexCodeValue,
+          validators: [validateHexCode]
+        },
+        formFactor: {
+          field: 'Form Factor',
+          value: formFactorValue,
+          validators: [validateString]
+        },
+        connectivityTechnology: {
+          field: 'Connectivity Technology',
+          value: connectivityTechnologyValue,
+          validators: [validateString]
+        },
+        amount: {
+          field: 'Amount',
+          value: amountValue,
+          validators: [validateInteger, validatePositive]
+        },
+        imgUrl: {
+          field: 'Image URL',
+          value: imageUrlValue,
+          validators: [validateUrl]
+        }
       }
-
-      const { formError } = validateForm(productInputs);
+      const { formError } = validateForm(validationSchema);
 
       // Generate new error messages based on the validation results
       generateErrorMessages(formError);
