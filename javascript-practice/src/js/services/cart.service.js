@@ -13,9 +13,7 @@ export default class CartService extends BaseService {
    * @returns {Promise<Object>} The object contains the cart item
    */
   async getByProductId(id) {
-    const endpoint = `${API_ROUTES.CART_ENDPOINT}?productId=${id}`;
-
-    const data = await APIHandler.get(endpoint);
+    const data = await APIHandler.get(`${API_ROUTES.CART_ENDPOINT}?productId=${id}`);
 
     return data[0];
   }

@@ -10,11 +10,7 @@ export default class BaseService {
    * @returns {Promise<Object[]>} An array of data objects
    */
   async getAll() {
-    const endpoint = this.endpoint;
-
-    const data = await APIHandler.get(endpoint);
-
-    return data;
+    return await APIHandler.get(this.endpoint);
   }
 
   /**
@@ -23,11 +19,7 @@ export default class BaseService {
    * @returns {Promise<Object>} The object contains the item
    */
   async getById(id) {
-    const endpoint = `${this.endpoint}/${id}`;
-
-    const data = await APIHandler.get(endpoint);
-
-    return data;
+    return await APIHandler.get(`${this.endpoint}/${id}`);
   }
 
   /**
@@ -36,11 +28,7 @@ export default class BaseService {
    * @param {Object} result - The result
    */
   async add(cartItem) {
-    const endpoint = this.endpoint;
-
-    const result = await APIHandler.post(endpoint, cartItem);
-
-    return result;
+    return await APIHandler.post(this.endpoint, cartItem);;
   }
 
   /**
@@ -49,11 +37,7 @@ export default class BaseService {
    * @param {Object} result - The result
    */
   async editById(id, data) {
-    const endpoint = `${this.endpoint}/${id}`;
-
-    const result = await APIHandler.put(endpoint, data);
-
-    return result;
+    return await APIHandler.put(`${this.endpoint}/${id}`, data);
   }
 
   /**
@@ -62,10 +46,6 @@ export default class BaseService {
    * @param {Object} result - The result
    */
   async removeById(id) {
-    const endpoint = `${this.endpoint}/${id}`;
-
-    const result = await APIHandler.delete(endpoint);
-
-    return result;
+    return await APIHandler.delete(`${this.endpoint}/${id}`);
   }
 }
