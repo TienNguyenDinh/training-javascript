@@ -1,20 +1,27 @@
 /**
- * Generates HTML for a form input
- *
- * @param {Object} params - The parameters for the form input
- * @param {string} params.field - The name of the field
- * @param {string} params.value - The value of the field
- * @param {string} params.id - The id of the field
- * @returns {string} The HTML string for the form input
+ * Generates HTML for form inputs
+ * @param {Array} props - An array of objects, each representing a form input
+ * @param {string} props[].field - The name of the form field
+ * @param {string} props[].value - The value of the form field
+ * @param {string} props[].id - The id of the form field
+ * @returns {string} The generated HTML string
  */
-const formInputHTML = ({ field, value, id }) => {
-  return `
-    <div class="flex-column">
-      <label class="label-primary" for="${id}">${field}</label>
-      <input value="${value}" data-field="${field}" id="${id}" type="text" class="form-control input-size-md">
-      <p data-field-error="${field}" class="error-message" id="${id}-error"></p>
-    </div>
-  `
+const renderFormInputsHTML = (formInputs) => {
+  let formInputsHTML = ``;
+
+  for (const item of formInputs) {
+    const { field, value, id } = item;
+
+    formInputsHTML += `
+      <div class="flex-column">
+        <label class="label-primary" for="${id}">${field}</label>
+        <input value="${value}" data-field="${field}" id="${id}" type="text" class="form-control input-size-md">
+        <p data-field-error="${field}" class="error-message" id="${id}-error"></p>
+      </div>
+    `
+  }
+
+  return formInputsHTML;
 }
 
-export default formInputHTML;
+export default renderFormInputsHTML;

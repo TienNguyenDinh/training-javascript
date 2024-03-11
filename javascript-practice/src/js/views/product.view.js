@@ -1,8 +1,8 @@
 import { API_ROUTES } from '../constants/apiRoutes';
 import MESSAGES from '../constants/messages';
 import { createNewElement, getElementById } from '../utils/dom';
-import formInputHTML from './templates/formInputHTML';
-import productInfoHTML from './templates/productInfoHTML';
+import renderFormInputsHTML from './templates/formInputHTML';
+import renderProductInfoHTML from './templates/productInfoHTML';
 
 export default class ProductView {
   /**
@@ -112,10 +112,21 @@ export default class ProductView {
     } = data;
     let color = '';
     let hexCode = '';
-
     if (colors && colors.length > 0) {
       ({ name: color, hexCode } = colors[0]);
     }
+    const formInputs = [
+      { field: 'Name', value: name, id: 'name' },
+      { field: 'Price', value: price, id: 'price' },
+      { field: 'Brand', value: brand, id: 'brand' },
+      { field: 'Model Name', value: modelName, id: 'model-name' },
+      { field: 'Color', value: color, id: 'color' },
+      { field: 'Hex Code', value: hexCode, id: 'hex-code' },
+      { field: 'Form Factor', value: formFactor, id: 'form-factor' },
+      { field: 'Connectivity Technology', value: connectivityTechnology, id: 'connectivity-technology' },
+      { field: 'Amount', value: amount, id: 'amount' },
+      { field: 'Image URL', value: imgUrl, id: 'image-url' }
+    ]
 
     const mainContent = getElementById('main-content');
 
@@ -123,16 +134,7 @@ export default class ProductView {
       <div class="container add-product-container">
         <h2 class="main-heading">${headingPage}</h2>
         <form data-product-id="${id}" id="product-form" action="javascript:void(0)" class="form-default add-form">
-          ${formInputHTML({ field: 'Name', value: name, id: 'name' })}
-          ${formInputHTML({ field: 'Price', value: price, id: 'price' })}
-          ${formInputHTML({ field: 'Brand', value: brand, id: 'brand' })}
-          ${formInputHTML({ field: 'Model Name', value: modelName, id: 'model-name' })}
-          ${formInputHTML({ field: 'Color', value: color, id: 'color' })}
-          ${formInputHTML({ field: 'Hex Code', value: hexCode, id: 'hex-code' })}
-          ${formInputHTML({ field: 'Form Factor', value: formFactor, id: 'form-factor' })}
-          ${formInputHTML({ field: 'Connectivity Technology', value: connectivityTechnology, id: 'connectivity-technology' })}
-          ${formInputHTML({ field: 'Amount', value: amount, id: 'amount' })}
-          ${formInputHTML({ field: 'Image URL', value: imgUrl, id: 'image-url' })}
+          ${renderFormInputsHTML(formInputs)}
           <div class="flex-row form-btn-group">
             <a href="/" class="btn btn-cancel btn-primary btn-danger">Cancel</a>
             <button id="submit-button" type="submit" class="btn btn-primary btn-submit">Save</button>
@@ -172,6 +174,15 @@ export default class ProductView {
       colorOptionListHtml += colorOptionItem.outerHTML;
     });
 
+    const productInfos = [
+      { term: 'Brand', value: brand },
+      { term: 'Model Name', value: modelName },
+      { term: 'Color', value: colors[0].name },
+      { term: 'Form', value: formFactor },
+      { term: 'Connectivity Technology', value: connectivityTechnology },
+      { term: 'Amount', value: amount }
+    ];
+
     mainContent.innerHTML = `
       <div class="container product-detail-container">
         <figure class="product-preview">
@@ -184,12 +195,7 @@ export default class ProductView {
           </ul>
           <p class="product-info product-price">${price}</p>
           <dl class="product-data product-info">
-            ${productInfoHTML({ term: 'Brand', value: brand })}
-            ${productInfoHTML({ term: 'Model Name', value: modelName })}
-            ${productInfoHTML({ term: 'Color', value: colors[0].name })}
-            ${productInfoHTML({ term: 'Form', value: formFactor })}
-            ${productInfoHTML({ term: 'Connectivity Technology', value: connectivityTechnology })}
-            ${productInfoHTML({ term: 'Amount', value: amount })}
+            ${renderProductInfoHTML(productInfos)}
           </dl>
           <button id="btn-add-cart" class="btn btn-primary btn-success">Add to Cart</button>
           <input type="hidden" value="${id}" id="product-id" >
