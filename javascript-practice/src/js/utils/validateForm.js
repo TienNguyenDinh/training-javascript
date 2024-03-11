@@ -73,11 +73,10 @@ const validateHexCode = ({ key, value }) =>
  * @param {string} params.value - The value of that field
  */
 function validateUrl({ key, value }) {
-  console.log(key, value)
   if (key in formError && formError[key] !== '') {
     return;
   }
-  console.log(key, value)
+
   try {
     new URL(value);
 
@@ -103,7 +102,7 @@ function validateForm(validationSchema) {
   for (const key in validationSchema) {
     const { field, value, validators } = validationSchema[key];
     validateEmptiness({ key: field, value });
-    
+
     for (const validator of validators) {
       if (formError[field] !== '') {
         break;
@@ -112,7 +111,7 @@ function validateForm(validationSchema) {
       validator({ key: field, value });
     }
   }
-  
+
   return { formError }
 }
 
