@@ -1,6 +1,8 @@
 import { API_ROUTES } from '../constants/apiRoutes';
 import MESSAGES from '../constants/messages';
 import { createNewElement, getElementById } from '../utils/dom';
+import renderFormInputsHTML from './templates/formInputHTML';
+import renderProductInfoHTML from './templates/productInfoHTML';
 
 export default class ProductView {
   /**
@@ -110,10 +112,21 @@ export default class ProductView {
     } = data;
     let color = '';
     let hexCode = '';
-
     if (colors && colors.length > 0) {
       ({ name: color, hexCode } = colors[0]);
     }
+    const formInputs = [
+      { field: 'Name', value: name, id: 'name' },
+      { field: 'Price', value: price, id: 'price' },
+      { field: 'Brand', value: brand, id: 'brand' },
+      { field: 'Model Name', value: modelName, id: 'model-name' },
+      { field: 'Color', value: color, id: 'color' },
+      { field: 'Hex Code', value: hexCode, id: 'hex-code' },
+      { field: 'Form Factor', value: formFactor, id: 'form-factor' },
+      { field: 'Connectivity Technology', value: connectivityTechnology, id: 'connectivity-technology' },
+      { field: 'Amount', value: amount, id: 'amount' },
+      { field: 'Image URL', value: imgUrl, id: 'image-url' }
+    ]
 
     const mainContent = getElementById('main-content');
 
@@ -121,56 +134,7 @@ export default class ProductView {
       <div class="container add-product-container">
         <h2 class="main-heading">${headingPage}</h2>
         <form data-product-id="${id}" id="product-form" action="javascript:void(0)" class="form-default add-form">
-          <div class="flex-column">
-            <label class="label-primary" for="name">Name</label>
-            <input value="${name}" data-field="Name" id="name" type="text" class="form-control input-size-md">
-            <p data-field-error="Name" class="error-message" id="name-error"></p>
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="price">Price</label>
-            <input value="${price}" data-field="Price" id="price" type="text" class="form-control input-size-md">
-            <p data-field-error="Price" class="error-message" id="price-error"></p>
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="brand">Brand</label>
-            <input value="${brand}" data-field="Brand" id="brand" type="text" class="form-control input-size-md">
-            <p data-field-error="Brand" class="error-message" id="brand-error"></p>
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="model-name">Model Name</label>
-            <input value="${modelName}" data-field="Model Name" id="model-name" type="text" class="form-control input-size-md">
-            <p data-field-error="Model Name" class="error-message" id="modelName-error"></p>
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="color">Color</label>
-            <input value="${color}" data-field="Color" id="color" type="text" class="form-control input-size-md">
-            <p data-field-error="Color" class="error-message" id="color-error"></p>
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="hex-code">Hex Code</label>
-            <input value="${hexCode}" data-field="Hex Code" id="hex-code" type="text" class="form-control input-size-md">
-            <p data-field-error="Hex Code" class="error-message" id="hexCode-error"></p>
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="form-factor">Form Factor</label>
-            <input value="${formFactor}" data-field="Form Factor" id="form-factor" type="text" class="form-control input-size-md">
-            <p data-field-error="Form Factor" class="error-message" id="formFactor-error"></p>
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="connectivity-technology">Connectivity Technology</label>
-            <input value="${connectivityTechnology}" data-field="Connectivity Technology" id="connectivity-technology" type="text" class="form-control input-size-md">
-            <p data-field-error="Connectivity Technology" class="error-message" id="connectivityTechnology-error"></p>
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="amount">Amount</label>
-            <input value="${amount}" data-field="Amount" id="amount" type="text" class="form-control input-size-md">
-            <p data-field-error="Amount" class="error-message" id="amount-error"></p>
-          </div>
-          <div class="flex-column">
-            <label class="label-primary" for="image-url">Image URL</label>
-            <input value="${imgUrl}" data-field="Image URL" id="image-url" type="text" class="form-control input-size-md">
-            <p data-field-error="Image URL" class="error-message" id="imgUrl-error"></p>
-          </div>
+          ${renderFormInputsHTML(formInputs)}
           <div class="flex-row form-btn-group">
             <a href="/" class="btn btn-cancel btn-primary btn-danger">Cancel</a>
             <button id="submit-button" type="submit" class="btn btn-primary btn-submit">Save</button>
@@ -210,6 +174,15 @@ export default class ProductView {
       colorOptionListHtml += colorOptionItem.outerHTML;
     });
 
+    const productInfos = [
+      { term: 'Brand', value: brand },
+      { term: 'Model Name', value: modelName },
+      { term: 'Color', value: colors[0].name },
+      { term: 'Form', value: formFactor },
+      { term: 'Connectivity Technology', value: connectivityTechnology },
+      { term: 'Amount', value: amount }
+    ];
+
     mainContent.innerHTML = `
       <div class="container product-detail-container">
         <figure class="product-preview">
@@ -222,30 +195,7 @@ export default class ProductView {
           </ul>
           <p class="product-info product-price">${price}</p>
           <dl class="product-data product-info">
-            <div class="product-info-row">
-              <dt class="product-info-term">Brand</dt>
-              <dd class="product-info-value">${brand}</dd>
-            </div>
-            <div class="product-info-row">
-              <dt class="product-info-term">Model Name</dt>
-              <dd class="product-info-value">${modelName}</dd>
-            </div>
-            <div class="product-info-row">
-              <dt class="product-info-term">Color</dt>
-              <dd class="product-info-value">${colors[0].name}</dd>
-            </div>
-            <div class="product-info-row">
-              <dt class="product-info-term">Form</dt>
-              <dd class="product-info-value">${formFactor}</dd>
-            </div>
-            <div class="product-info-row">
-              <dt class="product-info-term">Connectivity Technology</dt>
-              <dd class="product-info-value">${connectivityTechnology}</dd>
-            </div>
-            <div class="product-info-row">
-              <dt class="product-info-term">Amount</dt>
-              <dd class="product-info-value">${amount}</dd>
-            </div>
+            ${renderProductInfoHTML(productInfos)}
           </dl>
           <button id="btn-add-cart" class="btn btn-primary btn-success">Add to Cart</button>
           <input type="hidden" value="${id}" id="product-id" >
