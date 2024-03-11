@@ -22,34 +22,30 @@ const productDetailServices = {
   cartService
 }
 
+const productController = new ProductController(productView, productService);
+const productDetailController = new ProductDetailController(productView, productDetailServices);
+const productFormAddController = new ProductFormController(productView, productService, ACTION.ADD);
+const productFormEditController = new ProductFormController(productView, productService, ACTION.EDIT);
+const cartController = new CartController(cartView, productDetailServices);
+
 /**
  * An object that maps route names to their respective handlers
  */
 const routes = {
   [ROUTES.HOME]: {
-    handler: () => {
-      return new ProductController(productView, productService)
-    }
+    handler: () => productController
   },
   [ROUTES.PRODUCT_DETAIL]: {
-    handler: () => {
-      return new ProductDetailController(productView, productDetailServices)
-    }
+    handler: () => productDetailController
   },
   [ROUTES.ADD_PRODUCT]: {
-    handler: () => {
-      return new ProductFormController(productView, productService, ACTION.ADD);
-    }
+    handler: () => productFormAddController
   },
   [ROUTES.EDIT_PRODUCT]: {
-    handler: () => {
-      return new ProductFormController(productView, productService, ACTION.EDIT);
-    }
+    handler: () => productFormEditController
   },
   [ROUTES.CART]: {
-    handler: () => {
-      return new CartController(cartView, productDetailServices);
-    }
+    handler: () => cartController
   }
 }
 
@@ -58,10 +54,10 @@ const routes = {
 // Single Page Application and does not need to reload
 // which can lead to a faster user experience
 addEventListener(document, 'click', (e) => {
-  const target = e.target;
+  const target = e.target.closest('a');
 
   // If the clicked element is not a link, exit the function
-  if (!target.matches('a')) return;
+  if (!target || !target.matches('a')) return;
 
   e.preventDefault();
 
