@@ -59,11 +59,14 @@ addEventListener(document, 'click', (e) => {
   // If the clicked element is not a link, exit the function
   if (!target || !target.matches('a')) return;
 
-  e.preventDefault();
+  const url = target.getAttribute('href');
+  if (!url.startsWith('http')) {
+    e.preventDefault();
 
-  handleRoute({
-    target
-  });
+    handleRoute({
+      target
+    });
+  }
 });
 
 /**
