@@ -9,9 +9,11 @@ export default class ProductService {
   async getAll() {
     const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
-    const data = await APIHandler.get(endpoint);
+    if (!this.products) {
+      this.products = await APIHandler.get(endpoint);
+    }
 
-    return data;
+    return this.products;
   }
 
   /**
@@ -36,6 +38,9 @@ export default class ProductService {
     const endpoint = API_ROUTES.PRODUCTS_ENDPOINT;
 
     const result = await APIHandler.post(endpoint, product);
+    if (result.isSuccess) {
+      this.products.push(product);
+    }
 
     return result;
   }
@@ -49,6 +54,14 @@ export default class ProductService {
     const endpoint = `${API_ROUTES.PRODUCTS_ENDPOINT}/${id}`;
 
     const result = await APIHandler.put(endpoint, product);
+    if (result.isSuccess) {
+      this.products = this.products.map(item =>
+        item.id === id
+        ?
+        { ...product, id }
+        :
+        item);
+    }
 
     return result;
   }
@@ -62,6 +75,9 @@ export default class ProductService {
     const endpoint = `${API_ROUTES.PRODUCTS_ENDPOINT}/${id}`;
 
     const result = await APIHandler.delete(endpoint);
+    if (result.isSuccess) {
+      this.products = this.products.filter(item => item.id !== id);
+    }
 
     return result;
   }

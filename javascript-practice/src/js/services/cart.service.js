@@ -9,9 +9,11 @@ export default class CartService {
   async getAll() {
     const endpoint = API_ROUTES.CART_ENDPOINT;
 
-    const data = await APIHandler.get(endpoint);
+    if (!this.cart) {
+      this.cart = await APIHandler.get(endpoint);
+    }
 
-    return data;
+    return this.cart;
   }
 
   /**
@@ -36,6 +38,9 @@ export default class CartService {
     const endpoint = API_ROUTES.CART_ENDPOINT;
 
     const result = await APIHandler.post(endpoint, cartItem);
+    if (result.isSuccess) {
+      this.cart.push(cartItem);
+    }
 
     return result;
   }
@@ -49,6 +54,14 @@ export default class CartService {
     const endpoint = `${API_ROUTES.CART_ENDPOINT}/${id}`;
 
     const result = await APIHandler.put(endpoint, data);
+    if (result.isSuccess) {
+      this.cart = this.cart.map(item =>
+        item.id === id
+        ?
+        { ...data, id }
+        :
+        item);
+    }
 
     return result;
   }
@@ -62,6 +75,9 @@ export default class CartService {
     const endpoint = `${API_ROUTES.CART_ENDPOINT}/${id}`;
 
     const result = await APIHandler.delete(endpoint);
+    if (result.isSuccess) {
+      this.cart = this.cart.filter(item => item.id !== id);
+    }
 
     return result;
   }
